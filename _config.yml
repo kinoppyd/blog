@@ -1,0 +1,28 @@
+url: "https://kinoppyd.dev"
+baseurl: ""
+title: "kinoppyd.dev"
+lang: "ja"
+timezone: "Asia/Tokyo"
+permalink: /blog/:title
+
+plugins:
+  - jekyll-postcss
+  - jekyll-paginate-v2
+
+postcss:
+  cache: false
+
+sass:
+  implementation: sass-embedded
+
+pagination:
+  enabled: true
+  per_page: 10
+  sort_reverse: true
+
+exclude:
+  - package.json
+  - postcss.config.js
+  - tailwind.config.js
+  - yarn.lock
+  - node_modules/
