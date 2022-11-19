@@ -1,0 +1,60 @@
+---
+author: kinoppyd
+comments: true
+date: 2014-09-24 16:04:26+00:00
+layout: post
+link: http://tolarian-academy.net/20140924-%e4%bb%8a%e6%97%a5%e8%aa%ad%e3%82%93%e3%81%a0%e3%82%82%e3%81%ae/
+permalink: /20140924-%e4%bb%8a%e6%97%a5%e8%aa%ad%e3%82%93%e3%81%a0%e3%82%82%e3%81%ae
+title: 2014/09/24 今日読んだもの
+wordpress_id: 141
+categories:
+- プログラミング
+- 自然言語解析
+---
+
+あまりにも忘れすぎるので、毎日読んだものを記録するように努力する
+
+
+#### テキストからの評判分析と 機械学習
+
+
+http://www.iip.ist.i.kyoto-u.ac.jp/sigfpai/past/sigfpai73-kaji.pdf
+
+少し古いけど、昔読んだのを再読
+
+
+#### 
+
+
+
+
+#### 大規模ウェブテキストからの片仮名用言の自動獲得
+
+
+http://www.tkl.iis.u-tokyo.ac.jp/top/modules/newdb/extract/1003/data/ieice.pdf
+
+ナイーブベースベイズフィルタを作る上で色々なにか学習を今日できないかと思って探してたら発見。おもそろかったけど、今作ってるものにはあんまり応用できないのでとりあえずメモだけ。
+
+
+#### 機械学習を知識ゼロから学ぶpdf
+
+
+http://matome.naver.jp/odai/2137978900585239401
+
+いい感じにまとまってた
+
+
+#### Base DDD(ドメイン駆動設計） 参考文献を巡る旅
+
+
+http://www.slideshare.net/kawakawa__/base-ddd
+
+さらっと読んだ。あとで細かく読み返す。
+
+
+#### 「関連する○○」機能を手軽に実現できる。そう、Elasticsearch ならね。
+
+
+http://techlife.cookpad.com/entry/2014/09/24/092223
+
+すげえけど、ElasticSearchが中で何やってるのかさっぱりわからない……近いうちに調べてみよう

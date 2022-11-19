@@ -1,0 +1,37 @@
+---
+author: kinoppyd
+comments: true
+date: 2014-04-26 09:08:32+00:00
+layout: post
+link: http://tolarian-academy.net/github%e3%81%aewebhook%e3%82%92%e5%8f%97%e3%81%91%e5%8f%96%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b/
+permalink: /github%e3%81%aewebhook%e3%82%92%e5%8f%97%e3%81%91%e5%8f%96%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b
+title: GithubのWebhookを受け取ってみる
+wordpress_id: 115
+categories:
+- Perl
+- プログラミング
+- 未分類
+tags:
+- プログラミング
+---
+
+仕事ではGithubを使った開発をやっているので、コードレビューやなんかもGithub上でやっている。
+
+しかし、コメントはGithub上でやっているが、その他の多くのやりとりを他のグループウェアでやっている関係上、Githubに書いてはグループウェア上でURLを張り、コメントを求めるというやや二度手間的な事態が発生していた。
+
+なので、GithubのWebhookを受け取り、PullRequestにコメントがあった場合は、グループウェアの方にその内容を転記するシステムを作ろうと思って、ここ数日なんじゃかかんじゃかコードを書いていた。
+
+その過程で、GithubのWebhookを実際に受け取り、その内容を精読していたのだが、どうもドキュメント類を読んでも「Githubの何のイベントに対応したHookなのか」を知る方法が分からない。
+現状で欲しいのはPullRequestに対するコメントだけなので 、その他の雑多なHookはどうでもいいのだが、今後の拡張性を考えると、どんなHookなのかを判別する方法は今のうちに作っておいた方がいい。
+
+[Event Types | GitHub API](https://developer.github.com/v3/activity/events/types/)
+
+で、困ったので、[手っ取り早くMojolicious::Liteアプリを書いて](https://github.com/YasuhiroKinoshita/hook_junction/blob/3a5807d167e3e653ed4b5505279724629bf21a2b/script/github_hook_test)、実際にどんな値を受け取ってるのか、Dumpしてみた。
+
+    
+    morbo github_hook_test
+
+
+すると、どうもPOSTのX-Headerに、x-github-eventというキーがあって、それで判断できるらしい。一体、ドキュメントのどこにそんなことが書いてあるのか謎だが、とりあえず分かって良かった。
+
+途中での方向転換とか紆余曲折色々あったけど、これでようやく、[HookJunction](https://github.com/YasuhiroKinoshita/hook_junction)の最初の動くバージョンが作れそうだ。

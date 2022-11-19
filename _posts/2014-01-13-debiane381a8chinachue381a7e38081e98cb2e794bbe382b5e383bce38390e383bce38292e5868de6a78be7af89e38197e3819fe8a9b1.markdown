@@ -1,0 +1,200 @@
+---
+author: kinoppyd
+comments: true
+date: 2014-01-13 12:11:03+00:00
+layout: post
+link: http://tolarian-academy.net/debian%e3%81%a8chinachu%e3%81%a7%e3%80%81%e9%8c%b2%e7%94%bb%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e3%82%92%e5%86%8d%e6%a7%8b%e7%af%89%e3%81%97%e3%81%9f%e8%a9%b1/
+permalink: /debian%e3%81%a8chinachu%e3%81%a7%e3%80%81%e9%8c%b2%e7%94%bb%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e3%82%92%e5%86%8d%e6%a7%8b%e7%af%89%e3%81%97%e3%81%9f%e8%a9%b1
+title: DebianとChinachuで、録画サーバーを再構築した話
+wordpress_id: 46
+categories:
+- Debian
+- Linux
+- アニメ
+tags:
+- chinachu
+- Debian
+- Linux
+---
+
+**家の録画サーバーが不安定になった。**
+
+というか、そもそもが専用の録画サーバーというものが存在せず、メインマシンが片手間でやっていたのだが、色々となんかもう限界が訪れていた。
+せっかく始まったばかりの2014年冬アニメをしょっぱなからいろいろ見れなかった後悔は大きく、これはもう専用の録画サーバーを作れというお告げだと受け取ることにした。
+
+**Chinachu**
+
+丁度、冬コミで素晴らしい物を見つけていた。
+[Chinachu](http://chinachu.akkar.in/)である。Linuxで動く録画サーバーで、しかも[オープンソース](https://github.com/kanreisa/Chinachu)。
+実際にC85のサークルスペースでは、NUCとPT3を使った実機のお手本みたいなものまで置いてあり、既にこの時点で自分の頭のなかには、「専用録画サーバーを作らなきゃ」という意識があった。多分、正月前後で録画マシンが急に不安定になったのは、そんな自分の頭のなかを読まれたのだと思う。
+
+**<!-- more -->まずDebianをインストールする**
+
+Debianを入れるのは、[このマシン](http://www.links.co.jp/items/foxconn-barebone/r30d4.html)。前に家族が使っていたものだけど、使わなくなってから引き取ってずっと足元で腐ってた。とりあえずケースからマザーと電源だけ取り出して、PT2を刺す。
+Atomとかいう微妙CPUと、1Gとかいう微妙メモリだけど、録画くらいならなんとかなると思う。こいつにTOSHIBAの2.5インチ500GのHDDを5000円くらいで買ってきて接続。SSDにしたかったけど、悩んでやめた。
+インストール用にブートCDとか作るのダルいから、USBからブートさせてインストール。
+[http://www.nigauri.org/~iwamatsu/wiki/debian_usb_mem_install/](http://www.nigauri.org/~iwamatsu/wiki/debian_usb_mem_install/)
+ここを参考にして、理研のミラーからsqueezのブートイメージを持ってくる
+で、Macに刺したUSBメモリを、diskutil list コマンドでデバイス名を調べ、ブートイメージを書き込み（自分の環境では、/dev/disk1だった）
+ディスクを一度アンマウントしてからブートイメージを書き込んで、それから再度マウントしてインストール用のCDイメージを書き込む。
+[crayon]
+curl -O ftp://ftp.riken.jp/Linux/debian/debian/dists/squeeze/main/installer-amd64/20110106+squeeze4+b4/images/hd-media/boot.img.gz
+curl -O ftp://ftp.riken.jp/Linux/debian/debian-cd/6.0.6/amd64/iso-cd/debian-6.0.6-amd64-CD-1.iso
+diskutil unmountDisk /dev/disk1
+gzcat boot.img.gz > /dev/disk1
+diskutil mountDisk /dev/disk1
+cp debian-6.0.6-amd64-CD-1.iso /dev/disk1
+[/crayon]
+
+作ったブート用のUSBメモリを、サーバーに刺してブート。
+あとは適当にインストーラーの質問に答えながら、Debianはインストール完了。
+
+**インストールはサクッと終わったけど**
+
+gccが入らなくて困ってた。
+色々探した結果、ここに行き着く
+[http://d.hatena.ne.jp/memoyashi/20090213/1234528090](http://d.hatena.ne.jp/memoyashi/20090213/1234528090)
+/etc/apt/source.list から、CDROMを見る記述を消せばOKだった。そりゃそうだ。
+今度こそサクッと開発ツールを入れる
+こっからの作業は、基本的に全部rootでやってる。危ない？ 仕事じゃないから知らん。
+
+[crayon]
+aptitude install make linux-headers-`uname -r` pkg-config gcc autoconf
+aptitude install mercurial git
+[/crayon]
+
+**カードリーダーのセットアップ**
+
+ここからは、ほとんどこのページを参考にした
+[Linux/テレビ関連/PT2](http://baalzephon.no-ip.org/tech/index.php?Linux%2F%E3%83%86%E3%83%AC%E3%83%93%E9%96%A2%E9%80%A3%2FPT2)
+使っているカードリーダーは、かなり昔に買ったやつで名前がわからない。
+が、これも特に何も考えずにサクッと終わった
+[crayon]
+aptitude install libpcsclite-dev
+aptitude install pcsc-tools
+aptitude install pcscd
+pcsc_scan
+[/crayon]
+最後のコマンドを打つと、ctrl-cじゃないと止められない謎の画面が出てくるが、多分出てくるってことは動いてる（多分）
+
+**PT2のドライバとコマンドのセットアップ**
+
+カードリーダーと同様のページを参考にした。
+参考ページの方では、様々なパッチに関する解説が色々と書いてあるが、自分の環境と最新のリポジトリを使えば、パッチなんか一個も当てることなくサックリと終わった。すげえ。開発者の人に感謝。
+[crayon]
+
+hg clone http://hg.honeyplanet.jp/pt1.oyama/ pt1_driver_oyama
+cd pt1_driver_oyama
+hg revert -r c44e16dbb0e2 --all
+hg revert -r tip --all
+cd driver
+make
+make install
+modprobe pt1_drv
+cd ../arib25/
+make
+make install
+cd ../recpt1/
+make
+make install
+
+[/crayon]
+
+**有効なチャンネルを確認する**
+
+めでたくrecpt1コマンドが使えるようになったので、chinachuを入れる前に有効なチャンネルを把握しておいて、後々の設定を楽にする。
+recpt1は、信号が有効な場合しか録画を実行しないらしいので、こんな感じに愚直にfor文を回してみた。
+[crayon]
+for var in `seq 10 80` ; do recpt1 --b25 --strip $var 5 /mnt/video/$var.ts;done
+ls -la /mnt/video
+[/crayon]
+この時に、なんかゴニョゴニョっと、あまり言葉に出しづらい感じのエラーが出る可能性があるが、その場合はおそらく信号の強度が足りていないのだと思う。テストするときに簡易的なアンテナから直接線を引っ張ってきたので、そんな感じのエラーが出た。参考：[Computer/Linux/PT2](http://archive.side2.net/wiki/index.php?Computer%2FLinux%2FPT2)
+どうやら、Linux用のチャンネルスキャンスクリプトもあるらしいのだけど、epgdumpが要るらしいので力技で解決。
+
+**chinachuのインストール**
+
+chinachuのgithubリポジトリにある、[Installation](https://github.com/kanreisa/Chinachu/wiki/Installation)の通りにコマンドを実行して終わり。
+ライブラリ系を入れ終わったら、あとはインストールスクリプトがNode.jsから何からバンバン放り込んでくれるから、時間はかかるけどコマンド一発でインストール終了。
+その後に、少しだけサービス登録用のスクリプトとかをコピーしたりするだけ。簡単。
+[crayon]
+install build-essential curl git-core libssl-dev yasm libtool autoconf
+sudo adduser chinachu
+sudo -i -u chinachu
+
+git clone git://github.com/kanreisa/Chinachu.git ~/chinachu
+cd ~/chinachu/
+./chinachu installer
+
+./chinachu service operator initscript > /tmp/chinachu-operator
+./chinachu service wui initscript > /tmp/chinachu-wui
+exit
+chown root:root /tmp/chinachu-operator /tmp/chinachu-wui
+chmod +x /tmp/chinachu-operator /tmp/chinachu-wui
+mv /tmp/chinachu-operator /tmp/chinachu-wui /etc/init.d/
+
+insserv chinachu-operator
+insserv chinachu-wui
+[/crayon]
+./chinachu installer コマンドの時に、インストールの仕方を色々聞かれるけど、1)autoでいいはず。
+超サックリ終わった。すげえ。アッカリーン！
+
+**サービスを起動する前に**
+
+config.jsonとrules.jsonを用意せずにサービスを起動すると、PT2の場合デバイスにロックが掛かって大変らしい。参考：[CentOSでChinachuを試してみた](http://orebibou.blogspot.jp/2013/10/centoschinachu.html)
+とりあえず、config.sample.jsonと、rules.sample.jsonをまるまる再利用して、設定を作ってみる。
+[crayon]
+cd /home/chinachu/chinachu
+cp config.sample.json config.json
+cp rules.sample.json rules.json
+vi config.json
+[/crayon]
+rulesの方は後でいいから、とりあえずconfigだけ編集した。
+自分の家はBSとかうまく入らんので、地上波だけの設定だけを残して編集
+
+**で、この時にすごく嵌った。**
+
+**嵌った点1、**chinachuは、設定ファイル類が全部JSONで用意されていて、すごく直感的でわかりやすい。が、どうにもJSONファイルってのは手で直接いじると、大抵文法ミスを起こす。実際ミスった。
+しかし、その後気付かずにJSONがおかしいままchinachuのサービスを立ち上げてみても、サービスそのものはなんのエラーも吐かない。というか、普通に起動したように見えた。
+だが、chinachuのディレクトリの下にあるlogディレクトリを見てみると、operatorがパースエラーを吐いてコケているらしいログが残っていたのだ。それから、元のconfig.sample.jsonとdiffをとったりして、文法がおかしなところを見つけてめでたしめでたし。というか、配列の最後にコロンが許されないってのは、どうもなぁ……
+
+**嵌った点2、**config.sample.jsonの中にデフォで書いてある録画のコマンドが、PT2ではそのまま通らない。どうやら、recpt1コマンドは、PT2の環境だと--sidというオプションが存在しないらしい。そもそもsidが何なのかよくわからないが、PT3だとコネクタの数が半分だから、そのへんの制御に使ったりするのではないかと思う。多分。わからんけど。
+
+**番組情報を取得して、サービスを起動する**
+
+無事設定が終わったら、CLIモードで立ち上がるのを確認する。
+[crayon]
+sudo -i -u chinachu
+cd chinachu
+./chinachu service operator execute
+./chinachu service wui execute
+./chinachu cleanup
+[/crayon]
+chinachu/log の下のログとかを見て、特に不穏な言葉が出ていなければ、問題なくイケてるはずなので、実際にサービスを起動する前にEPG情報を更新しておく。
+[crayon]
+./chinachu update -f
+exit
+[/crayon]
+で、つらつらとEPGの更新情報が出てくるはずなので、しばらく放置。ここでもなんかエラーが出てくる可能性があるから、一応よく見ておくこと（さっきのsidはここで見つけた）
+EPGが空です、とか言われない限り、チャンネル名とrules.jsonのルールで予約に追加される番組とかが出てくる。幸せな感じがしてくる。
+
+**サービスを起動して、ブラウザからアクセス**
+
+あとは、普通にサービス起動するだけでおしまい。
+[crayon]
+service chinachu-operator start
+service chinachu-wui start
+[/crayon]
+configure.jsonに書いたポートを使って、ブラウザでchinachuにアクセスするだけで幸せになれる。
+
+**とても簡単だった**
+
+chinachuのインストールだけでなく、DebianやPT2周りの環境を入れるのも、すごく簡単だった。こんな感じなら、もうちょっと早く取り組んでいればよかったと思う。
+目下の問題は、まだchinachuを入れたばかりでこのブログを書いているから、動作のテストが十分に出来てないってところと、あとは本当にchinachuが使いやすいのかもまだ吟味しきれていないところ。
+それはもう、今季のアニメを使って頑張って見極めていきたい。
+
+**あと**
+
+今までの録画環境は、メインで使ってるマシンの上で動いていたから、普通に使ってない時はスリープしてた。だけど、Debian/chinachuの専用サーバーを作ってしまったら、こいつらは24時間動き続ける。
+なんというか、サーバーってそういうもんだろうけど、なんかもったいない。
+アイドル時に何か別の処理をさせておきたいのだけど、一体何をさせれば捗るのだろう？
+（TSファイルのエンコードとかは、CPUパワー的にムリだろうし、逆に電気を使いそう）

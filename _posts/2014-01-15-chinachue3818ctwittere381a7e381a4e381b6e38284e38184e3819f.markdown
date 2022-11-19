@@ -1,0 +1,77 @@
+---
+author: kinoppyd
+comments: true
+date: 2014-01-15 12:18:32+00:00
+layout: post
+link: http://tolarian-academy.net/chinachu%e3%81%8ctwitter%e3%81%a7%e3%81%a4%e3%81%b6%e3%82%84%e3%81%84%e3%81%9f/
+permalink: /chinachu%e3%81%8ctwitter%e3%81%a7%e3%81%a4%e3%81%b6%e3%82%84%e3%81%84%e3%81%9f
+title: ChinachuがTwitterでつぶやいた
+wordpress_id: 69
+categories:
+- Linux
+- アニメ
+tags:
+- chinachu
+- Linux
+---
+
+**Chinachuは、番組の録画が始まると自動でTwitterでつぶやいてくれる機能が有るらしい。**
+
+が、開発途中なのかわからないけど、[リポジトリのWiki](https://github.com/kanreisa/Chinachu/wiki/Configuration)のところでは、まだ項目ができていなかった。
+しかし、せっかくその機能があるならば使いたいと思ったので、直接ソースを見て確認してみたところ、上手くつぶやけたのでメモ。
+
+結論だけ言うと、こういう記述をconfig.json内に書けばいいみたいだ。
+
+    
+    "operTweeter" : true,
+    "operTweeterAuth" : {
+        "consumerKey"       : "hoge",
+        "consumerSecret"    : "hoge",
+        "accessToken"       : "foo",
+        "accessTokenSecret" : "foo"
+    },
+    "operTweeterFormat" : {
+        "start"   : "brabra",
+        "prepare" : "brabra"
+    },
+
+
+operで始まるキーの名前が、TwitterではなくTweeterなのに注意。最初気付かなかった。
+
+**operTweeter **
+
+このフラグをtrueにすると、Twitterへの投稿設定が有効になる
+
+**operTweeterAuth**
+
+この辺りのコードがTwitterの認証設定をしているらしい。
+[https://github.com/kanreisa/Chinachu/blob/dc498628687203723f3c25d1757a2652060c70bb/app-operator.js#L58](https://github.com/kanreisa/Chinachu/blob/dc498628687203723f3c25d1757a2652060c70bb/app-operator.js#L58)
+普通に設定のキーが全部有ることを確認して、AuthTokenとAccessTokenを埋めていく。
+このトークンは、自分のアカウントからTwitterのdeveloperサイトで取得した。アクセス権限をRead-onlyからRead-Writeにするくらいしか、特に変えることは無いと思う。
+
+**operTweeterFormat**
+
+あとは、この二箇所がTwitterに実際にPOSTしているところ。
+[https://github.com/kanreisa/Chinachu/blob/dc498628687203723f3c25d1757a2652060c70bb/app-operator.js#L345](https://github.com/kanreisa/Chinachu/blob/dc498628687203723f3c25d1757a2652060c70bb/app-operator.js#L345)
+[https://github.com/kanreisa/Chinachu/blob/dc498628687203723f3c25d1757a2652060c70bb/app-operator.js#L377](https://github.com/kanreisa/Chinachu/blob/dc498628687203723f3c25d1757a2652060c70bb/app-operator.js#L377)
+ざっとgrepした程度でしか探していないけど、config.jsonのキーで有効なのはstartとprepareだけで、finishiとかendの類はまだ無いらしい。（試しに自分で実装してみて上手くいけば、pull request送ろうかと思う）
+startとprepareにはそれぞれ、録画の実行開始と録画の実行準備の時にTwitterにPOSTされるらしく、文字列の中に次のタグを埋めることができる。
+
+    
+    <id>      : EPGのプログラムID
+    <type>    : 録画する放送波の種類、config.jsonのtunersとかchannelsに書いてある、typeと同じ
+    <channel> : チャンネル番号
+    <title>   : 番組のタイトル
+
+
+例えば、
+
+    
+    "start" : "<title>、はっじまるよー！ <channel>"
+
+
+とか書けば、Twitterに「ゆるゆり、はっじまるよー！ 16」とか勝手に投稿されるわけだ。胸熱。
+
+しかし、Twitterへの投稿には[mtwitter](https://github.com/passcod/mtwitter)というモジュールを使っているようだが、これタイトルとかの関連で140文字超えたらどうなるんだろうか……面倒なのでコード追ってない。
+
+とりあえず、これで簡単にでも、PT2がロックされてしまう問題の監視（実際には手遅れなので監視にはならないけど）できればと思う。

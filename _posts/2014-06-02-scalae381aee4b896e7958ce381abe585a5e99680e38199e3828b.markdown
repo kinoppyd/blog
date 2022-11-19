@@ -1,0 +1,36 @@
+---
+author: kinoppyd
+comments: true
+date: 2014-06-02 11:41:01+00:00
+layout: post
+link: http://tolarian-academy.net/scala%e3%81%ae%e4%b8%96%e7%95%8c%e3%81%ab%e5%85%a5%e9%96%80%e3%81%99%e3%82%8b/
+permalink: /scala%e3%81%ae%e4%b8%96%e7%95%8c%e3%81%ab%e5%85%a5%e9%96%80%e3%81%99%e3%82%8b
+title: Scalaの世界に入門する
+wordpress_id: 123
+categories:
+- Mac
+- Scala
+- プログラミング
+---
+
+Scalaを始めることにした。
+
+去年から考えていたけれど、そろそろ真面目に関数型のアプローチに触れなくては、今までの自分の中で創り上げてきたなんちゃって関数脳から逃れられないと思ったから。なので、オブジェクト指向と関数型の両方のアプローチを採りつつ、関数型が推奨されるというScalaを使うことで、上手くオブジェクト脳を使いながら関数に脳を拡張していこうと決めた。
+
+教材は、[コップ本](http://www.amazon.co.jp/gp/product/4844330845/)。
+
+あと、勉強を後から見返すために、Githubに[勉強用リポジトリ](https://github.com/YasuhiroKinoshita/learn_scala)も用意。
+
+とりあえず、手元のMacでScalaにHello Worldするために、開発環境を整える。
+とはいえ、最初からJavaはインストール済みだったので、Scalaの公式からtarを落としてきて解凍して、[公式のHelpに従って](http://www.scala-lang.org/download/install.html)それを置いたパスを[bashrcに追加](https://github.com/YasuhiroKinoshita/dot_files/commit/585b4d95b1fa9a60c55b5c0fbdeac7ba8fca6d1b)するだけで終了。問題なくインタプリタが起動できた。
+
+実際はChromeで落としてコマンドで設置したけど、多分全部そのままコマンドに置き換えるとこうなると思う。
+
+    
+    curl -O http://downloads.typesafe.com/scala/2.11.1/scala-2.11.1.tgz
+    tar xvf scala-2.11.1.tgz
+    mv scala-2.11.1 scala
+    mv scala ~/local/share/
+
+
+ちょっとずつ頑張ります。

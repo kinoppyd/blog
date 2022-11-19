@@ -1,0 +1,36 @@
+---
+author: kinoppyd
+comments: true
+date: 2016-07-03 13:48:30+00:00
+layout: post
+link: http://tolarian-academy.net/slack_as_a_game_platform_in_yapc_asia_2016/
+permalink: /slack_as_a_game_platform_in_yapc_asia_2016
+title: YAP(achimon)C::Asia Hachioji 2016 mid で、 Slack as a Game platform というLTしてきました
+wordpress_id: 403
+categories:
+- ポエム
+---
+
+[kinoppyさんの「Slack as a Game platform」 / kinoppyd さん - ニコナレ](http://niconare.nicovideo.jp/watch/kn1568)
+
+
+## タイトルのとおりです
+
+
+YAPC::Asiaが去年最終回を迎えて、いつかYAPCで登壇したいなと思っていた夢が終わってから1年。やっぱちーが開催されると聞いて、忙しい時期だけど絶対にLTくらいは出来ると思って応募して、無事採択されたので喋ってきました。
+
+本家YAPC::Asiaに比べるととてもこぢんまりしていましたが、それでも集まった人たちは楽しそうにセッションをしたりそれを聞いていたりして、YAPCってこんな感じだよな、って雰囲気を感じられて楽しかったです。
+
+自社のセミナールーム以外でやるカンファレンスで喋るのは初めてだったので緊張したけれど、ニコナレの録音を聞く限りではまあそこそこうまく喋れていたようなので安心した。
+
+あとで自分のトークを見返せる（聞き返せる？）ニコナレ、素晴らしいサービスですね。
+
+
+## SlackGameのgemの０．２．０をリリースしました
+
+
+YAPCの他のトラックを聞いている間に、0.2.0をパブリッシュしました。
+
+半年くらい前に、お酒を飲みながらノリで書いたコードは酷いなぁと思いながら、とりあえず変なメソッド名や変数名を修正して、あとはReactionに対応して、リリースしました。
+
+とりあえず、まだ問題点はあるので、近いうちに0.3.0にアップデートになると思います。

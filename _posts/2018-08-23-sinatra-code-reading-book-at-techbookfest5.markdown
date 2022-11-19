@@ -1,0 +1,38 @@
+---
+author: kinoppyd
+comments: true
+date: 2018-08-23 14:43:31+00:00
+layout: post
+link: http://tolarian-academy.net/sinatra-code-reading-book-at-techbookfest5/
+permalink: /sinatra-code-reading-book-at-techbookfest5
+title: 技術書展5で、Sinatraのコードリーディング本を頒布します
+wordpress_id: 521
+categories:
+- Ruby
+- プログラミング
+---
+
+## 技術書展5に当選しました
+
+
+当選してしまったので、技術系の同人誌を書こうと思います。
+
+最近の個人的な活動の成果として、SinatraのDSLっぽくBotが書ける[Mobb](https://github.com/kinoppyd/mobb)というプロダクトを作っています。そしてその過程で得たSinatraのコードリーディングの知見を広く共有するのが良いだろうと思っているので、同人誌にしようと思います。
+
+たまたま、今日の夕方に会社のイベントでこういう発表をしたのですが、これを更に詳細に掘り下げた本になると思います。
+
+[kinoppydさんの「Sinatra trick」 / kinoppyd さん - ニコナレ](https://niconare.nicovideo.jp/watch/kn3360)
+
+
+## スペースはどこ
+
+
+◎貴サークル「トレイリア学園」は、 い22 に配置されました。
+
+
+## どういう本にするの
+
+
+Sinatraの全コードの解説を目指します。一冊読めば、自分でSinatraライクのDSLを書けるようになるくらいの本にしたいと思っています。対象読者層は、メタプログラミングRubyを読んだことがあるRubyエンジニアを想定していますが、それではあまりにもリーチが狭い（気がする）ので、メタプログラミングRubyの本を読んでいなくても簡単なエッセンスくらいは理解できる感じに解説を入れようと思っています。
+
+また、現在コミットをしているMobbというBotフレームワークのプロジェクトに関しても、簡単な解説本を書こうと思っています。

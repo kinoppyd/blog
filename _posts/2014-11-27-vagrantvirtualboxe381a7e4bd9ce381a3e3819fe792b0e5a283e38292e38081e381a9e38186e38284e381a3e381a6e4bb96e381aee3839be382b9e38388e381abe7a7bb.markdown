@@ -1,0 +1,16 @@
+---
+author: kinoppyd
+comments: true
+date: 2014-11-27 18:36:25+00:00
+layout: post
+link: http://tolarian-academy.net/vagrantvirtualbox%e3%81%a7%e4%bd%9c%e3%81%a3%e3%81%9f%e7%92%b0%e5%a2%83%e3%82%92%e3%80%81%e3%81%a9%e3%81%86%e3%82%84%e3%81%a3%e3%81%a6%e4%bb%96%e3%81%ae%e3%83%9b%e3%82%b9%e3%83%88%e3%81%ab%e7%a7%bb/
+permalink: /vagrantvirtualbox%e3%81%a7%e4%bd%9c%e3%81%a3%e3%81%9f%e7%92%b0%e5%a2%83%e3%82%92%e3%80%81%e3%81%a9%e3%81%86%e3%82%84%e3%81%a3%e3%81%a6%e4%bb%96%e3%81%ae%e3%83%9b%e3%82%b9%e3%83%88%e3%81%ab%e7%a7%bb
+title: Vagrant+Virtualboxで作った環境を、どうやって他のホストに移すか？
+wordpress_id: 176
+categories:
+- プログラミング
+---
+
+関係する全ディレクトリを丸々コピーも考えたが、ホストのユーザー名が変わったりとか、環境によって云々とか、そもそもVagrantの内部の動作をよくわかっていない状態でそんなことして大丈夫なのかとか、全く以って不安が尽きない。
+
+色々と調べたところ、どうもpackageコマンドを使って、現在の環境を完全にbox化して、Vagrantfileと一緒にそれを持っていくのが一番手っ取り早く安全っぽいので、そういうスクリプトを書こうと心に決めた。

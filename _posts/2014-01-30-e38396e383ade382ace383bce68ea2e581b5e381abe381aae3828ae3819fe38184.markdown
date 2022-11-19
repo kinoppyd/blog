@@ -1,0 +1,16 @@
+---
+author: kinoppyd
+comments: true
+date: 2014-01-30 15:14:55+00:00
+layout: post
+link: http://tolarian-academy.net/%e3%83%96%e3%83%ad%e3%82%ac%e3%83%bc%e6%8e%a2%e5%81%b5%e3%81%ab%e3%81%aa%e3%82%8a%e3%81%9f%e3%81%84/
+permalink: /'%e3%83%96%e3%83%ad%e3%82%ac%e3%83%bc%e6%8e%a2%e5%81%b5%e3%81%ab%e3%81%aa%e3%82%8a%e3%81%9f%e3%81%84'
+title: ブロガー探偵になりたい
+wordpress_id: 92
+categories:
+- 未分類
+tags:
+- Sherlock
+---
+
+正確に言うと、ブロガーの助手がいる探偵になりたい

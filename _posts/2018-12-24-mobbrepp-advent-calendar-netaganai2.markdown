@@ -1,0 +1,40 @@
+---
+author: kinoppyd
+comments: true
+date: 2018-12-24 14:53:57+00:00
+layout: post
+link: http://tolarian-academy.net/mobbrepp-advent-calendar-netaganai2/
+permalink: /mobbrepp-advent-calendar-netaganai2
+title: Mobb/Repp Advent Calendar のネタが尽きたので、開発してて面倒な話をします
+wordpress_id: 629
+categories:
+- 未分類
+---
+
+このエントリは、 Mobb/Repp Advent Calendar の二十四日目です
+
+
+
+
+
+## Mobb開発とRepp開発で困る依存性
+
+
+Mobbの開発には、大きく分けて2つのケースがあります。Mobb単体の機能追加や修正で済む場合と、Repp側にも機能追加や修正が必要な場合です。
+
+Mobb単体で終わる場合にはなにも困ることは無いのですが、Repp側との連携をしなくてはいけない場合は面倒なことが発生します。Repp側の機能追加や修正を、開発中のMobbにどうやって適用するかです。場合によっては、ReppとMobbのコードを行ったり来たりしながら修正を行う場合もあります。
+
+いまのところ、そういったケースではMobb側のGemfileにローカルのReppへの依存を書きます。
+
+    
+    source "https://rubygems.org"
+    gemspec
+    
+    gem 'repp', path: '../repp'
+
+
+一応これでローカルで修正したReppと連携した開発ができるのですが、このGemfileはgitの管理下にあるので、下手になにか追加していると、ブランチのスイッチやリベース時になんか面倒なことになったり、場合によっては間違えてコミットしてしまったりして事故が発生する可能性があります。
+
+Gemfileをgitの管理から外すのが最も良い気がするのですが、こいつはbundlerでgemコマンドを叩いたときに勝手にできるやつだし、なんかどうも消すのに妙な抵抗感があります。
+
+こういう、他のコードと並行して変更する必要がある開発の場合、どうやるのが一番いいんでしょうか？

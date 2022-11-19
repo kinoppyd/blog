@@ -1,0 +1,93 @@
+---
+author: kinoppyd
+comments: true
+date: 2014-01-27 12:29:48+00:00
+layout: post
+link: http://tolarian-academy.net/x61%e3%81%abcentos6-4%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6db%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e3%81%ab%e3%81%97%e3%81%9f/
+permalink: /x61%e3%81%abcentos6-4%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6db%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e3%81%ab%e3%81%97%e3%81%9f
+title: X61にCentOS6.4を入れてDBサーバーにした
+wordpress_id: 76
+categories:
+- CentOS
+- Linux
+- MySQL
+- プログラミング
+tags:
+- CentOS
+- Linux
+- MySQL
+- プログラミング
+---
+
+**大学生の時に愛用していたX61に、最近とんと触っていなくて寂しくなった。**
+
+[![旋律の手入力シーン](http://tolarian-academy.net/wp-content/uploads/2014/01/DSC_0010-picsay.jpg)](http://tolarian-academy.net/wp-content/uploads/2014/01/DSC_0010-picsay.jpg)
+
+ので、CentOS6.4を入れて、前々からちょっとずつクラウドで作ってたDBを移植した。しかし、結局SSHで操作するから、あまり触らないことには変わりがなかったが……
+
+**OSのインストールは、もうめんどかったからUSBメモリ+ネットワークインストールイメージでやった。**
+
+ブート用のUSBメモリ作成には、[UNetBootin](http://unetbootin.sourceforge.net/)を使用。今回はWindows機でブート用メモリを作ったけど、サクッと出来て楽だった。
+OSのインストールイメージは、みんなだいすき[理研のミラー](http://ftp.riken.jp/Linux/centos/6.4/isos/x86_64/)からダウンロード。
+特に何も困ることなく、UNetBootinの起動後の画面でDiskimageを選んで、落としてきたISOを選択するだけ。簡単。
+
+CentOSのインストール自体は粛々と進む……と思ったら、ちょっとびっくりした。
+ネットワークインストールの時には、インストール用のイメージを落とすためにミラーを選択する必要がある。が、何故かそのミラーの選択画面が、リストから選択する形ではなく、なんか文字を入力せよと言わんばかりに待ち構えている。（表題の画像がそれ）
+初見でとりあえずひとしきり焦って、ググってみたところ、手入力とのこと。
+[CentOS 6.4をネットワークインストール
+](http://programmer-jobs.blogspot.jp/2013/03/centos-64.html)マジでか！？ 2014年だぞ！？ と思いながら、久々にLinuxのインストールの面倒くささの一端を味わう。だが昔はドライバとかもっと面倒くさかった。
+
+**あとは普通にグラフィカルインストールが始まる。**
+
+インストール時に気付かなかったが。X61はデフォルトでHDDにパーティションが切ってあり（多分、Windowsの復元領域）、小さい方のパーティションがルートにマウントされ、残りが/homeにマウントされていて、MySQLのディレクトリを/var/lib/mysqlにしていたものだから即容量がなくなって焦った。
+一旦ディスクを全消しし、パーティションを削除してから改めてインストール。今度は問題なく全部がルートにマウントされた。
+
+あとは、MySQLを入れて、DBのダンプを復元すればOKと思いきや、ここでも更に驚くことがあった。scpが効かない。ファイルが送れない。どういうことだ。
+[CentOS 6.x/Scientific Linux 6.xサーバーへscpコマンドを使う場合](http://d.hatena.ne.jp/ytooyama/20110930/1317372389)
+CentOSは、最小構成インストールすると、openssh-clientがインストールされないみたいだ。いくらなんでも最小過ぎないだろうか。
+
+**MySQLは、こんな感じで放り込んだ。**
+
+まずyumで開発ツール系を一気に入れる
+
+    
+    yum groupinstall -y "Development Tools"
+    yum install -y openssl-devel readline-devel zlib-devel curl-devel
+    yum install -y --enablerepo=epel libyaml-devel
+
+
+そのあと、yumではなく5.6のバイナリを洗濯し、MySQLを入れる
+
+    
+    curl -O http://cdn.mysql.com/Downloads/MySQL-5.6/MySQL-client-5.6.14-1.el6.x86_64.rpm
+    curl -O http://cdn.mysql.com/Downloads/MySQL-5.6/MySQL-devel-5.6.14-1.el6.x86_64.rpm
+    curl -O http://cdn.mysql.com/Downloads/MySQL-5.6/MySQL-server-5.6.14-1.el6.x86_64.rpm
+    curl -O http://cdn.mysql.com/Downloads/MySQL-5.6/MySQL-shared-5.6.14-1.el6.x86_64.rpm
+    curl -O http://cdn.mysql.com/Downloads/MySQL-5.6/MySQL-shared-compat-5.6.14-1.el6.x86_64.rpm
+    yum install -y MySQL-{client,devel,server,shared-compat}-5.6.14-1.el6.x86_64.rpm
+    # Share Library conflict
+    yum install -y MySQL-shared-5.6.14-1.el6.x86_64.rpm
+
+
+yumのリポジトリは使わないけど、yumを使ってインストールする。この時に、sharedだけはあとから入れないと、yumのリポジトリのMySQLと衝突を起こすらしい。
+[CentOS 6.4にMySQL 5.6をサクッとインストールする](http://blog.manabusakai.com/2013/04/centos-mysql56-install/)
+
+MySQLの初期設定はちょこちょこっとやる
+
+    
+    /etc/init.d/mysql start
+    cat ~/.mysql_secret 
+    # The random password set for the root user at Mon Jan 27 20:53:01 2014 (local time): [ここにパスが書いてある]
+    mysql -uroot -p[ここにmysql_secretに書かれたパス]
+    mysql> set password for root@localhost=password('hogehoge');
+    mysql> exit
+    mysql_secure_installation
+
+
+
+
+あとは、快適なDBライフ……と思ったけど、X61のメモリが2Gしかなく、さすがに数億レコードの巨大なDBを扱うには、いくら適切なINDEXと細かいパーティショニングしてるとはいえ非力すぎた。ディスクのIOがヤバイ。
+
+X61は8Gまでメモリを認識するらしく、SSDと併せたら結構なパワーアップになるんじゃないかとおもうが、2つ合わせて約3万円。いや……どうしようか……それは。
+
+

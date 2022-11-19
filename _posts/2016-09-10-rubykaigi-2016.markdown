@@ -1,0 +1,289 @@
+---
+author: kinoppyd
+comments: true
+date: 2016-09-10 13:02:27+00:00
+layout: post
+link: http://tolarian-academy.net/rubykaigi-2016/
+permalink: /rubykaigi-2016
+title: RubyKaigi 2016 に行ってきました
+wordpress_id: 407
+categories:
+- Ruby
+- プログラミング
+- ポエム
+---
+
+## RubyKaigi 2016
+
+
+2016 09/08 〜 09/10 の三日間で、[RubyKaigi](http://rubykaigi.org/2016/)が開催されたので、Ruby大好きなひとりとして参加してきました。
+
+自分がRubyを触り始めたのはここ一年半くらいの話で、前回のRubyKaigiが開催された頃はまだRubyに本格的に染まる前だったので、自分がRubyistとして目覚めて初めてのRubyKaigiでした。
+
+同じく大きなカンファレンスであるYAPCのお祭り感とは違って、ストイックにRubyの話題を中心にしたセッションが大半を占め、更にはCRubyやJRubyの実装にも深く立ち入った話が多く、単純にRubyを書く人だけではなくRubyを作っている人たちの目線を感じることも出来て、普段Rubyのコードを書いている自分から見て新鮮な刺激を感じました。（たまに全然Ruby関係ないよくわからないセッションもあって、それはそれで面白かったです）
+
+今回のRubyKaigiのセッションの中で、ひときわ特徴的だったのは、コンカレンシーに関するセッションの数の多さと、CRubyに関するセッションの数の多さです。全40セッション中、6セッションがメインでコンカレンシーを、5セッションがCRuby（とそのエッセンス）を扱っていました。これは、ここ数年の関数型言語の考え方の流行だったり、マルチコアを活かしきるプログラミングをRuby3に期待している人が多いのだろうといった理由が感じられます。CRubyの話題の多さに関しては、Ruby3に向けてもっとコミッターに興味を持って欲しいという現コミッターたちの意識の表れではないかと思います。
+
+半分は英語のセッションで、同時通訳も無かったので、必死に英語をリスニングして結構頭に効きました。面白いことに、日本語のセッションは英語の同時通訳があり、実に国際的なセッションなのだなということを感じました。
+
+
+## 聴いたセッション
+
+
+
+
+### 一日目
+
+
+[http://rubykaigi.org/2016/schedule/#sep08](http://rubykaigi.org/2016/schedule/#sep08)
+
+
+
+ 	
+  * Ruby3 Typing (Keynote)
+
+ 	
+  * dRuby in the last century
+
+ 	
+  * Who reordered my cord?!
+
+ 	
+  * A proposal of new concurrency model for Ruby 3
+
+ 	
+  * Isomorphic web programming in Ruby
+
+ 	
+  * Unifying Fixnum and Bignum into Integer
+
+ 	
+  * Scalable job queue system build with Docker
+
+
+
+
+### 二日目
+
+
+[http://rubykaigi.org/2016/schedule/#sep09](http://rubykaigi.org/2016/schedule/#sep09)
+
+
+
+ 	
+  * Fearlessly Refactor Legacy Ruby (Keynote)
+
+ 	
+  * Writing a Gameboy Emulator in Ruby
+
+ 	
+  * How DSL work on Ruby
+
+ 	
+  * Learn Programming Essence from Ruby patches
+
+ 	
+  * Web Server Concurrency Architecture
+
+ 	
+  * Pwrake: Distributed Workflow Engine based on Rake
+
+ 	
+  * Modern Black Mages Fighting in the Real World
+
+ 	
+  * SciRuby Machine Learning Current Status and Future
+
+
+
+
+### 三日目
+
+
+[http://rubykaigi.org/2016/schedule/#sep10](http://rubykaigi.org/2016/schedule/#sep10)
+
+
+
+ 	
+  * Ruby committer vs the World
+
+ 	
+  * Ruby3x3: How are we going to measure 3x?
+
+ 	
+  * High Tech Seat in mruby
+
+ 	
+  * It's More Fun to Compute
+
+ 	
+  * Optimizing Ruby
+
+ 	
+  * Game Development + Ruby = Happiness
+
+ 	
+  * Dive into CRuby (Keynote)
+
+
+
+
+## 特に凄かったやつ
+
+
+3日かけて22ものセッションを聴きました。どのセッションも基本的に素晴らしいものでしたが、その中でも特にこれはヤバイなと思ったものを、いくつか感想として残しておきます。
+
+
+### Ruby3 Typing (Keynote)
+
+
+Matzの基調講演で、Ruby3において型をどのようにして扱うかを、今現在のMatzの頭のなかにあるアイディアレベルで話してました。
+
+Rubyには型がないから、最近新しく力を伸ばし始めた静的型付けの言語に比べて遅れているとよく言われる。しかし、技術というのはトレンドの間を振り子のように行ったり来たりするもので、いまは静的型付けの方に振り子が傾いているが、今後はどうなるかわからないので、Rubyは安易にその波に乗ることはできないと言っていました。これは、Matzのここ最近の講演で常に共通している意見で、[YAPCの時](https://www.youtube.com/watch?v=h68AH5nEaxw)も[N高特別授業](http://live.nicovideo.jp/watch/lv237515289)の時も同じことを言っていました。
+
+特に印象的だったのは、「絶対に型は書きたくない！」と「絶対にインターフェイスは書きたくない！」という2つの力強い宣言でした。
+
+Rubyのダイナミックな言語仕様が尊重しているのはダックタイピングの概念で、静的型付けやインターフェイスではダックタイピングを壊してしまうため、安易に採用することはできないと、繰り返していました。継承の概念を大事にすると、たとえばIOやStringBufferの関係の様に、同じ挙動をするのに継承関係が無いオブジェクト同士のダックタイピングを阻害するということです。しかしその一方で、Goのように振る舞いを定義するインターフェイスに対してはかなり好意的な立場で、Goのインターフェイスは良くできていると強調していました。また、型推論というアイディアは素晴らしいが、それでも柔軟性を犠牲にするところが多く、何か新しい型の解決方法を考えつかないと、Ruby3に型の概念を入れることは難しく、現状はそのアイディアの実装がないので、Matz自身がプロトタイプを作ってコミュニティに問うていくしかないとのことでした。
+
+
+### dRuby in the last century
+
+
+いきなりoso-matzとjushi-matzが出てきて、受けとか攻めとか言っててヤバイなこれって感じでした。
+
+そしてdRubyの存在を初めて知りましたが、これは結構実用的で面白いのでは？ と感じたので、家に帰っていろいろ触ってみようと思います。
+
+
+### A proposal of new concurrency model for Ruby 3
+
+
+Guild、というRuby2との互換性を保ちつつ、Ruby3でコンカレンシーを実現するライブラリの提案でした。
+
+アイディアはかなり面白く、Guildという1つのグループの中では今までどおりGVLが働くが、Guildグループは複数持つことができ、他のGuildとの間ではオブジェクトのやり取りに制限がつくという、ForkとThreadの中間（あるいは混ぜあわせ）のあるようなアイディアです。
+
+1つのプロセスは必ず1つのGuildグループをもち、この最低1つは存在しているGuildが、今までのRuby2との互換のために使用される、すなわちRuby2は1つしかGuildグループが作れないGuildと同等ということです。
+
+これがRuby3に採用されるとかなり面白いな、と思いました。
+
+
+### Isomorphic web programming in Ruby
+
+
+Rubyでバックとフロントの両方のコードを書いてしまおうというアイソモーフィックライブラリ [Menilite](https://github.com/youchan/menilite) の紹介＆ライブコーディング。
+
+そもそもRubyでIsomorphicしようというスタイルが既にヤバくて面白いだけではなく、非常に完成度の高いライブコーディングのテクニックが披露され、発表そのものがショーのようで素晴らしかったです。
+
+ライブコーディングはだいたいミスって、ミスるところまで含めてライブコーディングの楽しさというところがあるのですが、ゆうちゃんさんは
+
+
+
+ 	
+  * あらかじめ完成したコードをgitで管理しておいて、ライブコーディングの進みに合わせてコミットしておき、いざというときにリカバーする
+
+ 	
+    * Diffを見せながら解説を加えるので、実際にどういう変更が入ったのかがコミット単位でわかりやすい
+
+
+
+
+ 	
+  * TODOアプリを作りながら、実際にライブコーディングする内容をTODOする
+
+
+といった、技術面でも演出面でも舌を巻く完成度で、絶対に真似しようと思いました。
+
+
+### Modern Black Mages Fighting in the Real World
+
+
+Fluentd 0.14 を支える、黒魔術の話です。
+
+トークが軽妙で面白いのに、扱っている内容が深刻すぎて引きつった笑いが出てしまう。みんな大好き黒魔術！ という感じです。
+
+同じ日の2つ前のセッションにHow DSL work on Ruby というセッションがありましたが、それと合わせてRubyの黒魔術の深い部分がよく伝わってくる、この2つのセッションを聞くだけで黒魔術師になれる最高のセッションでした。
+
+
+### Ruby3x3: How are we going to measure 3x?
+
+
+Ruby3 を3倍の速さにする話ではなく、どうやって3倍の速さを計測するかという話でした。
+
+ベンチマークに関する、体系だった知識を一度に頭に入れるには最適なセッションで、ベンチマーキングを正しく行うということの難しさとその原因をわかりやすく解説していました。
+
+惜しむらくは、セッションが英語というだけで難しかったのですが、スライドが進むのが早く、頭の理解が追いつかないという点でした。このセッションのスライドは、ベンチマーキングを理解する上で非常に役にたつものになると思うので、どこかで公開されることを祈ってます。
+
+
+### It's More Fun to Compute
+
+
+Rubyで作曲。ヤバすぎ。国際会館のメインホールがダンスフロアと化した。最高。
+
+
+### Dive into CRuby
+
+
+CRubyの世界への入り口、というにはちょっと専門的すぎて、さすがコミッターという格の違いを見せつけられたセッション。
+
+主に2つの話題で、Rubyコミッタになるためにはと、CRubyにどうやって貢献するかという話。
+
+新しい機能を提案するときには、ユースケースを正しく理解したうえで提案するべきであること、というのが非常に腹にストンと落ちてくる話で、普段の仕事にも活かせそうだと思いました。
+
+心機能の提案時に、その機能をどのように使うか、そしてその機能の名前は本当に適切なのか、新機能という事象を研ぎ澄ますように精査して、本当に必要な使い方を見出していくという考え方はとても重要だと理解できました。
+
+また、CRubyの世界を旅するときに、大事なことは現象を観測することだということも強調していました。様々なツールを使い、CRubyのメモリやコールスタックがどうなっているのか、解析ツールを使ってどこがボトルネックになっているのか、などを観測することで、Rubyの最適化やバグレポートに繋がると教えてくれました。
+
+
+## Drinkup by Misoca
+
+
+二日目には、[MisocaさんのDrinkup](https://www.misoca.jp/toyoshi/805)に参加させて頂きました。
+
+途中、Misocaエンジニアに質問タイムがあったので、Rails4から5へのアップデートで苦労したところや、デプロイの戦略に関して質問してみたところ、丁寧に答えていただいてとても楽しかったです。
+
+お料理とお酒、ごちそうさまでした。
+
+
+## RubyKaigi 2016 楽しかった
+
+
+三日間の日程や、朝が早めであることから、体力的には結構辛かったですが、とても楽しめました。RubyKaigi最高です。
+
+そういえばちなみに、Closingの時に「会社がRubyKaigiの費用出してくれた人ー？」っていう質問があって、ちらほら手が上がっているのを見て、「いま手を上げた人は、 #rubykaigi のハッシュと一緒に会社名をつぶやくと、リクルーティングの役に立つよ」と言っていたのがとてもおもしろかったので、来年は弊社の偉い人に「RubyKaigiのチケットと交通費ください！ なんでもしますから！」ってお願いして、弊社の宣伝をドヤ顔でやってやりたいと思いました。
+
+
+<blockquote>
+
+> 
+> 会社が参加費負担カンパニーを聞いている [#rubykaigi](https://twitter.com/hashtag/rubykaigi?src=hash)
+> 
+> 
+— kinoppyd (@GhostBrain) [2016年9月10日](https://twitter.com/GhostBrain/status/774529135502692353)</blockquote>
+
+
+
+
+
+
+<blockquote>
+会社がRubyKaigiの費用負担してくれた会社はハッシュタグ付けてつぶやくと、転職のヒントになるよアピール新しいなｗｗｗ [#rubykaigi](https://twitter.com/hashtag/rubykaigi?src=hash)
+
+— kinoppyd (@GhostBrain) [2016年9月10日](https://twitter.com/GhostBrain/status/774529350309851136)
+</blockquote>
+
+
+
+
+
+RubyKaigiのスタッフの方々、登壇者の方々、最高の三日間をありがとうございました。
+
+
+<blockquote>
+
+> 
+> 来年は弊社もスポンサーにならないかなー（てきとう [#rubykaigi](https://twitter.com/hashtag/rubykaigi?src=hash)
+> 
+> 
+— kinoppyd (@GhostBrain) [2016年9月10日](https://twitter.com/GhostBrain/status/774528154979360768)</blockquote>
+
+
+

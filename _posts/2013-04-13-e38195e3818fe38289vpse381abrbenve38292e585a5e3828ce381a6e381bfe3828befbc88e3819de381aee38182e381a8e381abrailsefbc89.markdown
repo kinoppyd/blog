@@ -1,0 +1,134 @@
+---
+author: kinoppyd
+comments: true
+date: 2013-04-13 09:22:37+00:00
+layout: post
+link: http://tolarian-academy.net/%e3%81%95%e3%81%8f%e3%82%89vps%e3%81%abrbenv%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%82%8b%ef%bc%88%e3%81%9d%e3%81%ae%e3%81%82%e3%81%a8%e3%81%abrails%ef%bc%89/
+permalink: /'%e3%81%95%e3%81%8f%e3%82%89vps%e3%81%abrbenv%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%82%8b%ef%bc%88%e3%81%9d%e3%81%ae%e3%81%82%e3%81%a8%e3%81%abrails%ef%bc%89'
+title: さくらVPSにrbenvを入れてみる（そのあとにRails）
+wordpress_id: 10
+categories:
+- Rails
+- Ruby
+- プログラミング
+tags:
+- Rails
+- Ruby
+- プログラミング
+---
+
+[Ruby on Rails の勉強](http://www.amazon.co.jp/gp/product/4274068668/)を始めたので、デフォのRubyが1.8系のさくらVPSにrbenvを入れて、1.9系で開発が出来るようにする必要が。めんどくさい。
+
+とりあえず、RVMかrbenvを考えてみたけれど、RVMはなんかものすごくオフィシャルサイトがアレだったので、rbenvにした。（勉強用の本でもRVMと書いてあったけど、RVMはなんだか設定のやり方がしっくりこないので、ライトに済ませてくれる感じのrbenvを選んだ）
+
+ひとまず、githubの[インストールマニュアル](https://github.com/sstephenson/rbenv/)のとおりやってみる。
+
+
+<blockquote>$ git clone git://github.com/sstephenson/rbenv.git ~/.rbenv
+
+$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+
+$ echo 'eval "$(rbenv init -)"' >> ~/.bash_profile</blockquote>
+
+
+とりあえず、ここでシェルを再起動する。なんかいろいろ書いてあったが、面倒なので一回ログアウトして再ログイン。
+
+で、さらっと
+
+
+<blockquote>Install ruby-build,</blockquote>
+
+
+とか書いてある。さらっとしすぎな気もするけど、ruby-buildの[インストールガイド](https://github.com/sstephenson/ruby-build)を読んで、rbenvのプラグインとしてサクッとインストール。
+
+
+<blockquote>$ git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build</blockquote>
+
+
+レポジトリをクローンしてくるだけなので、サクッと終わる。
+
+で、rbenvの方に戻ると、
+
+
+<blockquote>$ rbenv install 1.9.3-p327
+
+ってあっさり書いてあるので、その前にインストール可能なバージョン一覧を見たいと思い、適当にlist系のコマンドを探していると、
+
+$ rbenv install --list</blockquote>
+
+
+でおｋらしい。ずらっと一杯出てきた。とりあえず、1.9.3-p392を入れてみる。
+
+
+<blockquote>$ rbenv install 1.9.3-p392</blockquote>
+
+
+設定ファイルと思わしきyamlを取りに行って、その後rubyのソースを取得。インストール完了までそこそこの時間がかかったけど、上手くいったようだ。ruby -v を打ってみる。
+
+
+<blockquote>ruby 1.8.7 (2011-06-30 patchlevel 352) [x86_64-linux]</blockquote>
+
+
+あれ！？ なんだ、入ってないぞ。と思って次の項を読んだら、
+
+
+<blockquote>$ rbenv rehash</blockquote>
+
+
+って書いてあった。なんだ脅かすなよと思いながら入力。もっかい ruby -v を。
+
+
+<blockquote>ruby 1.8.7 (2011-06-30 patchlevel 352) [x86_64-linux]</blockquote>
+
+
+あっれぇ！？　と思ってマニュアルを読み進めて行くも、なんかそれっぽい項目が無い。首を捻っていると、Command Reference というセクションに rbenv local と rbenv global というコマンドが。
+
+
+<blockquote>$ rbenv global 1.9.3-p392
+
+$ ruby -v
+ruby 1.9.3p392 (2013-02-22 revision 39386) [x86_64-linux]</blockquote>
+
+
+おお、動いた！（ホントにこれでいいのか？ という疑問はさておき）
+
+で、Ruby on Rails も入れる。
+
+
+<blockquote>$ gem install rails</blockquote>
+
+
+なんか途中、file 'lib' not found ってエラーっぽい物が二回出てきたけど、普通に入った……ぽい？
+
+
+<blockquote>$ gem list --local rails
+
+*** LOCAL GEMS ***
+
+rails (3.2.13)</blockquote>
+
+
+お、つらつら出てきた。入ったみたい。とりあえず、参考書に合わせて3.1.0を入れる
+
+
+<blockquote>$ gem install rails --version 3.1.0
+
+$ rails _3.1.0_ --version
+-bash: rails: コマンドが見つかりません</blockquote>
+
+
+ちょｗｗｗマジかｗｗｗ
+
+焦ったのでrbenvのインストールガイドをgemで検索してみると、新しいgemを入れたらrehashしなきゃいけない、との記述が。
+
+
+<blockquote>$ rbenv rehash
+$ which rails
+~/.rbenv/shims/rails
+$ rails _3.1.0_ --version
+Rails 3.1.0</blockquote>
+
+
+これでrailsコマンドが使えるようになったっぽい。
+
+ひとまず、railsコマンドが使えることで満足したので、ここまでで。

@@ -1,0 +1,53 @@
+---
+author: kinoppyd
+comments: true
+date: 2014-02-11 10:19:57+00:00
+layout: post
+link: http://tolarian-academy.net/nginx%e3%81%a7%e3%83%aa%e3%83%90%e3%83%bc%e3%82%b9%e3%83%97%e3%83%ad%e3%82%af%e3%82%b7%e3%82%92%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b%e3%82%b5%e3%82%a4%e3%83%88%e3%81%a7websocket%e4%bd%bf%e3%81%a3/
+permalink: /nginx%e3%81%a7%e3%83%aa%e3%83%90%e3%83%bc%e3%82%b9%e3%83%97%e3%83%ad%e3%82%af%e3%82%b7%e3%82%92%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b%e3%82%b5%e3%82%a4%e3%83%88%e3%81%a7websocket%e4%bd%bf%e3%81%a3
+title: NginxでリバースプロクシをしているサイトでWebSocket使ったら、なんか変な感じになった
+wordpress_id: 98
+categories:
+- Perl
+- プログラミング
+tags:
+- mojolicious
+- Perl
+- websocket
+---
+
+バックエンドで起動しているMojolicious製アプリにNginxのリバースプロクシ経由でアクセスしたら、WebSocketが即切れるようになった。
+考えてみたら当たり前だけど、そりゃ実行している場所とアクセス受けてる場所が違ったら、そうなる気がする。
+
+解決方法は、単純にNginxの設定に
+
+    
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "Upgrade";
+
+
+を書くだけ。serverディレクティブの下に書いていいのか、それともlocationで縛っておいたほうがいいのかはよくわからない。
+[nginx websocket reverse proxy configuration ](http://stackoverflow.com/questions/17427303/nginx-websocket-reverse-proxy-configuration)
+
+仕組み的には、今のセッションを別のプロトコルに変更するヘッダがhttp1.1にあって、それを追加しているらしい。なので、http_versionのディレクティブは必須。これを書き忘れて、しばらく悩んでいた。
+[Nginxの最新安定版がWebSocketのリバースプロキシに対応したそうなので試してみた ](http://kitak.hatenablog.jp/entry/2013/04/27/180255)
+
+あと、Nginxのバーションも1.4以上である必要がある。（開発版だったら1.3でも行けるらしいけど、いまさら1.3を使う理由は特にないと思う）
+CentOSだったので、yumにリポジトリ追加してインストール
+
+    
+    rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+    yum update -y nginx
+
+
+こんな感じで思いっきりばーんとアップデートかけたら、設定ファイルが飛んだ。ワロス。
+
+実際には飛んだわけではなく、.rpmnewという拡張子がついてバックアップされていたが、それにしばらく気づかず、ブログのトップ画面が " Welcome to Nginx! " になって焦りまくっていた。二年前に勢いで作ったVPSとリバプロ構成だったので、全然設定覚えてなかったから助かった……マジでちゃんと構成管理やろう。
+
+ともあれ、こんな感じで無事Nginxのアップデートと、WebSocketのリバースプロクシ対応ができたので、この間作ったWebSocketのサンプルをVPSで動かすことができた。
+[https://github.com/YasuhiroKinoshita/learn_websocket](https://github.com/YasuhiroKinoshita/learn_websocket)
+
+今日は勉強会という名のもくもく会に出て、ひたすらWebSocketを使ったWebアプリをコーディングしていた（上のGithubのやつとは別）ので、VPS上で動かせてよかった。
+
+

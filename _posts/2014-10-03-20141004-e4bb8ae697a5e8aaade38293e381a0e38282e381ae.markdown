@@ -1,0 +1,18 @@
+---
+author: kinoppyd
+comments: true
+date: 2014-10-03 17:00:55+00:00
+layout: post
+link: http://tolarian-academy.net/20141004-%e4%bb%8a%e6%97%a5%e8%aa%ad%e3%82%93%e3%81%a0%e3%82%82%e3%81%ae/
+permalink: /20141004-%e4%bb%8a%e6%97%a5%e8%aa%ad%e3%82%93%e3%81%a0%e3%82%82%e3%81%ae
+title: 2014/10/04 今日読んだもの
+wordpress_id: 173
+categories:
+- CentOS
+- Linux
+---
+
+#### [VPNサーバー構築(OpenVPN)](http://centossrv.com/openvpn.shtml)
+
+
+Vagrantでpublic_networkで作った仮想マシンに一通り設定を流して、ルーターのポートフォワードだけであっさりとVPN完成。非常に楽だけど、得られる効果が抜群ですごい助かる。

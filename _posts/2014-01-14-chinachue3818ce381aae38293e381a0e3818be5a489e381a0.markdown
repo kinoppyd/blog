@@ -1,0 +1,129 @@
+---
+author: kinoppyd
+comments: true
+date: 2014-01-14 14:08:22+00:00
+layout: post
+link: http://tolarian-academy.net/chinachu%e3%81%8c%e3%81%aa%e3%82%93%e3%81%a0%e3%81%8b%e5%a4%89%e3%81%a0/
+permalink: /chinachu%e3%81%8c%e3%81%aa%e3%82%93%e3%81%a0%e3%81%8b%e5%a4%89%e3%81%a0
+title: Chinachuがなんだか変だ
+wordpress_id: 65
+categories:
+- Debian
+- Linux
+- アニメ
+tags:
+- chinachu
+- Debian
+- Linux
+---
+
+たしかにアニメの方のChinachuも変だったけど、録画サーバーの方のChinachuも少し変だ。
+
+現象としては、昨日の夜のアニメが全部録画できていなかった。
+ファイルは作られていたのだが、全部のファイルサイズがアッカリ～ン状態で、 つまり何も録れていなかった。
+
+これはいかんともしがたいので、とりあえずログを見てみると、どうやらチューナーがロックされたままになっていて、解除されること無く録画の時間に到達し、何も出来ないまま終了していたようである。
+で、一体どこでロックされたままになったのかというと、同じログをたどっているうちにこんなのが出てきた。
+[crayon]
+
+13 Jan 21:20:23 - GETTING EPG.
+13 Jan 21:20:23 - [0] {"type":"GR","channel":"16","n":0}
+13 Jan 21:20:23 - [0] LOCK: PT2-T1 (n=0)
+13 Jan 21:20:23 - [0] SPAWN: recpt1 --device /dev/pt1video2 16 - - (pid=1813)
+13 Jan 21:20:23 - [0] STREAM: /tmp/chinachu-tmp-hqdp9hbx.m2ts
+13 Jan 21:20:23 - [1] {"type":"GR","channel":"18","n":1}
+13 Jan 21:20:23 - [1] LOCK: PT2-T2 (n=1)
+13 Jan 21:20:23 - [1] SPAWN: recpt1 --device /dev/pt1video3 18 - - (pid=1818)
+13 Jan 21:20:23 - [1] STREAM: /tmp/chinachu-tmp-hqdp9hjs.m2ts
+13 Jan 21:20:23 - STATUS: { completed: 0, waiting: 12, worked: 2, running: 2 }
+13 Jan 21:20:23 - STATUS: { completed: 0, waiting: 10, worked: 2, running: 2 }
+13 Jan 21:20:23 - STATUS: { completed: 0, waiting: 10, worked: 2, running: 2 }
+13 Jan 21:20:23 - [0] #recpt1: using device: /dev/pt1video2
+13 Jan 21:20:23 - [1] #recpt1: using device: /dev/pt1video3
+13 Jan 21:20:24 - [0] #recpt1: Signal=31.541688dB
+13 Jan 21:20:24 - [0] #recpt1: Recording...
+13 Jan 21:20:25 - [1] #recpt1: Signal=30.456514dB
+13 Jan 21:20:25 - [1] #recpt1: Recording...
+13 Jan 21:21:23 - [0] #recpt1: SIGTERM received. cleaning up...
+13 Jan 21:21:23 - [1] #recpt1: SIGTERM received. cleaning up...
+13 Jan 21:21:24 - [0] UNLOCK: PT2-T1 (n=0)
+13 Jan 21:21:24 - [0] EXEC: epgdump (pid=1956)
+13 Jan 21:21:24 - [1] UNLOCK: PT2-T2 (n=1)
+13 Jan 21:21:24 - [1] EXEC: epgdump (pid=1958)
+13 Jan 21:21:26 - UNLINK: /tmp/chinachu-tmp-hqdp9hbx.m2ts
+13 Jan 21:21:27 - [0] CHANNEL: GR-16 ... GR_23608 (sid=23608) (programs=361) - ＴＯＫＹＯ　ＭＸ１
+13 Jan 21:21:27 - [0] CHANNEL: GR-16 ... GR_23609 (sid=23609) (programs=127) - ＴＯＫＹＯ　ＭＸ２
+13 Jan 21:21:27 - [0] -- (ok)
+13 Jan 21:21:27 - UNLINK: /tmp/chinachu-tmp-hqdp9hjs.m2ts
+13 Jan 21:21:28 - [1] CHANNEL: GR-18 ... GR_24632 (sid=24632) (programs=380) - ｔｖｋ１
+13 Jan 21:21:28 - [1] -- (ok)
+13 Jan 21:21:31 - [2] {"type":"GR","channel":"21","n":2}
+13 Jan 21:21:31 - [2] LOCK: PT2-T1 (n=0)
+13 Jan 21:21:31 - [2] SPAWN: recpt1 --device /dev/pt1video2 21 - - (pid=1964)
+13 Jan 21:21:31 - [2] STREAM: /tmp/chinachu-tmp-hqdpaxjg.m2ts
+13 Jan 21:21:31 - [3] {"type":"GR","channel":"22","n":3}
+13 Jan 21:21:31 - [3] LOCK: PT2-T2 (n=1)
+13 Jan 21:21:31 - [3] SPAWN: recpt1 --device /dev/pt1video3 22 - - (pid=1965)
+13 Jan 21:21:31 - [3] STREAM: /tmp/chinachu-tmp-hqdpaxju.m2ts
+13 Jan 21:21:31 - STATUS: { completed: 3, waiting: 10, worked: 4, running: 3 }
+13 Jan 21:21:31 - STATUS: { completed: 3, waiting: 8, worked: 4, running: 3 }
+13 Jan 21:21:31 - STATUS: { completed: 3, waiting: 8, worked: 4, running: 3 }
+13 Jan 21:21:31 - [3] #recpt1: using device: /dev/pt1video3
+13 Jan 21:21:31 - [2] #recpt1: using device: /dev/pt1video2
+
+13 Jan 21:21:31 - STATUS: { completed: 3, waiting: 8, worked: 4, running: 2 }
+13 Jan 21:21:32 - [3] #recpt1: Signal=32.048278dB
+13 Jan 21:21:32 - [3] #recpt1: Recording...
+13 Jan 21:21:32 - [2] #recpt1: Signal=32.434248dB
+13 Jan 21:21:32 - [2] #recpt1: Recording...
+13 Jan 21:22:31 - [2] #recpt1: SIGTERM received. cleaning up...
+13 Jan 21:22:31 - [3] #recpt1: SIGTERM received. cleaning up...
+13 Jan 21:22:31 - [2] UNLOCK: PT2-T1 (n=0)
+13 Jan 21:22:31 - [2] EXEC: epgdump (pid=2018)
+13 Jan 21:22:31 - [3] UNLOCK: PT2-T2 (n=1)
+13 Jan 21:22:31 - [3] EXEC: epgdump (pid=2020)
+13 Jan 21:22:35 - UNLINK: /tmp/chinachu-tmp-hqdpaxju.m2ts
+13 Jan 21:22:35 - [3] CHANNEL: GR-22 ... GR_1048 (sid=1048) (programs=184) - ＴＢＳ１
+13 Jan 21:22:35 - [3] -- (ok)
+13 Jan 21:22:35 - UNLINK: /tmp/chinachu-tmp-hqdpaxjg.m2ts
+13 Jan 21:22:36 - [2] CHANNEL: GR-21 ... GR_1056 (sid=1056) (programs=177) - フジテレビ
+13 Jan 21:22:36 - [2] CHANNEL: GR-21 ... GR_1057 (sid=1057) (programs=0) - フジテレビ
+13 Jan 21:22:36 - [2] CHANNEL: GR-21 ... GR_1058 (sid=1058) (programs=0) - フジテレビ
+13 Jan 21:22:36 - [2] -- (ok)
+13 Jan 21:22:38 - [4] {"type":"GR","channel":"23","n":4}
+13 Jan 21:22:38 - [4] LOCK: PT2-T1 (n=0)
+13 Jan 21:22:39 - [4] SPAWN: recpt1 --device /dev/pt1video2 23 - - (pid=2030)
+13 Jan 21:22:39 - [4] STREAM: /tmp/chinachu-tmp-hqdpcdxw.m2ts
+13 Jan 21:22:39 - [5] {"type":"GR","channel":"24","n":5}
+13 Jan 21:22:39 - [5] LOCK: PT2-T2 (n=1)
+13 Jan 21:22:39 - [5] SPAWN: recpt1 --device /dev/pt1video3 24 - - (pid=2031)
+13 Jan 21:22:39 - [5] STREAM: /tmp/chinachu-tmp-hqdpcdyb.m2ts
+13 Jan 21:22:39 - STATUS: { completed: 5, waiting: 8, worked: 6, running: 3 }
+13 Jan 21:22:39 - STATUS: { completed: 5, waiting: 6, worked: 6, running: 3 }
+13 Jan 21:22:39 - STATUS: { completed: 5, waiting: 6, worked: 6, running: 3 }
+13 Jan 21:22:39 - [4] #recpt1: using device: /dev/pt1video2
+13 Jan 21:22:39 - [5] #recpt1: using device: /dev/pt1video3
+13 Jan 21:22:39 - STATUS: { completed: 5, waiting: 6, worked: 6, running: 2 }
+13 Jan 21:22:46 - [4] #recpt1: Cannot tune to the specified channel: /dev/pt1video2
+13 Jan 21:22:46 - [4] UNLOCK: PT2-T1 (n=0)
+13 Jan 21:22:46 - [4] EXEC: epgdump (pid=2038)
+13 Jan 21:22:46 - UNLINK: /tmp/chinachu-tmp-hqdpcdxw.m2ts
+13 Jan 21:22:46 - [4] EPG: データが空 (result.tv.channel is undefined)
+13 Jan 21:22:46 - [4] -- (retrying, residue=2)
+13 Jan 21:22:47 - [5] #recpt1: Cannot tune to the specified channel: /dev/pt1video3
+13 Jan 21:22:47 - [5] UNLOCK: PT2-T2 (n=1)
+13 Jan 21:22:47 - [5] EXEC: epgdump (pid=2040)
+13 Jan 21:22:47 - UNLINK: /tmp/chinachu-tmp-hqdpcdyb.m2ts
+13 Jan 21:22:47 - [5] EPG: データが空 (result.tv.channel is undefined)
+13 Jan 21:22:47 - [5] -- (retrying, residue=2)
+
+[/crayon]
+データが空地獄、というか、デバイスがロックされたままになっている。
+そして、ここからさきは、同じようなエラーが出てたり、あるいはなんかよくわからないが上手く行ってたりを1時間おきくらいに繰り返している。
+
+色々探していると、こんなブログを見つけた
+[Ubuntu 13.10 で Chinachu を使う その３ ](http://ameblo.jp/purplesounds/entry-11717986528.html)
+
+どうやら同じ症状らしいが、解決はしていないようだ。
+
+cronで定期的にunlockを実行するべきか、それとも……うーん……[ ](http://ameblo.jp/purplesounds/entry-11717986528.html)
