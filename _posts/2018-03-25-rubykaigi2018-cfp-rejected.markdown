@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-03-25 13:03:49+00:00
 layout: post
-link: http://tolarian-academy.net/rubykaigi2018-cfp-rejected/
-permalink: /rubykaigi2018-cfp-rejected
 title: RubyKaigi2018のCFP落ちたので後学のために置いておきます
-wordpress_id: 500
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 タイトルの通り、RubyKaigi2018のCFPに送ったプロポーザルがリジェクトされたので、内容を公開して後学のためになればと思い、自らの反省点込で残しておきます。

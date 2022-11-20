@@ -1,21 +1,15 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-07-06 18:44:21+00:00
 layout: post
-link: http://tolarian-academy.net/chinachu%e3%82%82%e4%b9%97%e3%81%a3%e3%81%8b%e3%81%a3%e3%81%a6%e3%82%8b%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e3%82%82%e5%ae%89%e5%ae%9a%e3%81%97%e3%81%aa%e3%81%84%e3%81%ae%e3%81%a7%e3%80%81%e3%81%a8/
-permalink: /chinachu%e3%82%82%e4%b9%97%e3%81%a3%e3%81%8b%e3%81%a3%e3%81%a6%e3%82%8b%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e3%82%82%e5%ae%89%e5%ae%9a%e3%81%97%e3%81%aa%e3%81%84%e3%81%ae%e3%81%a7%e3%80%81%e3%81%a8
 title: Chinachuも乗っかってるサーバーも安定しないので、とりあえず更新してみた
-wordpress_id: 131
-categories:
-- 未分類
 ---
 
 酔った勢いで何も考えずに次のコマンドを使ってみた
 
-    
-    ./chinachu updater
-
+```shell-session
+./chinachu updater
+```
 
 せっかくオープンソースなのだから、更新する前に簡単にコミット履歴とか読むべきなんだろうが、なんか録画失敗した勢いでがーっとやってしまった。
 

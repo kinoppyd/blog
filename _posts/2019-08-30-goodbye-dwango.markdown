@@ -1,18 +1,11 @@
 ---
 author: kinoppyd
-comments: true
 date: 2019-08-30 14:44:49+00:00
 layout: post
-link: http://tolarian-academy.net/goodbye-dwango/
-permalink: /goodbye-dwango
 title: 株式会社ドワンゴを退職します（5年2ヶ月ぶり1回目）
-wordpress_id: 640
-categories:
-- 未分類
 ---
 
 2019年8月末で、株式会社ドワンゴを退職します。これは主に社内の友人に向けた文章ですが、一応自己紹介は書いておきます。
-
 
 ## 誰
 

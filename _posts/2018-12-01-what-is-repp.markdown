@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-01 16:06:24+00:00
 layout: post
-link: http://tolarian-academy.net/what-is-repp/
-permalink: /what-is-repp
 title: 秒でBotを作れるMobb、その裏にあるReppって何者？
-wordpress_id: 546
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 このエントリは、[Mobb/Repp Advent Calendar ](https://qiita.com/advent-calendar/2018/mobb-repp)の2日目です
@@ -36,6 +31,7 @@ Botを秒で作るために必要なものは、複雑な物事をうまく隠�
 
 秒でBotを作るためには、サービスとの結合部分を徹底的に隠さなくてはいけません。サービスとの接続に手間取っているようでは、それは複雑も複雑であり、怪奇です。また、サービスとの接続部分は使いまわせなくてはいけません。あなたが作りたいBotは、一つではないからです。秒でBotを作るということは、毎秒新しいBotのアイディアを思いついて、すぐに実装する。そういうことです。
 
+<!--more-->
 
 ## 複雑さを回避するためのフレームワーク
 
@@ -73,25 +69,25 @@ Botを秒で作るために必要なものは、複雑な物事をうまく隠�
 
 ここで、Mobbのコードを見てみましょう。
 
-    
-    require 'mobb'
-    
-    on 'Hello' do
-      'Hi'
-    end
+```ruby
+require 'mobb'
 
+on 'Hello' do
+  'Hi'
+end
+```
 
 このコードを見たとき、あるルールに則っていることが一目瞭然でわかります。「サービスからの入力と一致するかを確認し、それに対応する文字列を返す」というルールです。このBotは、’Helllo'という発言に対して、'Hi'という投稿を返します。とてもシンプルで単純で、複雑さのかけらもありません。
 
 それでは次に、Reppのルールを見てみましょう。
 
-    
-    Class Bot
-      def call(obj)
-        obj.body == 'Hello' ? ['Hi'] : ['']
-      end
-    end
-
+```ruby
+Class Bot
+  def call(obj)
+    obj.body == 'Hello' ? ['Hi'] : ['']
+  end
+end
+```
 
 このBotクラスは、「callというメソッドが定義されていて、サービスに投稿された情報を受け取り」、「callメソッドは配列を戻り値として返し、その先頭の文字列がサービスに投稿される」というルールを満たした実装になっています。つまり、obj.bodyが'Hello'であったばあいには、'Hi'という文字列が先頭に入った配列を返し、そうでなければ空文字列が入った配列を返しています。
 

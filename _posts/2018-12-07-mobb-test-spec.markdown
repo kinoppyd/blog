@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-07 17:21:24+00:00
 layout: post
-link: http://tolarian-academy.net/mobb-test-spec/
-permalink: /mobb-test-spec
 title: Mobb, test, spec
-wordpress_id: 575
-categories:
-- 未分類
 ---
 
 このエントリは、 Mobb/Repp Advent Calender の八日目です

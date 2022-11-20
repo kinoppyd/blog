@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-09-28 12:41:36+00:00
 layout: post
-link: http://tolarian-academy.net/20140928-%e4%bb%8a%e6%97%a5%e8%aa%ad%e3%82%93%e3%81%a0%e3%82%82%e3%81%ae/
-permalink: /20140928-%e4%bb%8a%e6%97%a5%e8%aa%ad%e3%82%93%e3%81%a0%e3%82%82%e3%81%ae
 title: 2014/09/28 今日読んだもの
-wordpress_id: 160
-categories:
-- Linux
 ---
 
 #### bennojoy/mysql

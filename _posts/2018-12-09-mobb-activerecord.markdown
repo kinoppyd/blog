@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-09 17:35:19+00:00
 layout: post
-link: http://tolarian-academy.net/mobb-activerecord/
-permalink: /mobb-activerecord
 title: Rubyを使って秒でBotを作るなら、秒でActiveRecord使えなきゃ話にならないですよね？
-wordpress_id: 577
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 このエントリは、 [Mobb/Repp Advent Calendar 2018 ](https://qiita.com/advent-calendar/2018/mobb-repp)の十日目です
@@ -30,62 +25,63 @@ Mobbは、秒でBotを作るエンジニアを本気で応援するフレーム�
 
 ## Usage
 
+<!--more-->
 
 秒で使えるとは言いましたが、流石にActiveRecordは何も考えずに突っ込むことは出来ません。しかし、可能な限り何も考えずに突っ込めるようには準備をしています。
 
 まず、bundlerを使っている場合は次のgemをGemfileに記述してください。使っていなければ普通にインストールしてください。
 
-    
-    # frozen_string_literal: true
-    source "https://rubygems.org"
-    
-    gem "mobb"
-    gem "mobb-activerecord"
-    gem "rake"
-    gem "sqlite3"
+```ruby
+# frozen_string_literal: true
+source "https://rubygems.org"
 
+gem "mobb"
+gem "mobb-activerecord"
+gem "rake"
+gem "sqlite3"
+```
 
 rakeはなくてもいいですが、あったほうが楽です。ここからさきはRakeがある前提で書きます。また、sqlite3のところは適宜好きなDBに読み替えてください。
 
 その後、まずRakefileを作成して編集します。
 
-    
-    require "mobb/activerecord/rake"
-    
-    namespace :db do
-      task :load_config do
-        require "./app"
-      end
-    end
+```ruby
+require "mobb/activerecord/rake"
 
+namespace :db do
+  task :load_config do
+    require "./app"
+  end
+end
+```
 
 5行目の require "./app" は、Mobbアプリケーションの名前がapp.rbであることを前提としているので、適宜変更してください。
 
 次に、Mobbアプリケーションを作ります。
 
-    
-    require 'mobb'
-    require 'mobb/activerecord'
-    
-    set :database, { adapter: "sqlite3", database: "test.sqlite3" }
-    
-    class User < ActiveRecord::Base
-    end
-    
-    on /add user (\w+)/ do |user|
-      u = User.find_by(name: user)
-      if u
-        "user #{user} already exists"
-      else
-        User.create!(name: user)
-        "user #{user} created"
-      end
-    end
-    
-    on 'list users' do
-      User.all.map(&:name).join("\n")
-    end
+```ruby
+require 'mobb'
+require 'mobb/activerecord'
 
+set :database, { adapter: "sqlite3", database: "test.sqlite3" }
+
+class User < ActiveRecord::Base
+end
+
+on /add user (\w+)/ do |user|
+  u = User.find_by(name: user)
+  if u
+    "user #{user} already exists"
+  else
+    User.create!(name: user)
+    "user #{user} created"
+  end
+end
+
+on 'list users' do
+  User.all.map(&:name).join("\n")
+end
+```
 
 set :database の記述で、ActiveRecordにDB接続情報を渡しています。これはsqlite3の場合ですが、他のDBを使う場合は適宜必要な情報を渡してください。
 
@@ -95,59 +91,59 @@ ActiveRecordのクラスは、Userクラスを用意しました。これは、u
 
 それでは、DBを作成しましょう。まずRakeタスクで、DBの作成とマイグレーションファイルを作成します。
 
-    
-    bundle exec rake db:create
-    bundle exec rake db:create_migration NAME=users
-    
+```shell-session
+bundle exec rake db:create
+bundle exec rake db:create_migration NAME=users
 
+```
 
 ここまでくると、もうRailsでよく見るやつですね。DBの作成と、マイグレーションファイルの作成を行います。その後、作成される db/migrate/xxxxxxxx_user.rb というファイルを編集します。
 
-    
-    class Users < ActiveRecord::Migration[5.2]
-      def change
-        create_table :users do |t|
-          t.column :name, :string
-          t.timestamp
-        end
-      end
+```ruby
+class Users < ActiveRecord::Migration[5.2]
+  def change
+    create_table :users do |t|
+      t.column :name, :string
+      t.timestamp
     end
-
+  end
+end
+```
 
 usersテーブルを作成し、nameというカラムを持つように定義します。
 
 あとは、DBをマイグレーションしましょう。
 
-    
-    bundle exec rake db:migrate
-    == XXXXXXX Users: migrating ============================================
-    -- create_table(:users)
-       -> 0.0005s
-    == XXXXXXX Users: migrated (0.0005s) ===================================
-
+```shell-session
+bundle exec rake db:migrate
+== XXXXXXX Users: migrating ============================================
+-- create_table(:users)
+   -> 0.0005s
+== XXXXXXX Users: migrated (0.0005s) ===================================
+```
 
 無事マイグレーションされました。
 
 それでは、アプリを起動してみます。
 
-    
-    bundle exec ruby app.rb
-
+```shell-session
+bundle exec ruby app.rb
+```
 
 実際に操作してみましょう。
 
-    
-    == Mobb (v0.4.0) is in da house with Shell. Make some noise!
-    add user kinoppyd
-    D, [2018-12-10T02:12:36.215524 #54963] DEBUG -- :   User Load (0.1ms)  SELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?  [["name", "kinoppyd"], ["LIMIT", 1]]
-    D, [2018-12-10T02:12:36.216977 #54963] DEBUG -- :    (0.0ms)  begin transaction
-    D, [2018-12-10T02:12:36.217548 #54963] DEBUG -- :   User Create (0.3ms)  INSERT INTO "users" ("name") VALUES (?)  [["name", "kinoppyd"]]
-    D, [2018-12-10T02:12:36.218448 #54963] DEBUG -- :    (0.8ms)  commit transaction
-    user kinoppyd created
-    list users
-    D, [2018-12-10T02:12:45.580979 #54963] DEBUG -- :   User Load (0.2ms)  SELECT "users".* FROM "users"
-    kinoppyd
-
+```shell-session
+== Mobb (v0.4.0) is in da house with Shell. Make some noise!
+add user kinoppyd
+D, [2018-12-10T02:12:36.215524 #54963] DEBUG -- :   User Load (0.1ms)  SELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?  [["name", "kinoppyd"], ["LIMIT", 1]]
+D, [2018-12-10T02:12:36.216977 #54963] DEBUG -- :    (0.0ms)  begin transaction
+D, [2018-12-10T02:12:36.217548 #54963] DEBUG -- :   User Create (0.3ms)  INSERT INTO "users" ("name") VALUES (?)  [["name", "kinoppyd"]]
+D, [2018-12-10T02:12:36.218448 #54963] DEBUG -- :    (0.8ms)  commit transaction
+user kinoppyd created
+list users
+D, [2018-12-10T02:12:45.580979 #54963] DEBUG -- :   User Load (0.2ms)  SELECT "users".* FROM "users"
+kinoppyd
+```
 
 これは、Shellアダプタでadd userコマンドとlist usersコマンドを実行してみた例です。develpmentモードで動いているため、ActiveRecordのログが出力されているのがわかります。
 

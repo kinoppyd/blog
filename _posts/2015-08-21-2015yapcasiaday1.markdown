@@ -1,15 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-08-21 11:23:36+00:00
 layout: post
-link: http://tolarian-academy.net/2015yapcasiaday1/
-permalink: /2015yapcasiaday1
 title: YAPC::Asia Day1 行ってきたよ
-wordpress_id: 277
-categories:
-- Perl
-- ポエム
+excerpt_separator: <!--more-->
 ---
 
 ## 行ってきたよ
@@ -27,6 +21,7 @@ YAPC::Asiaに参加すると、毎回セッションの最初と最後に「ブ�
 ## 聞いてきたセッション
 
 
+<!--more-->
 
 
 ### [オープニング](http://yapcasia.org/2015/talk/show/1ffa6f7a-f5e8-11e4-a4ec-49b37d574c3a)

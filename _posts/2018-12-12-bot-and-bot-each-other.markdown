@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-12 17:22:54+00:00
 layout: post
-link: http://tolarian-academy.net/bot-and-bot-each-other/
-permalink: /bot-and-bot-each-other
 title: BotはBotと会話するべきかどうか？
-wordpress_id: 585
-categories:
-- 未分類
 ---
 
 このエントリは、  Mobb/Repp Advent Calendar の十三日目です
@@ -19,23 +13,23 @@ categories:
 
 突然ですが、このBotは無限ループを引き起こします。
 
-    
-    require 'mobb'
-    
-    on 'Yo' do
-      'Yo'
-    end
+```ruby
+require 'mobb'
 
+on 'Yo' do
+  'Yo'
+end
+```
 
 Yoという発言を受け取り、Yoと自分も発言すると、自分の発言を拾って更にYoが無限にYoするからです。Mobbでは、これを防ぐために ignore_bot というコンディションフィルタを用意しています。
 
-    
-    require 'mobb'
-    
-    on 'Yo', ignore_bot: true do
-      'Yo'
-    end
+```ruby
+require 'mobb'
 
+on 'Yo', ignore_bot: true do
+  'Yo'
+end
+```
 
 ignore_botコンディションを利用することによって、このonのブロックはBotに反応しなくなります。したがって、自分自身のYoの発言に自分で反応することもなくなります。（もっとも、これはReppハンドラが正しく人間とBotのアカウントを判断して情報を送ってくれるときに限るので、例えばBotと人間の区別がつかないサービスの場合はもちろん機能しません）
 
@@ -49,17 +43,17 @@ Mobbの安全性への姿勢は、リリース後に様々な人に触れても�
 
 次のバージョンからは、Mobbは自分を含む全てのBotの発言をデフォルトで無視します。これは、Botの安全性を高めるためです。そして、Botの発言を意図的に取り込みたい場合は、次のような記述が必要になります。
 
-    
-    require 'mobb'
-    
-    on 'Yo', react_to_bot: true do
-      'Yo'
-    end
-    
-    on 'Yo', react_to_bot: true, include_myself: true do
-      'YoYo'
-    end
+```ruby
+require 'mobb'
 
+on 'Yo', react_to_bot: true do
+  'Yo'
+end
+
+on 'Yo', react_to_bot: true, include_myself: true do
+  'YoYo'
+end
+```
 
 react_to_botコンディションは、自身を含めない他のすべてのBotの発言に対して反応するようになるコンディションです。そして、 include_myself コンディションは、自分自身の発言に対しても反応するようにするコンディションです。
 

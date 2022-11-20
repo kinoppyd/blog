@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-06 18:24:06+00:00
 layout: post
-link: http://tolarian-academy.net/interface-of-repp/
-permalink: /interface-of-repp
 title: Reppのインターフェイス
-wordpress_id: 573
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 この記事は Mobb/Repp Advent Calendar の7日目です
@@ -35,6 +30,7 @@ ReppはRackの模倣をして作られた、各種サービスとBotフレーム
 
 たとえば、SlackにはAttachmentsというチャットの発言とは別にチャットの内容を装飾するための取り決めがありますが、それは他のサービスにはありません。しかし、Reppとしては存在したりしなかったりする内容に関してもきちんと橋渡しをする必要があります。
 
+<!--more-->
 
 ## おさらい：Rackのインターフェイス
 

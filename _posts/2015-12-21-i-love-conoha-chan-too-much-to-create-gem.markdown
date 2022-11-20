@@ -1,16 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-12-21 18:20:29+00:00
 layout: post
-link: http://tolarian-academy.net/i-love-conoha-chan-too-much-to-create-gem/
-permalink: /i-love-conoha-chan-too-much-to-create-gem
 title: ConoHaちゃんが好きすぎるので、WebAPIを叩くためのGemを（途中まで）作ってみた
-wordpress_id: 362
-categories:
-- Ruby
-- プログラミング
-- ポエム
+excerpt_separator: <!--more-->
 ---
 
 この記事は、[ConoHaちゃん Advent Calendar](http://qiita.com/advent-calendar/2015/conoha) の22日目です
@@ -31,6 +24,8 @@ ConoHaちゃんが、普通にクラウドサービス的に使えて便利な�
 
 ちなみに、1年くらいはもらったクーポンで運用できてましたが、最近は普通に課金しまくってます。
 
+<!--more-->
+
 
 ## ConoHaAPI
 
@@ -44,31 +39,31 @@ ConoHaちゃんが、普通にクラウドサービス的に使えて便利な�
 
 
 
-    
-    require 'conoha_api'
-    
-    client = ConohaApi::Client.new(
-      login: 'username',
-      password: 'password',
-      tenant_id: 'tenant_id',
-      api_endpoint: 'identityサーバーのエンドポイント'
-    )
-    
-    # 登録してたキーペアの先頭を取得
-    key = client.keypairs.keypairs.first
-    # マシンの一覧の先頭を取得
-    flavor = client.flavors.flavors.first
-    # イメージの一覧の先頭を取得
-    image = client.images.images.first
-    
-    # 集めた情報で、新しいサーバーを作成
-    client.add_server(image.id, flavor.id, key_name: key.keypair.name)
-    
-    # 全部のサーバーを削除
-    client.servers.servers.each do |server|
-      puts client.delete_server(server.id)
-    end
+```ruby
+require 'conoha_api'
 
+client = ConohaApi::Client.new(
+  login: 'username',
+  password: 'password',
+  tenant_id: 'tenant_id',
+  api_endpoint: 'identityサーバーのエンドポイント'
+)
+
+# 登録してたキーペアの先頭を取得
+key = client.keypairs.keypairs.first
+# マシンの一覧の先頭を取得
+flavor = client.flavors.flavors.first
+# イメージの一覧の先頭を取得
+image = client.images.images.first
+
+# 集めた情報で、新しいサーバーを作成
+client.add_server(image.id, flavor.id, key_name: key.keypair.name)
+
+# 全部のサーバーを削除
+client.servers.servers.each do |server|
+  puts client.delete_server(server.id)
+end
+```
 
 
 
@@ -83,41 +78,41 @@ conoha-apiは、以前に作った[Goraku](http://tolarian-academy.net/chinachu-
 
 ConohaAPIへのアクセスは、ConohaApi::Connectionモジュールに書かれたrequestメソッドから、Sawyerのラッパーを経由して行われます。そして各APIのエンドポイントは、ConohaApi::Clientクラスの名前空間の下にある、各サービス名に対応したモジュールに定義されています。たとえば、Computeサービスであれば、ConohaApi::Client::Computeモジュールにエンドポイントとメソッドとクエリが記述されています。
 
-    
-    lib/
-    ├── conoha_api/
-    │   ├── authentication.rb
-    │   ├── connection.rb     # request(get, post, put, patch, deleteでラップ)やagentメソッドが定義
-    │   ├── client.rb         # クライアントクラス
-    │   ├── client
-    │   │   ├── account.rb         # Clientクラスにincludeされ、requestメソッドを実際に発火する
-    │   │   ├── black_strage.rb
-    │   │   ├── compute.rb
-    │   │   ├── database_hosting.rb
-    │   │   ├── dns.rb
-    ...
-    ...
-    └── conoha_api.rb
-
+```tree
+lib/
+├── conoha_api/
+│   ├── authentication.rb
+│   ├── connection.rb     # request(get, post, put, patch, deleteでラップ)やagentメソッドが定義
+│   ├── client.rb         # クライアントクラス
+│   ├── client
+│   │   ├── account.rb         # Clientクラスにincludeされ、requestメソッドを実際に発火する
+│   │   ├── black_strage.rb
+│   │   ├── compute.rb
+│   │   ├── database_hosting.rb
+│   │   ├── dns.rb
+...
+...
+└── conoha_api.rb
+```
 
 ここで問題になるのは、各モジュールでアクセスするホストが違うということです。OctokitやGorakuであれば、ConnectionモジュールをClientクラスにincludeし、Connectionクラスに定義されたget, put, post, patch, delete メソッドを呼び出すことで単一のエンドポイントに統一的にAPIにアクセス出来るのですが、conoha-apiの場合は、APIの定義されたモジュールごとに、ホストを切り替えなくてはいけません。
 
-    
-    lib/
-    ├── conoha_api/
-    │   ├── authentication.rb
-    │   ├── connection.rb
-    │   ├── client.rb
-    │   ├── client
-    │   │   ├── account.rb         # ここの各Serviceに対応するモジュールは、それぞれ接続先が違う
-    │   │   ├── black_strage.rb
-    │   │   ├── compute.rb
-    │   │   ├── database_hosting.rb
-    │   │   ├── dns.rb
-    ...
-    ...
-    └── conoha_api.rb
-
+```tree
+lib/
+├── conoha_api/
+│   ├── authentication.rb
+│   ├── connection.rb
+│   ├── client.rb
+│   ├── client
+│   │   ├── account.rb         # ここの各Serviceに対応するモジュールは、それぞれ接続先が違う
+│   │   ├── black_strage.rb
+│   │   ├── compute.rb
+│   │   ├── database_hosting.rb
+│   │   ├── dns.rb
+...
+...
+└── conoha_api.rb
+```
 
 とりあえず、まずは各サービスのモジュールに、エンドポイントを定義して、呼びだされたモジュールごとにホストを切り替えたSawyerオブジェクト（agentという名前で定義して、requestの中から呼び出されます）の向け先を変えようと思っていました。ですが、ある程度実装を進めたときに、問題にぶち当たりました。
 
@@ -132,59 +127,59 @@ ConohaAPIへのアクセスは、ConohaApi::Connectionモジュールに書か�
 
 1つ目の問題点は、各モジュールにホストをハードコートできないということです。Identity Service にアクセスした時に取得する情報こそ真に信じるべき情報であって、エンドポイントの情報はハードコートされるべきではないからです。これに関しては、Identity Service にアクセスした時に、各エンドポイントの情報を保持することで対応は出来ました。Clientクラスが持っているクラス変数に、各モジュールの名前をキーにしたハッシュマップを用意し、その中にIdentity Service にアクセスした時の情報を保持しておきます。そして、各サービスのモジュールからメソッドをコールした時、Clientクラスはそのメソッドをスタックコールから確認し、そのモジュール名に対応したエンドポイントをクラス変数から引くようにしました。
 
-    
-    lib/
-    ├── conoha_api/
-    │   ├── authentication.rb
-    │   ├── connection.rb
-    │   ├── client.rb
-    │   ├── client     # Identity Service にアクセスした時、Clientクラスのクラス変数に各エンドポイントを保持
-    │   │   ├── account.rb
-    │   │   ├── black_strage.rb
-    │   │   ├── compute.rb
-    │   │   ├── database_hosting.rb
-    │   │   ├── dns.rb
-    ...
-    ...
-    └── conoha_api.rb
-
+```tree
+lib/
+├── conoha_api/
+│   ├── authentication.rb
+│   ├── connection.rb
+│   ├── client.rb
+│   ├── client     # Identity Service にアクセスした時、Clientクラスのクラス変数に各エンドポイントを保持
+│   │   ├── account.rb
+│   │   ├── black_strage.rb
+│   │   ├── compute.rb
+│   │   ├── database_hosting.rb
+│   │   ├── dns.rb
+...
+...
+└── conoha_api.rb
+```
 
 更に大きな問題は、2つ目の問題でした。例えば、conoha-apiをrequireして、VMを立ち上げるためにComputeサービスにアクセスするために、わざわざClientオブジェクトを作成して、authを行う、という2ステップは行いたくありません。普通は、Clientオブジェクトを作成して、Computeサービスのメソッドをそのまま呼び出します。そうしたとき、Computeサービスが利用しているConnectionモジュールのAgentは、リクエストがあったときにまず認証情報があるかを内部的に確認します。そして、ない場合はIdentity Serviceにアクセスして、トークンを取得し、そして何事もなかったかのようにCompute Service のメソッドを呼び出します。こうすると、ユーザーが明示的にauth処理を行うこと無くライブラリを使えます。
 
 ここで問題になるのは、実際にAPIを呼び出しているのはComputeモジュールなのに、内部で必要な通信はIdentity Serviceということです。ということは、1つ目の問題を解決した「呼び出し元のモジュールによってホストを変える」作戦だと、微妙にうまく行かなくなります。Connection#requestメソッドが複数回コールされた時、微妙に整合性がとれなくなります。
 
-    
-    + ConohaAPI::Client::Compute#add_server をコール
-    + Clientが、認証情報を確認
-    + 認証情報がない場合は、取得
-    + ConohaAPI::Client::Identity#tokens をコール
-    この時、元の呼び出しがComputeモジュールだから、接続先はCompute Serviceのエンドポイント
-    どうやって切り替える？
-
+```
++ ConohaAPI::Client::Compute#add_server をコール
++ Clientが、認証情報を確認
++ 認証情報がない場合は、取得
++ ConohaAPI::Client::Identity#tokens をコール
+この時、元の呼び出しがComputeモジュールだから、接続先はCompute Serviceのエンドポイント
+どうやって切り替える？
+```
 
 最初は、Connection#requestがコールされた時に、現在のagentをtmp変数に保持して、新しくagentを取得し、最終的にtmpに戻すという方法をとりました。しかし、これではrequestの中で使用されるagentメソッド自体に、自分がどこに接続されているかの情報を渡す必要があり、agentを毎回新しく作成しなさなくてはならないという、やや微妙な実装になりました。インスタンス変数自体にその情報を持っても良いのですが、少なくとも自分が書いたコードでは、なんだか複雑な見た目になってイマイチだと感じました。
 
 そこで、Connectionクラスのインスタンス変数に、次に繋ぎたいエンドポイントをスタックとして所持することによって、この問題はひとまず回避しました。requestがコールされた時、スタックトレースからServiceのつなぎ先を取得しスタックに積み、agentメソッドがこのスタックを参照してSawyerオブジェクトを切り替えることで、コネクションのプーリングが可能になりました。スタックにすることによって、agentもconnectionも複雑な処理や見た目を持つこと無く、比較的わかりやすく書けたと思います。
 
-    
-    + ConohaAPI::Client::Compute#add_server をコール
-      - ConohaAPI::Connection#request をコール
-        + ClientのConnectionStackに、Computeをpush
-        + Clientが、認証情報を確認
-        + 認証情報がない場合は、取得
-        + ConohaAPI::Client::Identity#tokens をコール
-          - ClientのConnectionStackに、Identityをpush
-            + ConohaAPI::Connection#request をコール
-              - ConohaAPI::Connection#agentをコール
-                + ConnectionStackから、Identityを取得
-                + Identityへ接続
-                + ConnectionStack を pop
-        + 認証完了
-        + ConohaAPI::Connection#agent をコール
-          - ConnectionStackから、Computeを取得
-          - Computeへ接続
-          - ConnectionStack を pop
-
+```
++ ConohaAPI::Client::Compute#add_server をコール
+  - ConohaAPI::Connection#request をコール
+    + ClientのConnectionStackに、Computeをpush
+    + Clientが、認証情報を確認
+    + 認証情報がない場合は、取得
+    + ConohaAPI::Client::Identity#tokens をコール
+      - ClientのConnectionStackに、Identityをpush
+        + ConohaAPI::Connection#request をコール
+          - ConohaAPI::Connection#agentをコール
+            + ConnectionStackから、Identityを取得
+            + Identityへ接続
+            + ConnectionStack を pop
+    + 認証完了
+    + ConohaAPI::Connection#agent をコール
+      - ConnectionStackから、Computeを取得
+      - Computeへ接続
+      - ConnectionStack を pop
+```
 
 もちろん、これはベストプラクティスとは思えないので、今後改良の余地はありますが、ひとまずこのように対応しました。
 

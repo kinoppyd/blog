@@ -1,19 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-02-11 10:19:57+00:00
 layout: post
-link: http://tolarian-academy.net/nginx%e3%81%a7%e3%83%aa%e3%83%90%e3%83%bc%e3%82%b9%e3%83%97%e3%83%ad%e3%82%af%e3%82%b7%e3%82%92%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b%e3%82%b5%e3%82%a4%e3%83%88%e3%81%a7websocket%e4%bd%bf%e3%81%a3/
-permalink: /nginx%e3%81%a7%e3%83%aa%e3%83%90%e3%83%bc%e3%82%b9%e3%83%97%e3%83%ad%e3%82%af%e3%82%b7%e3%82%92%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b%e3%82%b5%e3%82%a4%e3%83%88%e3%81%a7websocket%e4%bd%bf%e3%81%a3
 title: NginxでリバースプロクシをしているサイトでWebSocket使ったら、なんか変な感じになった
-wordpress_id: 98
-categories:
-- Perl
-- プログラミング
-tags:
-- mojolicious
-- Perl
-- websocket
+excerpt_separator: <!--more-->
 ---
 
 バックエンドで起動しているMojolicious製アプリにNginxのリバースプロクシ経由でアクセスしたら、WebSocketが即切れるようになった。
@@ -21,11 +11,11 @@ tags:
 
 解決方法は、単純にNginxの設定に
 
-    
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "Upgrade";
-
+```
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection "Upgrade";
+```
 
 を書くだけ。serverディレクティブの下に書いていいのか、それともlocationで縛っておいたほうがいいのかはよくわからない。
 [nginx websocket reverse proxy configuration ](http://stackoverflow.com/questions/17427303/nginx-websocket-reverse-proxy-configuration)
@@ -36,10 +26,10 @@ tags:
 あと、Nginxのバーションも1.4以上である必要がある。（開発版だったら1.3でも行けるらしいけど、いまさら1.3を使う理由は特にないと思う）
 CentOSだったので、yumにリポジトリ追加してインストール
 
-    
-    rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
-    yum update -y nginx
-
+```shell-session
+rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+yum update -y nginx
+```
 
 こんな感じで思いっきりばーんとアップデートかけたら、設定ファイルが飛んだ。ワロス。
 
@@ -49,5 +39,3 @@ CentOSだったので、yumにリポジトリ追加してインストール
 [https://github.com/YasuhiroKinoshita/learn_websocket](https://github.com/YasuhiroKinoshita/learn_websocket)
 
 今日は勉強会という名のもくもく会に出て、ひたすらWebSocketを使ったWebアプリをコーディングしていた（上のGithubのやつとは別）ので、VPS上で動かせてよかった。
-
-

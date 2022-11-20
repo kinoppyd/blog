@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-03 18:27:06+00:00
 layout: post
-link: http://tolarian-academy.net/mobb-cron/
-permalink: /mobb-cron
 title: MobbのCron
-wordpress_id: 563
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 このエントリは、Mobb/Repp Advent Calendar の四日目です
@@ -34,25 +29,27 @@ Mobbでは、Cron実行のためにそのままCron Syntaxを採用しました�
 
 詳細はWheneverのドキュメントを参考にしていただければと思いますが、簡単な例をいくつかあげておきます。
 
-    
-    require 'mobb'
-    
-    every 1.hour, dest_to: 'times_kinoppyd' do
-      '一時間経ったよ'
-    end
-    
-    every 3.hours, dest_to: 'times_kinoppyd' do
-      '三時間経ったよ'
-    end
-    
-    every 1.day, at: '13:00', dest_to: 'times_kinoppyd' do
-      '昼飯を食え'
-    end
-    
-    every :friday, at: '4pm', dest_to: 'times_kinoppyd' do
-      'プレミアムフライデーだ、早く帰れ'
-    end
+<!--more-->
 
+```ruby
+require 'mobb'
+
+every 1.hour, dest_to: 'times_kinoppyd' do
+  '一時間経ったよ'
+end
+
+every 3.hours, dest_to: 'times_kinoppyd' do
+  '三時間経ったよ'
+end
+
+every 1.day, at: '13:00', dest_to: 'times_kinoppyd' do
+  '昼飯を食え'
+end
+
+every :friday, at: '4pm', dest_to: 'times_kinoppyd' do
+  'プレミアムフライデーだ、早く帰れ'
+end
+```
 
 
 
@@ -60,28 +57,26 @@ Mobbでは、Cron実行のためにそのままCron Syntaxを採用しました�
 
 
 
-    
-    require 'mobb'
-    
-    clear :trigger
-    
-    on /(\d+) min timer/ do |minutes|
-      unless settings.trigger
-        settings.trigger = Time.now + (minutes.to_i * 60)
-        "#{minutes}タイマーセットしました"
-      end
-    end
-    
-    every 1.minute do
-      if settings.trigger && Time.now > settings.trigger
-        settings.trigger = nil
-        '@kinoppyd 起きろ'
-      end
-    end
+```ruby
+require 'mobb'
 
+clear :trigger
+
+on /(\d+) min timer/ do |minutes|
+  unless settings.trigger
+    settings.trigger = Time.now + (minutes.to_i * 60)
+    "#{minutes}タイマーセットしました"
+  end
+end
+
+every 1.minute do
+  if settings.trigger && Time.now > settings.trigger
+    settings.trigger = nil
+    '@kinoppyd 起きろ'
+  end
+end
+```
 
 これは、非常に簡単なタイマーアプリの例です。ひとつ注意してほしいのは、このタイマーは正確にn分を図ってくれるわけではなく、最大で+59秒の誤差があります。なぜなら、MobbのCronパーサーの最小の解像度は分であり、秒ではないからです。
 
 最大で約一分の誤差があるタイマーですが、その一方でたったこの十数行のコードでSlack上のタイマーアプリが手に入ります。何かいい感じの応用を思いついて、アイディアを秒でbotにするには良い行数ではないでしょうか？
-
-

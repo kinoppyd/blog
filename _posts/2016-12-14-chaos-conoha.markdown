@@ -1,15 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2016-12-14 17:22:50+00:00
 layout: post
-link: http://tolarian-academy.net/chaos-conoha/
-permalink: /chaos-conoha
 title: Chaos ConoHa
-wordpress_id: 431
-categories:
-- プログラミング
-- ポエム
+excerpt_separator: <!--more-->
 ---
 
 この記事は、「[ConoHa Advent Calendar 2016](http://qiita.com/advent-calendar/2016/conoha)」の15日目です。
@@ -26,6 +20,7 @@ ConoHaのデータセンターでは、おそらく混沌の猿は飼ってい�
 
 はい、そうです。我らがこのはちゃんです。
 
+<!--more-->
 
 <blockquote>
 
@@ -93,17 +88,17 @@ VMの追加に関しては、OSのイメージ名とVMのタイプを指定す�
 Gemの中に実行形式のファイルがあるので、bundlerを使えばそのまま実行できます
 
 
-    
-    bundle exec chaos_conoha -l ログインID -p パスワード -t テナントID -i Identityサーバーのホスト名 -s Slackトークン -c 結果を通知するチャネル名
-    
+```shell-session
+bundle exec chaos_conoha -l ログインID -p パスワード -t テナントID -i Identityサーバーのホスト名 -s Slackトークン -c 結果を通知するチャネル名
 
+```
 
 
 はい、これで上の4つのアクションの内、どれか一つをランダムで実行します。マジでランダムで、本気で停止とか削除しに来るので、本当に気をつけてください。
 
 で、なんどか実行してみました。
 
-[![screenshot-from-2016-12-15-020405](http://tolarian-academy.net/wp-content/uploads/2016/12/Screenshot-from-2016-12-15-020405.png)](http://tolarian-academy.net/wp-content/uploads/2016/12/Screenshot-from-2016-12-15-020405.png)
+[![screenshot-from-2016-12-15-020405]({{ site.baseurl }}/assets/images/2016/12/Screenshot-from-2016-12-15-020405.png)]({{ site.baseurl }}/assets/images/2016/12/Screenshot-from-2016-12-15-020405.png)
 
 **あああああああああああああああああああああああああああああああああちょ**
 

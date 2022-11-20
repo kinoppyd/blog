@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-10 16:40:50+00:00
 layout: post
-link: http://tolarian-academy.net/mobb-redis/
-permalink: /mobb-redis
 title: Rubyを使って秒でBotを作るなら、秒でRedisだって使えなきゃ、やっぱり話にならないですよね？
-wordpress_id: 580
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 このエントリは、 [Mobb/Repp Advent Calendar](https://qiita.com/advent-calendar/2018/mobb-repp) の十一日目です
@@ -26,49 +21,51 @@ categories:
 
 まず、検証用のRedisを立てましょう。今ならDockerで秒です。
 
-    
-    docker pull redis
-    docker run --rm -p 6379:6379 redis
-
+```shell-session
+docker pull redis
+docker run --rm -p 6379:6379 redis
+```
 
 次に、mobb-redisをインストールします。例ではBundlerを使います。
 
-    
-    # frozen_string_literal: true
-    source "https://rubygems.org"
-    
-    gem "mobb"
-    gem "mobb-redis"
+```ruby
+# frozen_string_literal: true
+source "https://rubygems.org"
 
+gem "mobb"
+gem "mobb-redis"
+```
 
 最後にアプリケーションを書きます。
 
-    
-    require 'mobb'
-    require 'mobb-redis'
-    
-    register Mobb::Cache
-    
-    on 'hello' do
-      settings.cache.fetch('great') { "hello world #{Time.now}" }
-    end
+```ruby
+require 'mobb'
+require 'mobb-redis'
 
+register Mobb::Cache
+
+on 'hello' do
+  settings.cache.fetch('great') { "hello world #{Time.now}" }
+end
+```
 
 はい、秒ですね。起動して動作を見てみましょう。
 
-    
-    bundle exec ruby app.rb
-    == Mobb (v0.4.0) is in da house with Shell. Make some noise!
-    hello
-    hello world 2018-12-11 01:36:16 +0900
-    hello
-    hello world 2018-12-11 01:36:16 +0900
-
+```shell-session
+bundle exec ruby app.rb
+== Mobb (v0.4.0) is in da house with Shell. Make some noise!
+hello
+hello world 2018-12-11 01:36:16 +0900
+hello
+hello world 2018-12-11 01:36:16 +0900
+```
 
 このように、返答の中の時間が変化していないので、Redisを経由していることがわかります。
 
 
 ## redis-sinatra
+
+<!--more-->
 
 
 mobb-redisの元ネタは、redis-sinatraというgemです。

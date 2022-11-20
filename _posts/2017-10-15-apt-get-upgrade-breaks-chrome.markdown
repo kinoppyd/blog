@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2017-10-15 15:52:52+00:00
 layout: post
-link: http://tolarian-academy.net/apt-get-upgrade-breaks-chrome/
-permalink: /apt-get-upgrade-breaks-chrome
 title: apt-get upgrade したら、Chromeが物故割れたのでなおした
-wordpress_id: 477
-categories:
-- Linux
+excerpt_separator: <!--more-->
 ---
 
 ## Chromeがぶっ壊れる
@@ -18,9 +13,9 @@ UbuntuのChromeをどういうふうに管理していたのか自分でも忘�
 
 何度起動してもクラッシュするので、シェルから起動してみたところ、次のようなエラーが出て起動しないことが分かった。
 
-    
-    [16939:16975:1015/174831.367368:FATAL:nss_util.cc(632)] NSS_VersionCheck("3.26") failed. NSS >= 3.26 is required.
-
+```
+[16939:16975:1015/174831.367368:FATAL:nss_util.cc(632)] NSS_VersionCheck("3.26") failed. NSS >= 3.26 is required.
+```
 
 libnss3のバージョンの問題だったので、アップデートをすれば治るかと思ったが、 15.04 ではChromeが必要とするバージョンを入れることができないことが分かった。
 
@@ -30,15 +25,16 @@ libnss3のバージョンの問題だったので、アップデートをすれ�
 
 Ubuntuのメジャーバージョンアップは今までやったことがなかったが、  do-release-upgrade というコマンドを使えば、特に難しいこと無くできるらしい。ただし、それは当然ながらサポート期間内のバージョンの話に限る。今回困った15.04は、はるか昔にサポート期限切れになっており、一筋縄では行かなかったので、ブログに書いて忘れないようにしておく。
 
+<!--more-->
 
 ## do-release-grade が動かない理由と対策
 
 
 15.04 で do-release-upgrade を実行すると、次のようなエラーが出る。
 
-    
-    An upgrade from 'vivid' to 'xenial' is not supported with this tool.
-
+```
+An upgrade from 'vivid' to 'xenial' is not supported with this tool.
+```
 
 15.04 (vivid) から、 16.04 (xenial) へのアップデートはできないと言われる。んなアホな。
 
@@ -58,90 +54,90 @@ Ubuntuのメジャーバージョンアップは今までやったことがな�
 
 いろいろと見て回った結果、 Psychz Network のミラーに wily の完全なイメージが残っているのを見つけたので、 meta-release と source.list を次のように書き換えた。
 
-    
-    $ diff -u meta-release meta-release.mod 
-    --- meta-release	2017-10-16 00:37:32.536194125 +0900
-    +++ meta-release.mod	2017-10-15 19:06:51.110240441 +0900
-    @@ -237,12 +237,12 @@
-     Name: Wily Werewolf
-     Version: 15.10
-     Date: Thu, 22 October 2015 15:10:00 UTC
-    -Supported: 0
-    +Supported: 1
-     Description: This is the 15.10 release
-    -Release-File: http://archive.ubuntu.com/ubuntu/dists/wily/Release
-    +Release-File: http://mirror-lax.psychz.net/Ubuntu/dists/wily/Release
-     ReleaseNotes: http://changelogs.ubuntu.com/EOLReleaseAnnouncement
-    -UpgradeTool: http://archive.ubuntu.com/ubuntu/dists/wily-updates/main/dist-upgrader-all/current/wily.tar.gz
-    -UpgradeToolSignature: http://archive.ubuntu.com/ubuntu/dists/wily-updates/main/dist-upgrader-all/current/wily.tar.gz.gpg
-    +UpgradeTool: http://mirror-lax.psychz.net/Ubuntu/dists/wily-updates/main/dist-upgrader-all/current/wily.tar.gz
-    +UpgradeToolSignature: http://mirror-lax.psychz.net/Ubuntu/dists/wily-updates/main/dist-upgrader-all/current/wily.tar.gz.gpg
-     
-     Dist: xenial
-     Name: Xenial Xerus
+```diff
+$ diff -u meta-release meta-release.mod 
+--- meta-release	2017-10-16 00:37:32.536194125 +0900
++++ meta-release.mod	2017-10-15 19:06:51.110240441 +0900
+@@ -237,12 +237,12 @@
+ Name: Wily Werewolf
+ Version: 15.10
+ Date: Thu, 22 October 2015 15:10:00 UTC
+-Supported: 0
++Supported: 1
+ Description: This is the 15.10 release
+-Release-File: http://archive.ubuntu.com/ubuntu/dists/wily/Release
++Release-File: http://mirror-lax.psychz.net/Ubuntu/dists/wily/Release
+ ReleaseNotes: http://changelogs.ubuntu.com/EOLReleaseAnnouncement
+-UpgradeTool: http://archive.ubuntu.com/ubuntu/dists/wily-updates/main/dist-upgrader-all/current/wily.tar.gz
+-UpgradeToolSignature: http://archive.ubuntu.com/ubuntu/dists/wily-updates/main/dist-upgrader-all/current/wily.tar.gz.gpg
++UpgradeTool: http://mirror-lax.psychz.net/Ubuntu/dists/wily-updates/main/dist-upgrader-all/current/wily.tar.gz
++UpgradeToolSignature: http://mirror-lax.psychz.net/Ubuntu/dists/wily-updates/main/dist-upgrader-all/current/wily.tar.gz.gpg
+ 
+ Dist: xenial
+ Name: Xenial Xerus
+```
 
 
+```diff
+$ diff -u sources.list sources.list.mod
+--- sources.list	2017-10-16 00:41:43.129325767 +0900
++++ sources.list.mod	2017-10-16 00:42:13.044595047 +0900
+@@ -2,39 +2,39 @@
+ 
+ # See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
+ # newer versions of the distribution.
+-deb http://jp.archive.ubuntu.com/ubuntu/ vivid main restricted
+-deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid main restricted
++deb http://mirror-lax.psychz.net/Ubuntu/ vivid main restricted
++deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid main restricted
+ 
+ ## Major bug fix updates produced after the final release of the
+ ## distribution.
+-deb http://jp.archive.ubuntu.com/ubuntu/ vivid-updates main restricted
+-deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid-updates main restricted
++deb http://mirror-lax.psychz.net/Ubuntu/ vivid-updates main restricted
++deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid-updates main restricted
+ 
+ ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+ ## team. Also, please note that software in universe WILL NOT receive any
+ ## review or updates from the Ubuntu security team.
+-deb http://jp.archive.ubuntu.com/ubuntu/ vivid universe
+-deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid universe
+-deb http://jp.archive.ubuntu.com/ubuntu/ vivid-updates universe
+-deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid-updates universe
++deb http://mirror-lax.psychz.net/Ubuntu/ vivid universe
++deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid universe
++deb http://mirror-lax.psychz.net/Ubuntu/ vivid-updates universe
++deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid-updates universe
+ 
+ ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu 
+ ## team, and may not be under a free licence. Please satisfy yourself as to 
+ ## your rights to use the software. Also, please note that software in 
+ ## multiverse WILL NOT receive any review or updates from the Ubuntu
+ ## security team.
+-deb http://jp.archive.ubuntu.com/ubuntu/ vivid multiverse
+-deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid multiverse
+-deb http://jp.archive.ubuntu.com/ubuntu/ vivid-updates multiverse
+-deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid-updates multiverse
++deb http://mirror-lax.psychz.net/Ubuntu/ vivid multiverse
++deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid multiverse
++deb http://mirror-lax.psychz.net/Ubuntu/ vivid-updates multiverse
++deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid-updates multiverse
+ 
+ ## N.B. software from this repository may not have been tested as
+ ## extensively as that contained in the main release, although it includes
+ ## newer versions of some applications which may provide useful features.
+ ## Also, please note that software in backports WILL NOT receive any review
+ ## or updates from the Ubuntu security team.
+-deb http://jp.archive.ubuntu.com/ubuntu/ vivid-backports main restricted universe multiverse
+-deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid-backports main restricted universe multiverse
++deb http://mirror-lax.psychz.net/Ubuntu/ vivid-backports main restricted universe multiverse
++deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid-backports main restricted universe multiverse
+ 
+ deb http://security.ubuntu.com/ubuntu vivid-security main restricted
+ deb-src http://security.ubuntu.com/ubuntu vivid-security main restricted
 
-    
-    $ diff -u sources.list sources.list.mod
-    --- sources.list	2017-10-16 00:41:43.129325767 +0900
-    +++ sources.list.mod	2017-10-16 00:42:13.044595047 +0900
-    @@ -2,39 +2,39 @@
-     
-     # See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
-     # newer versions of the distribution.
-    -deb http://jp.archive.ubuntu.com/ubuntu/ vivid main restricted
-    -deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid main restricted
-    +deb http://mirror-lax.psychz.net/Ubuntu/ vivid main restricted
-    +deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid main restricted
-     
-     ## Major bug fix updates produced after the final release of the
-     ## distribution.
-    -deb http://jp.archive.ubuntu.com/ubuntu/ vivid-updates main restricted
-    -deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid-updates main restricted
-    +deb http://mirror-lax.psychz.net/Ubuntu/ vivid-updates main restricted
-    +deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid-updates main restricted
-     
-     ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
-     ## team. Also, please note that software in universe WILL NOT receive any
-     ## review or updates from the Ubuntu security team.
-    -deb http://jp.archive.ubuntu.com/ubuntu/ vivid universe
-    -deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid universe
-    -deb http://jp.archive.ubuntu.com/ubuntu/ vivid-updates universe
-    -deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid-updates universe
-    +deb http://mirror-lax.psychz.net/Ubuntu/ vivid universe
-    +deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid universe
-    +deb http://mirror-lax.psychz.net/Ubuntu/ vivid-updates universe
-    +deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid-updates universe
-     
-     ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu 
-     ## team, and may not be under a free licence. Please satisfy yourself as to 
-     ## your rights to use the software. Also, please note that software in 
-     ## multiverse WILL NOT receive any review or updates from the Ubuntu
-     ## security team.
-    -deb http://jp.archive.ubuntu.com/ubuntu/ vivid multiverse
-    -deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid multiverse
-    -deb http://jp.archive.ubuntu.com/ubuntu/ vivid-updates multiverse
-    -deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid-updates multiverse
-    +deb http://mirror-lax.psychz.net/Ubuntu/ vivid multiverse
-    +deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid multiverse
-    +deb http://mirror-lax.psychz.net/Ubuntu/ vivid-updates multiverse
-    +deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid-updates multiverse
-     
-     ## N.B. software from this repository may not have been tested as
-     ## extensively as that contained in the main release, although it includes
-     ## newer versions of some applications which may provide useful features.
-     ## Also, please note that software in backports WILL NOT receive any review
-     ## or updates from the Ubuntu security team.
-    -deb http://jp.archive.ubuntu.com/ubuntu/ vivid-backports main restricted universe multiverse
-    -deb-src http://jp.archive.ubuntu.com/ubuntu/ vivid-backports main restricted universe multiverse
-    +deb http://mirror-lax.psychz.net/Ubuntu/ vivid-backports main restricted universe multiverse
-    +deb-src http://mirror-lax.psychz.net/Ubuntu/ vivid-backports main restricted universe multiverse
-     
-     deb http://security.ubuntu.com/ubuntu vivid-security main restricted
-     deb-src http://security.ubuntu.com/ubuntu vivid-security main restricted
-    
-
+```
 
 secure関連のところはよくわからんかったので何も書き換えていないが、この状態で vivid から sudo do-release-upgrade を実行して wily に更新し、再起動後にもう一度 sudo do-release-upgrade することで xenial に更新することができた。
 

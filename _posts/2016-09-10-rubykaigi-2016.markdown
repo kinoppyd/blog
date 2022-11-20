@@ -1,16 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2016-09-10 13:02:27+00:00
 layout: post
-link: http://tolarian-academy.net/rubykaigi-2016/
-permalink: /rubykaigi-2016
 title: RubyKaigi 2016 に行ってきました
-wordpress_id: 407
-categories:
-- Ruby
-- プログラミング
-- ポエム
+excerpt_separator: <!--more-->
 ---
 
 ## RubyKaigi 2016
@@ -30,6 +23,7 @@ categories:
 ## 聴いたセッション
 
 
+<!--more-->
 
 
 ### 一日目
@@ -284,6 +278,3 @@ RubyKaigiのスタッフの方々、登壇者の方々、最高の三日間を�
 > 
 > 
 — kinoppyd (@GhostBrain) [2016年9月10日](https://twitter.com/GhostBrain/status/774528154979360768)</blockquote>
-
-
-

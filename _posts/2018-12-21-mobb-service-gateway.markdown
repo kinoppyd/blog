@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-21 14:32:58+00:00
 layout: post
-link: http://tolarian-academy.net/mobb-service-gateway/
-permalink: /mobb-service-gateway
 title: Mobbを使った複数サービス間のゲートウェイを実現する方法
-wordpress_id: 622
-categories:
-- 未分類
 ---
 
 このエントリは、 Mobb/Repp Advent Calendar の二十一日目です

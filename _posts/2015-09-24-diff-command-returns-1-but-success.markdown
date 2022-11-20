@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-09-24 09:55:01+00:00
 layout: post
-link: http://tolarian-academy.net/diff-command-returns-1-but-success/
-permalink: /diff-command-returns-1-but-success
 title: diffコマンドの exit code って、差分がなければ0、差分が有れば1、失敗したら2なんだね
-wordpress_id: 302
-categories:
-- Ruby
 ---
 
 ## T/O

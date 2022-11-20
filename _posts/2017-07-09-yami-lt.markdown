@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2017-07-09 16:39:59+00:00
 layout: post
-link: http://tolarian-academy.net/yami-lt/
-permalink: /yami-lt
 title: 会社で闇LT大会を開催しました
-wordpress_id: 470
-categories:
-- ポエム
+excerpt_separator: <!--more-->
 ---
 
 数週間前の話ですが、勤めている会社で闇LT大会を主催し、なかなかの好評を得たのでみんなもやってみてくださいという情報共有です。
@@ -26,6 +21,7 @@ TL;DR 普段とちょっと違うLT大会をやることで、社内の交流の
 ルール2：エンジニアリングの話題を話してはならない
 ルール3：発表は1人10分/質問時間なし</blockquote>
 
+<!--more-->
 
 大会のタイトルは「闇LT」ですが、なにもアングラな闇の話や、人生や仕事の闇の話をしてほしいわけではなく、単に普段の会社やITイベントでやるLTとは違い、エンジニアリングではない自分の趣味の話をしてほしいというつもりで開催しました。また、エンジニアリングの話題はしないので、普段よりも話すことが多くなるだろうと思って、1人10分の時間を設定しています。
 
@@ -177,5 +173,3 @@ LTの内容をいくつか抜粋すると
 
  	
   * [闇LTでAnovaとCooking for Geeksと低温調理について語ってきた話 - Kwappa談話室](http://www.kwappa.net/blog/archives/2118)
-
-

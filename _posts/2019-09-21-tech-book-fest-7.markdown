@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2019-09-21 04:10:08+00:00
 layout: post
-link: http://tolarian-academy.net/tech-book-fest-7/
-permalink: /tech-book-fest-7
 title: 技術書典7で、「ActiveRecord完全に理解した」という本を出します。
-wordpress_id: 645
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 ## 免責事項
@@ -18,13 +13,12 @@ categories:
 
 
 
-
 ## 技術書典7
 
 
 ドワンゴを退職してSmartHRで働き始めそろそろ一ヶ月のkinoppydです。技術書典に出ます。場所は**「◎貴サークル「トレイリア学園」は、 か01C に配置されました。」**です。ブックマークは[ここからどうぞ](https://techbookfest.org/event/tbf07/circle/5632050467962880)。今回は、ActiveRecordのソースコードリーディングの本を出そうと思います。500円です。前回はメタプログラミングRubyの解説本でしたが、それを書いている過程で「そろそろActiveRecordのソースとか、俺でも読めたりするんじゃないかな……」という気持ちになったので書いてみました。
 
-[![cover](http://tolarian-academy.net/wp-content/uploads/2019/09/cover.jpg)](http://tolarian-academy.net/wp-content/uploads/2019/09/cover.jpg)
+[![cover]({{ site.baseurl }}/assets/images/2019/09/cover.jpg)]({{ site.baseurl }}/assets/images/2019/09/cover.jpg)
 
 そんな思いつきから、ひたすらActiveRecordのソースを読んでみた結果を、簡単にまとめて本にしてみました。
 
@@ -38,6 +32,8 @@ categories:
 
 この本を読むためには、メタプログラミングRubyを通して読んだことがある程度の知識が必要である前提になっています。
 
+
+<!--more-->
 
 
 そのため少し敷居が高いかもしれませんが、この本はRubyを書く上で必読の本のひとつなので、いい機会なので読んでみましょう。なんなら前回の技術書典で頒布した「Real World Metaprogramming Ruby」も一緒に頒布するので、ご一緒にどうぞ。

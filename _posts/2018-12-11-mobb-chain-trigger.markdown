@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-11 17:02:01+00:00
 layout: post
-link: http://tolarian-academy.net/mobb-chain-trigger/
-permalink: /mobb-chain-trigger
 title: Mobbのメソッド呼び出しをチェーンする、 chain/trigger シンタックス
-wordpress_id: 583
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 このエントリは、 Mobb/Repp Advent Calendar の十二日目です
@@ -37,30 +32,31 @@ Mobb（というよりも、Repp)の最大の特徴に、「発言を受け取�
 
 ## chain/trigger
 
+<!--more-->
 
 回答の一つは、chain/trrigerという新しいDLSです。
 
 これから記述するコードは、全てまだアイディア段階のもので、実際にMobb/Reppに実装されているものではありません。そのため、実際に実装されるときは形が変わる可能性もあることを了承してください。
 
-    
-    require 'mobb'
-    
-    helpers do
-      def very_slow_task
-        sleep(10)
-      end
-    end
-    
-    on '時間のかかる作業' do
-      chain :slow_task
-      "時間のかかる作業をします"
-    end
-    
-    trigger :slow_task do
-      very_slow_task
-      "時間のかかる作業が終わりました"
-    end
+```ruby
+require 'mobb'
 
+helpers do
+  def very_slow_task
+    sleep(10)
+  end
+end
+
+on '時間のかかる作業' do
+  chain :slow_task
+  "時間のかかる作業をします"
+end
+
+trigger :slow_task do
+  very_slow_task
+  "時間のかかる作業が終わりました"
+end
+```
 
 通常通り、onでサービスからの発言を受け取り、文字列を返すところまでは変わりません。しかし、onのブロックの中で、chainという一つの引数を取る今までに無いメソッドを呼び出しています。
 
@@ -91,59 +87,59 @@ Mobb（というよりも、Repp)の最大の特徴に、「発言を受け取�
 
 これまでのMobb/Reppであれば、1から3までの手順のみが実行可能でした。しかし、次のバージョンのMobb/Reppからは、処理をchain/triggerで連鎖させることで、ある作業の途中経過にサービスにアクセスするという処理を表すことができます。
 
-    
-    require 'mobb'
-    
-    helpers do
-      def very_slow_task
-        sleep(10)
-      end
-    end
-    
-    on '時間のかかる作業' do
-      chain :slow_task_1
-      "時間のかかる作業をします"
-    end
-    
-    trigger :slow_task_1 do
-      very_slow_task
-    
-      chain :slow_task_2
-      "最初の時間のかかる作業が終わりました"
-    end
-    
-    trigger :slow_task_2 do
-      very_slow_task
-      "次の最初の時間のかかる作業が終わりました"
-    end
+```ruby
+require 'mobb'
 
+helpers do
+  def very_slow_task
+    sleep(10)
+  end
+end
+
+on '時間のかかる作業' do
+  chain :slow_task_1
+  "時間のかかる作業をします"
+end
+
+trigger :slow_task_1 do
+  very_slow_task
+
+  chain :slow_task_2
+  "最初の時間のかかる作業が終わりました"
+end
+
+trigger :slow_task_2 do
+  very_slow_task
+  "次の最初の時間のかかる作業が終わりました"
+end
+```
 
 このように、triggerのなかからさらにchainすることも可能にする予定です。
 
-    
-    require 'mobb'
-    
-    helpers do
-      def very_slow_task
-        sleep(10)
-      end
-    end
-    
-    on '時間のかかる作業' do
-      chain :slow_task_1, :slow_task_2
-      "時間のかかる作業をします"
-    end
-    
-    trigger :slow_task_1 do
-      very_slow_task
-      "最初の時間のかかる作業が終わりました"
-    end
-    
-    trigger :slow_task_2 do
-      very_slow_task
-      "次の最初の時間のかかる作業が終わりました"
-    end
+```ruby
+require 'mobb'
 
+helpers do
+  def very_slow_task
+    sleep(10)
+  end
+end
+
+on '時間のかかる作業' do
+  chain :slow_task_1, :slow_task_2
+  "時間のかかる作業をします"
+end
+
+trigger :slow_task_1 do
+  very_slow_task
+  "最初の時間のかかる作業が終わりました"
+end
+
+trigger :slow_task_2 do
+  very_slow_task
+  "次の最初の時間のかかる作業が終わりました"
+end
+```
 
 そしてこのように、chainを使って複数のタスクを並列で連鎖させることもできるようにしようと思います（これはExperimentalで、本当に可能かどうかはわかりません。というのも実現は可能ですが、Repp側で正しく制御することを強制できるかどうかはわからないためです）。
 

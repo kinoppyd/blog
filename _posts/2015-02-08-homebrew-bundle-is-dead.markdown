@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-02-08 18:06:03+00:00
 layout: post
-link: http://tolarian-academy.net/homebrew-bundle-is-dead/
-permalink: /homebrew-bundle-is-dead
 title: Homebrewのbundleコマンドが終わっていたことに初めて気づいた
-wordpress_id: 227
-categories:
-- 未分類
 ---
 
 ### 久々にMacをクリーンにして、環境構築
@@ -16,9 +10,9 @@ categories:
 
 自分の環境構築系は、全部Githubにあげてある。だから、その中においてあるシェルスクリプトをたたくだけで、終わるはずだったのに、恐ろしいメッセージが出た。
 
-    
-    Error: Unknown command: budle
-
+```
+Error: Unknown command: budle
+```
 
 ない。マジでか。
 

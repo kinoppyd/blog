@@ -1,21 +1,15 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-06-04 09:35:50+00:00
 layout: post
-link: http://tolarian-academy.net/scala%e3%81%a7%e6%97%a5%e6%9c%ac%e8%aa%9e%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%9a%e3%81%a3%e3%81%93%e3%81%91%e3%82%8b%e3%81%ae%e3%81%af%e3%80%81java%e3%81%ae%e8%a8%ad%e5%ae%9a%e3%81%8c%e3%82%a4%e3%83%9e/
-permalink: /scala%e3%81%a7%e6%97%a5%e6%9c%ac%e8%aa%9e%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%9a%e3%81%a3%e3%81%93%e3%81%91%e3%82%8b%e3%81%ae%e3%81%af%e3%80%81java%e3%81%ae%e8%a8%ad%e5%ae%9a%e3%81%8c%e3%82%a4%e3%83%9e
 title: Scalaで日本語使ってずっこけるのは、Javaの設定がイマイチだから
-wordpress_id: 127
-categories:
-- 未分類
 ---
 
 scala.io.Source でfromFileしてからgetLinesやったら日本語の行でお亡くなりになったので、きちんとJava側の設定をやっときましょうごめんなさい
 
-    
-    echo 'export JAVA_OPTS="-Dfile.encoding=UTF-8"' >> ~/.bashrc
-    source ~/.bashrc
-
+```shell-session
+echo 'export JAVA_OPTS="-Dfile.encoding=UTF-8"' >> ~/.bashrc
+source ~/.bashrc
+```
 
 [ コミットしました](https://github.com/YasuhiroKinoshita/dot_files/commit/d48810a1d05fc4e1d07e109d09f1575e4a540b54)

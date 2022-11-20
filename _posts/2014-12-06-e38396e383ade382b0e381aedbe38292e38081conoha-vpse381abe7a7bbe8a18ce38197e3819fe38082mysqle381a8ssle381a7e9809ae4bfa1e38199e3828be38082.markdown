@@ -1,15 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-12-06 18:27:15+00:00
 layout: post
-link: http://tolarian-academy.net/%e3%83%96%e3%83%ad%e3%82%b0%e3%81%aedb%e3%82%92%e3%80%81conoha-vps%e3%81%ab%e7%a7%bb%e8%a1%8c%e3%81%97%e3%81%9f%e3%80%82mysql%e3%81%a8ssl%e3%81%a7%e9%80%9a%e4%bf%a1%e3%81%99%e3%82%8b%e3%80%82/
-permalink: /'%e3%83%96%e3%83%ad%e3%82%b0%e3%81%aedb%e3%82%92%e3%80%81conoha-vps%e3%81%ab%e7%a7%bb%e8%a1%8c%e3%81%97%e3%81%9f%e3%80%82mysql%e3%81%a8ssl%e3%81%a7%e9%80%9a%e4%bf%a1%e3%81%99%e3%82%8b%e3%80%82'
 title: ブログのDBを、ConoHa VPSに移行した。MySQLとSSLで通信する。
-wordpress_id: 181
-categories:
-- CentOS
-- MySQL
+excerpt_separator: <!--more-->
 ---
 
 ### このブログは、さくらVPSの一番小さいインスタンス上で、Nginx+Apache+Wordpress+MySQLの構成で動かしている。
@@ -19,11 +13,13 @@ categories:
 
 半年くらい前、ConoHaというVPSを知った。[イメージキャラクターが清楚可愛い](https://twitter.com/mikumoconoha)のはもちろんのこと、定期的に勉強会やイベントに出ていれば、結構ガバガバな感じのクーポンをもらえることを知った。また、さくらVPSとは少し毛色が違い、どちらかというとさくらクラウドに近い感じの、インスタンスやネットワークの管理をコンパネ上で行える、イケてる？ 感じのVPSだった。というか、コンパネがさくらクラウドのそれだった。ConoHaは、そこそこさくらVPSをライバル視してる感があり、価格設定とかもかなり意識されている。とりあえず、一番安い。しかも、クーポンとかも定期的に出ている。半年ほどウォッチしていた感じだと、そこそこ頻繁に障害が発生していたが、ここ数ヶ月は安定しているみたいだった。お名前.comでやらかしたばっかりのGMOグループっていうことは気になったが、Twitterとか見ている感じは、絶望的なセキュリティでもなさそうなので、サーバーを一台借りてDBサーバーとして運用しようと決めた。
 
+<!--more-->
+
 ConoHaのVPSを借りるということは、ブログの構成が
 
-    
-    [さくらVPS上のNginx+Apache+WordPress]-通信-[ConoHaVPS上のMySQL]
-
+```
+[さくらVPS上のNginx+Apache+WordPress]-通信-[ConoHaVPS上のMySQL]
+```
 
 
 
@@ -41,59 +37,59 @@ ConoHaのサーバーを借り、sshで通信ができたら、Ansibleを使っ�
 
 テキトーな場所でBest Practiceのディレクトリ構成を作ったら、READMEの通りに適当に設定し、playbookを実行。Inventoryとかはこんな感じ
 
-    
-    ディレクトリ構成
-    
-    group_vers/
-    host_vers/
-    roles/
-      mysql # さっきのリポジトリのクローンを置く
-    servers # 実行対象のホスト
-    site.yml # 大本のplaybook
+```
+ディレクトリ構成
+
+group_vers/
+host_vers/
+roles/
+  mysql # さっきのリポジトリのクローンを置く
+servers # 実行対象のホスト
+site.yml # 大本のplaybook
+```
 
 
 
+```yaml
+site.yml
 
-    
-    site.yml
-    
-    ---
-    - hosts: db_servers
-      user: root
-      roles:
-          - mysql
-
-
+---
+- hosts: db_servers
+  user: root
+  roles:
+      - mysql
+```
 
 
-    
-    servers
-    ---
-    [db_servers]
-    conoha-db # ここの設定は、~/.ssh/configで定義されてる接続情報のホスト名
 
+```yaml
+servers
+---
+[db_servers]
+conoha-db # ここの設定は、~/.ssh/configで定義されてる接続情報のホスト名
+```
 
 これだけ定義して、あとは次のコマンドで一発
 
-    
-    ansible-playbook -i servers site.yml
-
+```shell-session
+ansible-playbook -i servers site.yml
+```
 
 正直、簡単すぎて失禁するレベル。
 
 あとは、CentOSを選んだ場合、iptablesの設定を追記して3306ポートを開けなくてはいけない。
 
-    
-    /etc/sysconfig/iptablesに、次の行を追記する
-    
-    -A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT
+```
+/etc/sysconfig/iptablesに、次の行を追記する
 
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT
+```
 
 その後、iptablesを再起動
 
-    
-    service iptables restart
-
+```shell-session
+service iptables restart
+```
 
 
 
@@ -105,38 +101,38 @@ ConoHaのサーバーを借り、sshで通信ができたら、Ansibleを使っ�
 
 書いてあることをほとんどそのまま実行しただけだけ。
 
-    
-    mkdir /etc/mysql-ssl
-    cd /etc/mysql-ssl
-    openssl genrsa -out ca-key.pem 2048
-    openssl req -new -x509 -nodes -days 1000 -key ca-key.pem -out ca-cert.pem
-    openssl req -newkey rsa:2048 -days 1000 -nodes -keyout server-key.pem -out server-req.pem
-    openssl x509 -req -in server-req.pem -days 1000 -CA ca-cert.pem -CAkey ca-key.pem -out server-cert.pem -set_serial 01
-
+```shell-session
+mkdir /etc/mysql-ssl
+cd /etc/mysql-ssl
+openssl genrsa -out ca-key.pem 2048
+openssl req -new -x509 -nodes -days 1000 -key ca-key.pem -out ca-cert.pem
+openssl req -newkey rsa:2048 -days 1000 -nodes -keyout server-key.pem -out server-req.pem
+openssl x509 -req -in server-req.pem -days 1000 -CA ca-cert.pem -CAkey ca-key.pem -out server-cert.pem -set_serial 01
+```
 
 途中、CAの情報とかを入力するからめんどくさいが、全部適当な感じの値を入力してても問題ない。オレオレ認証なので。
 
 あとは、my.cnfにSSLの設定を追加する。yumでは/etc/my.cnfだが、ソースからコンパイルしたりするとパスが違ったりするので、注意する。次の設定を、[mysqld]ディレクティブ（MySQLでもディレクティブっていうのかは忘れたが）の下に書く
 
-    
-    ssl-ca=/etc/mysql-ssl/ca-cert.pem  
-    ssl-cert=/etc/mysql-ssl/server-cert.pem  
-    ssl-key=/etc/mysql-ssl/server-key.pem
-
+```
+ssl-ca=/etc/mysql-ssl/ca-cert.pem  
+ssl-cert=/etc/mysql-ssl/server-cert.pem  
+ssl-key=/etc/mysql-ssl/server-key.pem
+```
 
 その後、MySQLの再起動
 
-    
-    service mysqld restart
-
+```shell-session
+service mysqld restart
+```
 
 DBの作成と、ユーザーの追加を行う
 
-    
-    mysql -u root
-    create database 'tolarian_academy_wordpress'
-    grant all privileges on tolarian_academy_wordpress.* to wpadmin@'%' identified by "YOUR PASSWORD" require ssl;
-
+```shell-session
+mysql -u root
+create database 'tolarian_academy_wordpress'
+grant all privileges on tolarian_academy_wordpress.* to wpadmin@'%' identified by "YOUR PASSWORD" require ssl;
+```
 
 
 
@@ -146,15 +142,15 @@ DBの作成と、ユーザーの追加を行う
 
 新しいDBを作ったら、今度はmysql dumpを使ってデータを移行する。さくらVPS上で次のコマンドを実行。
 
-    
-    mysqldump -u root -p tolarian_academy_wordpress > tolarian_academy_wordpress.dump.sql
-
+```shell-session
+mysqldump -u root -p tolarian_academy_wordpress > tolarian_academy_wordpress.dump.sql
+```
 
 作成されたファイルを、SCPなり何なりつかってConoHaVPSにコピーする。そして、ConoHa上で次を実行
 
-    
-    mysql -u root tolarian_academy_wordpress < tolarian_academy_wordpress.dump.sql
-
+```shell-session
+mysql -u root tolarian_academy_wordpress < tolarian_academy_wordpress.dump.sql
+```
 
 これで、DBのデータの移行が完了
 

@@ -1,15 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-06-30 17:10:48+00:00
 layout: post
-link: http://tolarian-academy.net/mobb-the-simplest-most-lightweight-fastest-bot-framework/
-permalink: /mobb-the-simplest-most-lightweight-fastest-bot-framework
 title: Ruby製の軽量Botフレームワーク Mobb をリリースしました
-wordpress_id: 503
-categories:
-- Ruby
-- ポエム
+excerpt_separator: <!--more-->
 ---
 
 ## TL;DR
@@ -17,13 +11,13 @@ categories:
 
 Sinatra-isiに記述できるBotフレームワーク[Mobb](https://github.com/kinoppyd/mobb)と、Botとサービスの間を取り持つRackに相当する[Repp](https://github.com/kinoppyd/repp)を作って公開しました。
 
-    
-    require 'mobb'
-    
-    on "Hello" do
-      "Hi!"
-    end
+```ruby
+require 'mobb'
 
+on "Hello" do
+  "Hi!"
+end
+```
 
 
 
@@ -40,6 +34,7 @@ Rubotyはとてもよく作られたBotフレームワークですが、個人�
 
 また、世の中には数多のBotフレームワークがありますが、その殆どが自らのコードに特化したサービス接続用のプラグインを持っており、他の世界観で使い回すことができないことも大きな問題だと思いました。これはちょうど、Web ApplicationとWeb Serverの接続部分を解決したRackのようなものがBotの世界にも必要だということであり、Rack（のような）インターフェイスにしたがってBotエンジンを記述すれば、サービスとの接続部分を使いまわせると考えたことが、ReppというBot用の共通のサービス接続インターフェイスを作ろうと思った動機です。
 
+<!--more-->
 
 ## Sinatra DSL
 
@@ -62,42 +57,42 @@ Mobb は、Sinatra DSLの影響を100%受けて作られた、Bot Frameworkで�
 
 インストールは、gem経由で行いますが、Bundler推奨です。次のようなGemfileを用意します。
 
-    
-    source "https://rubygems.org"
-    gem 'mobb'
-    
+```ruby
+source "https://rubygems.org"
+gem 'mobb'
 
+```
 
 インストールします。
 
-    
-    bundle install
-    
+```shell-session
+bundle install
 
+```
 
 app.rbなどの適当なファイルに、次の内容を記述します。
 
-    
-    require 'mobb'
-    
-    set :service, 'slack'
-    set :name, "example bot"
-    
-    on "hello" do
-      "Hi! I'm #{settings.name}"
-    end
-    
-    receive /hey (\w+)/ do |someone|
-      "hey #{someone}, waz up?"
-    end
+```ruby
+require 'mobb'
 
+set :service, 'slack'
+set :name, "example bot"
+
+on "hello" do
+  "Hi! I'm #{settings.name}"
+end
+
+receive /hey (\w+)/ do |someone|
+  "hey #{someone}, waz up?"
+end
+```
 
 実行します。
 
-    
-    bundle exec ruby app.rb
-    
+```shell-session
+bundle exec ruby app.rb
 
+```
 
 app.rbで、サービス名にslackを指定しているため、**環境変数SLACK_TOKENにBot用のトークン文字列を渡しておいてください。**シェルで試しに動かすだけであれば、 set :service の行を削ると自動的にシェルで起動します。
 

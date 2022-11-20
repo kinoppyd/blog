@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-02-28 10:46:19+00:00
 layout: post
-link: http://tolarian-academy.net/my-first-raspberry-pi-2/
-permalink: /my-first-raspberry-pi-2
 title: Raspberry Pi 2 に通電
-wordpress_id: 231
-categories:
-- 未分類
 ---
 
 ## ****
@@ -29,10 +23,10 @@ Raspberrypi2
 
 ラズパイ用にカスタムされたDebianらしい。だったらとりあえず
 
-    
-    sudo aptitude update
-    sudo aptitude upgrade
-
+```shell-session
+sudo aptitude update
+sudo aptitude upgrade
+```
 
 まあ当たり前だけど、普通のPCよりかなり遅い
 

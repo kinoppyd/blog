@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-07-09 16:04:56+00:00
 layout: post
-link: http://tolarian-academy.net/ruby-sandbox-eval-bot/
-permalink: /ruby-sandbox-eval-bot
 title: Rubyのサンドボックスを作って、evalするBotを作った
-wordpress_id: 508
-categories:
-- Ruby
+excerpt_separator: <!--more-->
 ---
 
 ## 注意：安全じゃありません
@@ -27,6 +22,7 @@ Sansbox環境とは、外部から入力されたプログラムを安全に実�
 
 なので、セキュリティレベルに頼ることなく、危険なコードを事前に実行できないように、サンドボックス環境を用意する必要があります。
 
+<!--more-->
 
 ## 安全に邪悪なRubyコードを実行するには？
 
@@ -41,26 +37,26 @@ Rubyのセキュリティレベルでは、Dir, File, IO, FileTestモジュー�
 
 実際のコードは次のようなものになりました。
 
-    
-    module Sandbox
-      [File, Dir, IO, FileTest].each do |klass|
-        refine klass.singleton_class do
-          def banned_method(*_); raise SecurityError.new; end
-          klass.methods.each do |m|
-            alias_method(m, :banned_method)
-          end
-        end
-      end
-    
-      refine Object do
-        def banned_method(*_); raise SecurityError.new; end
-        allowed = [:Array, :Complex, :Float, :Hash, :Integer, :Rational, :String, :block_given?, :iterator?, :catch, :raise, :gsub, :lambda, :proc, :rand]
-        Kernel.methods.reject { |name| allowed.include?(name.to_sym) }.each do |m|
-          alias_method(m, :banned_method)
-        end
+```ruby
+module Sandbox
+  [File, Dir, IO, FileTest].each do |klass|
+    refine klass.singleton_class do
+      def banned_method(*_); raise SecurityError.new; end
+      klass.methods.each do |m|
+        alias_method(m, :banned_method)
       end
     end
+  end
 
+  refine Object do
+    def banned_method(*_); raise SecurityError.new; end
+    allowed = [:Array, :Complex, :Float, :Hash, :Integer, :Rational, :String, :block_given?, :iterator?, :catch, :raise, :gsub, :lambda, :proc, :rand]
+    Kernel.methods.reject { |name| allowed.include?(name.to_sym) }.each do |m|
+      alias_method(m, :banned_method)
+    end
+  end
+end
+```
 
 File, Dir, IO, FileTestの全メソッドに加えて、Kernelの使っても問題なさそうなメソッド以外を、すべて例外を投げるようにaliasします。
 
@@ -70,28 +66,28 @@ Kernelのコードも結構塞いでいるので心配になりますが、ち�
 
 これを実際に利用するには、次のようにします。
 
-    
-    code = ARGV[0] # たぶん邪悪なコード
-    
-    # Sandboxモジュールで包んだCleanroomを用意
-    safe_code = <<"CLEANROOM"
-    module CleanRoom
-      using Sandbox
-      #{code}
-    end
-    CLEANROOM
-    
-    # 実行する
-    res = begin
-      eval(safe_code)
-    rescue SecurityError, SyntaxError => e
-      e.message
-    rescue Error => e
-      e.message
-    end
-    
-    puts res
+```ruby
+code = ARGV[0] # たぶん邪悪なコード
 
+# Sandboxモジュールで包んだCleanroomを用意
+safe_code = <<"CLEANROOM"
+module CleanRoom
+  using Sandbox
+  #{code}
+end
+CLEANROOM
+
+# 実行する
+res = begin
+  eval(safe_code)
+rescue SecurityError, SyntaxError => e
+  e.message
+rescue Error => e
+  e.message
+end
+
+puts res
+```
 
 evalするために渡されるコードを、Sandboxモジュールを適用したCleanRoomモジュールの中で実行し、その結果を得て出力します。
 
@@ -133,9 +129,9 @@ evalするために渡されるコードを、Sandboxモジュールを適用し
 
 会社のSlackで動かしたところ、早速邪悪なコードを放り込んでくれた隣の席の人がいました。こういうコードです。
 
-    
-    ruby: end; begin; `echo "foo" > xxx.txt`
-
+```shell-session
+ruby: end; begin; `echo "foo" > xxx.txt`
+```
 
 なるほど、実際CleanRoomの中に入力されたコード文字列をペタッと貼っているだけなので、SQLインジェクションみたいなことができるわけですね……あんまり深く考えていなかった。
 
@@ -153,9 +149,9 @@ RubyVMを使って、渡された文字列からASTを作成できるかどう�
 
 斜め後ろの席に座ってる邪悪なRubyコミッタの人がまたろくでもないコードを投げつけてくれました。こういうコードです。
 
-    
-    ruby: ENV.inspect
-
+```shell-session
+ruby: ENV.inspect
+```
 
 MobbはENVに入っているSlackTokenを参照しているので、この一撃でTokenのRegenerateが必要になりました。Regenerateしたとはいえ、Tokenがいきなり公衆の面前にさらされるのは結構精神的ダメージでかいので、これはへこみました。
 
@@ -173,9 +169,9 @@ putsとかの副作用系は封じていたので平気だったと思ってい�
 
 下のフロアで働いてる邪悪なセキュリティマニアが、邪悪なコードを優しく送ってくれました。こういうコードです。
 
-    
-    ruby: RubyVM::InstructionSequence.new("1+1").eval
-
+```shell-session
+ruby: RubyVM::InstructionSequence.new("1+1").eval
+```
 
 なるほどね、そういえばASTはevalできるんだよね……という気持ちになりました。
 
@@ -189,9 +185,9 @@ putsとかの副作用系は封じていたので平気だったと思ってい�
 
 TD社で働いている素敵な人から、はてブのコメント経由で指摘をいただきました。Object空間のKernel系は塞いているけど、Kernelを直接呼ぶとダメじゃない？ ということです。つまり、こういうことです。
 
-    
-    ruby: Kernel.system("ls")
-
+```shell-session
+ruby: Kernel.system("ls")
+```
 
 完全にうっかりしていたので、慌てて塞ぎました。GitHubが落ちててPushできなくて辛かったです。
 
@@ -205,9 +201,9 @@ TD社で働いている素敵な人から、はてブのコメント経由で指
 
 にょろにょろした素敵なアイコンの人から、TwitterでProcessが塞がれてないという指摘をいただきました。こういうことです。
 
-    
-    ruby: Process.spawn("ls")
-
+```shell-session
+ruby: Process.spawn("ls")
+```
 
 うっかりです。というか、モジュールが多すぎて見逃しがたくさんあります。
 

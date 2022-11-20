@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-07-26 18:29:02+00:00
 layout: post
-link: http://tolarian-academy.net/ubunt-mysql-ssl-cert-depends-directory/
-permalink: /ubunt-mysql-ssl-cert-depends-directory
 title: UbuntuでMySQLの通信をSSL化するときは、証明書のディレクトリが重要らしい
-wordpress_id: 269
-categories:
-- 未分類
 ---
 
 またDBサーバーを移動させる必要が生じたので、[以前の経験](http://tolarian-academy.net/%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEdb%E3%82%92%E3%80%81conoha-vps%E3%81%AB%E7%A7%BB%E8%A1%8C%E3%81%97%E3%81%9F%E3%80%82mysql%E3%81%A8ssl%E3%81%A7%E9%80%9A%E4%BF%A1%E3%81%99%E3%82%8B%E3%80%82/)を元に新しくDBサーバーを作った。

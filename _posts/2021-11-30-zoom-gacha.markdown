@@ -1,20 +1,14 @@
 ---
 author: kinoppyd
-comments: true
 date: 2021-11-30 15:00:21+00:00
 layout: post
-link: http://tolarian-academy.net/zoom-gacha/
-permalink: /zoom-gacha
 title: zoomガチャ
-wordpress_id: 687
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 いえーい、どもども、ハッピー……何だっけ？　12月なんだから何かしらがハッピーな……えーっと、あれよ、その……アレだ、いえーい！　ハッピー！　やったー！
 
 この記事は [SmartHR AdventCalendar](https://qiita.com/advent-calendar/2021/smarthr) の1日目です。
-
 
 ## アジャイルチームとガチャ
 
@@ -35,24 +29,27 @@ SmartHRの各チームでは、今年はだいぶアジャイルチーム、と�
 
 これに関しても答えは簡単です。zoomのAPIを使って、今現在ミーティングに参加している人の一覧を取得し、その一覧を何かしらの方法でランダムにシャッフルすれば良いのです。簡単。
 
+<!--more-->
+
 [https://github.com/kinoppyd/zoom-gacha](https://github.com/kinoppyd/zoom-gacha)
 
 Rubyのzoom APIクライアントはなんかあんまりいい感じのがないんですが、別にそんなに複雑な動きをするわけでもないのでシンプルなもので十分です。
 
 非常にペラいコードなので特に解説するところもないんですが、zoomのAPIを使って参加者一覧を取得し、その配列をHeadless Gachaに投げています。
 
-    
-    zoom = ZoomClient.new
-    meeting_id = params["meeting_id"].gsub(/ /, "").gsub(/-/, "")
-    name = zoom.meeting_name(meeting_id)
-    gacha = HeadlessGachaClient.new.gacha(zoom.users_list(meeting_id)).env.url.to_s
+```ruby
+zoom = ZoomClient.new
+meeting_id = params["meeting_id"].gsub(/ /, "").gsub(/-/, "")
+name = zoom.meeting_name(meeting_id)
+gacha = HeadlessGachaClient.new.gacha(zoom.users_list(meeting_id)).env.url.to_s
+```
 
 
 あとはまあ、設置している場所的に社内の人にしか使えないようにGooge OAuth2でメールアドレスを絞っているくらいです。あとは、絵文字とかユーザー名に容赦なく突っ込んでくる人がいるので、アスキー文字以外は消すとか。ほんとそれくらい。
 
 起動時には、環境変数 GOOGLE_CLIENT_ID と GOOGLE_CLIENT_SECRET に Google OAuth のキーとシークレットを、 ZOOM_API_KEY と ZOOM_API_SECRET に Zoom OAuth のキーとシークレットをそれぞれ渡してあげてください。基本的にHerokuにぶん投げれば動くはずです。
 
-[caption id="attachment_689" align="aligncenter" width="540"][![zoomガチャのトップページ。不正防止のために全員が回したガチャの結果にアクセスできる。](http://tolarian-academy.net/wp-content/uploads/2021/11/スクリーンショット-2021-11-30-19.01.20-1024x674.png)](http://tolarian-academy.net/wp-content/uploads/2021/11/スクリーンショット-2021-11-30-19.01.20.png) zoomガチャのトップページ。不正防止のために全員が回したガチャの結果にアクセスできる。[/caption]
+[![zoomガチャのトップページ。不正防止のために全員が回したガチャの結果にアクセスできる。]({{ site.baseurl }}/assets/images/2021/11/スクリーンショット-2021-11-30-19.01.20-1024x674.png)]({{ site.baseurl }}/assets/images/2021/11/スクリーンショット-2021-11-30-19.01.20.png) zoomガチャのトップページ。不正防止のために全員が回したガチャの結果にアクセスできる。
 
 
 ## Headless ガチャ？？？？
@@ -68,7 +65,7 @@ Rubyのzoom APIクライアントはなんかあんまりいい感じのがな�
 
 こっちもHerokuにぶん投げれば動くはずです。特に認証とか無いので、環境変数無しで動くと思います。
 
-[caption id="attachment_690" align="aligncenter" width="540"][![ヘッドレスガチャで返ってきたJSON](http://tolarian-academy.net/wp-content/uploads/2021/11/スクリーンショット-2021-11-30-19.01.49-1024x490.png)](http://tolarian-academy.net/wp-content/uploads/2021/11/スクリーンショット-2021-11-30-19.01.49.png) ヘッドレスガチャで返ってきたJSON[/caption]
+[![ヘッドレスガチャで返ってきたJSON]({{ site.baseurl }}/assets/images/2021/11/スクリーンショット-2021-11-30-19.01.49-1024x490.png)]({{ site.baseurl }}/assets/images/2021/11/スクリーンショット-2021-11-30-19.01.49.png) ヘッドレスガチャで返ってきたJSON
 
 
 ## 実際に使う場合

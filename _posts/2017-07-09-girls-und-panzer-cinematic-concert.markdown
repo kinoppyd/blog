@@ -1,15 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2017-07-09 15:30:24+00:00
 layout: post
-link: http://tolarian-academy.net/girls-und-panzer-cinematic-concert/
-permalink: /girls-und-panzer-cinematic-concert
 title: ガールズ&パンツァー シネマティックコンサートを観てきた
-wordpress_id: 468
-categories:
-- アニメ
-- ポエム
 ---
 
 ガルパンのシネマティックコンサート、パシフィコ横浜の回を観て（聴いて？）きました。

@@ -1,16 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-05-17 09:10:53+00:00
 layout: post
-link: http://tolarian-academy.net/dokku-alt-on-conoha-and-sakura/
-permalink: /dokku-alt-on-conoha-and-sakura
 title: ConoHaとさくらのVPSにdokku-altを入れて、ブログと開発環境を柔軟に
-wordpress_id: 243
-categories:
-- dokku
-- Linux
-- プログラミング
+excerpt_separator: <!--more-->
 ---
 
 ## Dokku-alt をConoHaVPSに入れて、個人PaaS環境を充実させた話
@@ -26,6 +19,7 @@ categories:
 
 ConoHaVPSの素晴らしいところは、このはちゃんが<del>あざとい</del>清楚可愛いだけじゃなくて、VPSを簡単に立てたり落としたり出来る、まるでさくらクラウドのような使い勝手にある。そのため、一個インスタンスを立てるためになんだか面倒なさくらVPSでなにかする前に、ConoHaVPSを使って予行演習を行った
 
+<!--more-->
 
 ### Dokku? Dokku-alt？
 
@@ -42,10 +36,10 @@ ConoHaVPSの素晴らしいところは、このはちゃんが<del>あざとい
 
 たぶん有名なこの二つのエントリを参考にした。dokkuのインストール自体は、作りたてのUbuntu14.04のVPSに入って、
 
-    
-    wget https://raw.github.com/progrium/dokku/v0.3.18/bootstrap.sh
-    sudo DOKKU_TAG=v0.3.18 bash bootstrap.sh
-
+```shell-session
+wget https://raw.github.com/progrium/dokku/v0.3.18/bootstrap.sh
+sudo DOKKU_TAG=v0.3.18 bash bootstrap.sh
+```
 
 というコマンドを実行するだけ（ワンライナーにもできる）なのだが、こんな感じで躓いた
 
@@ -95,10 +89,10 @@ dokku.me という、どんなサブドメインにアクセスしても127.0.0.
 
 アプリケーションのデプロイは、Herokuとあまり変わらない
 
-    
-    git remote add dokku dokku@dokku.your-domain.tld:app-name
-    git push dokku master
-
+```shell-session
+git remote add dokku dokku@dokku.your-domain.tld:app-name
+git push dokku master
+```
 
 のように、dokku-altでデプロイ出来るユーザーとホスト情報、そしてアプリの名前（サブドメインとして使われる）をgit のリモートホストに追加して、あとはpushするだけだ。
 
@@ -112,50 +106,50 @@ pushすると、アプリの種類にもよるが、Herokuのようなデプロ�
 
 pushしてデプロイした後は、まずVolumeを確保する。このVolumeが、dokkuではプラグイン扱いなのに対して、dokku-altではデフォルトで用意されているので簡単に使える。
 
-    
-    # dokku volume:create wordpress-volume /data
-    # dokku volume:link wordpress wordpress-volume
-
+```shell-session
+# dokku volume:create wordpress-volume /data
+# dokku volume:link wordpress wordpress-volume
+```
 
 こうして作成したボリュームがアプリと紐付けられたので、
 
-    
-    # dokku logs wordpress
-    Linking wp-content..
-
+```shell-session
+# dokku logs wordpress
+Linking wp-content..
+```
 
 というログが出ていることを確認する。このボリュームには、wp-content以下が納められていて、アップロードしたファイル類がすべて保存される。しかし、Dockerはデプロイのたびにボリュームを破棄して新しいコンテナを作るので、このdocker-wordpressではvolume-init.shというシェルを起動させて、毎回volume:createで作ったpersistent volumeに逃がして再度リンクを張っている
 
 次に、作成したDocker内のボリュームを、直接触れるようにリンクを張る
 
-    
-    # ls -l /var/lib/docker/vfs/dir/
-    drwxr-xr-x 3 root   root   4096 May 17 04:07 <your-id>
-    drwxr-xr-x 4 root   root   4096 May 17 02:58 <some-id>
-    ...作ったボリュームの数だけファイルが出てくるので、作成時間を見てwordpress用を特定する...
-    # ln -s /var/lib/docker/vfs/dir/<your-id-here> /home/deploy/wordpress
-
+```shell-session
+# ls -l /var/lib/docker/vfs/dir/
+drwxr-xr-x 3 root   root   4096 May 17 04:07 <your-id>
+drwxr-xr-x 4 root   root   4096 May 17 02:58 <some-id>
+...作ったボリュームの数だけファイルが出てくるので、作成時間を見てwordpress用を特定する...
+# ln -s /var/lib/docker/vfs/dir/<your-id-here> /home/deploy/wordpress
+```
 
 上のコマンドだと、deployというユーザーのホームディレクトリにリンクを作っているが、適宜変えて便利な感じにしてほしい。これで、Dockerコンテナ内のボリュームにアクセスできるようになったため、次はwp-config.phpと.htaccessを設置する
 
-    
-    # cd /home/deploy/wordpress
-    # cp some/path/wp-config.php wp-config-production.php
-    # cp some/path/.htaccess .
-    # cp -r some/path/wp-contents/* wp-contents
-    # chown -R www-data:www-data .
-
+```shell-session
+# cd /home/deploy/wordpress
+# cp some/path/wp-config.php wp-config-production.php
+# cp some/path/.htaccess .
+# cp -r some/path/wp-contents/* wp-contents
+# chown -R www-data:www-data .
+```
 
 今まで使っていたWordpressのwp-config.phpや.htaccess、それにwp-contents以下のディレクトリをどこかにコピーしてきて、それを/home/deploy/wordpress 配下のものと置き換えている。おそらく、wordpressディレクトリより下はroot権限では無ければ操作できないので、コピーした後にユーザーとグループをwww-dataに変更しておく。
 
 /home/deploy/wordpress配下（に張ったリンク）は、dockerのボリュームを直接参照しているため、ここにファイルを設置すると、コンテナを破棄して再デプロイしたときに先述のvolume-init.shが良い感じに置き換えてくれる。wp-config.phpはwp-config-production.phpという名前にリネームし、.htaccessはそのままの名前で、デプロイ時に自動的にそれらを使用して設定を行ってくれる。ログを見て、きちんと使われているかを確認する。
 
-    
-    # dokku logs wordpress
-    Linking wp-content..
-    Using wp-config-production.php..
-    Using .htaccess..
-
+```shell-session
+# dokku logs wordpress
+Linking wp-content..
+Using wp-config-production.php..
+Using .htaccess..
+```
 
 間違っても、/data配下を直接操作してはいけない。というか、操作しても意味が無い。volume-init.shを見ると分かるが、デプロイ時に真っ先に消える運命にある。
 
@@ -165,9 +159,9 @@ pushしてデプロイした後は、まずVolumeを確保する。このVolume�
 
 作成したdokku-alt上でwrodpressが動くようになったので、表示のテストを行う。dokku-altは、domainsというコマンドを使って、内部で動いているNginxのホスト名を自動で書き換えてくれるので、次のように設定すると、app-name.dokku.you-domain.tld のようなdokkuのサブドメインでは無く、tolarian-academy.netのようなホスト名でアクセスが出来るようになる。
 
-    
-    # dokku domains:set wordpress tolarian-academy.net
-
+```shell-session
+# dokku domains:set wordpress tolarian-academy.net
+```
 
 もちろん、tolarian-academy.netがdokku-altの動いているIPを返さないと意味は無いが、Nginxのホスト名解決はこれで出来るようになる。/etc/hostsを書き換えて、ドメインの向き先を一時的に変えてアクセスしてみると、dokku-alt上で動くWordpressにアクセス出来ていることが確認できる。
 

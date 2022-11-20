@@ -1,18 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-12-14 18:57:28+00:00
 layout: post
-link: http://tolarian-academy.net/niconama-watcher-with-deep-learning/
-permalink: /niconama-watcher-with-deep-learning
 title: Deep learning で、全ニコ生番組をリアルタイムで監視するシステム作ってみた
-wordpress_id: 335
-categories:
-- Debian
-- Linux
-- Ruby
-- プログラミング
-- ポエム
+excerpt_separator: <!--more-->
 ---
 
 この記事は、[ドワンゴAdvent calendar（表）](http://qiita.com/advent-calendar/2015/dwango)の15日目の記事です
@@ -49,13 +40,14 @@ categories:
 
 猫が出てくる生放送をすぐに知りたいんだよおおおおお仕事中に猫の映像を見てなごみたいんだよおおおおおお
 
+<!--more-->
 
 ## 構成
 
 
 構成図は、なんかごちゃごちゃしてますがこんな感じです
 
-[![niconama-watcher.001](http://tolarian-academy.net/wp-content/uploads/2015/12/niconama-watcher.0011.png)](http://tolarian-academy.net/wp-content/uploads/2015/12/niconama-watcher.0011.png)
+[![niconama-watcher.001]({{ site.baseurl }}/assets/images/2015/12/niconama-watcher.0011.png)]({{ site.baseurl }}/assets/images/2015/12/niconama-watcher.0011.png)
 
 流れとしては、ユーザーがブラウザで見るニコ生のストリームを直接CLIで受け取りながら、ffmpegを使ってストリームのスクリーンショットを取得し、それをCaffeで画像認識した結果を取得します。
 

@@ -1,16 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-05-03 18:11:45+00:00
 layout: post
-link: http://tolarian-academy.net/ps-command-as-a-ruby-array/
-permalink: /ps-command-as-a-ruby-array
 title: psコマンドをStructの配列として扱うRubyのクラスを適当に書いた
-wordpress_id: 235
-categories:
-- Fedora
-- Linux
-- Ruby
 ---
 
 既にそういうgemがありそうだとはわかってて書いた。
@@ -23,11 +15,11 @@ Forwardableモジュールとかの知見はEffectiveRubyという本から得�
 
 とりあえず、ProcessListクラスをnewすると、newした瞬間のps aux をStruct化したものの配列を得ることが出来る。
 
-    
-    $ pry
-    [1] pry(main)> require './ps_test'; ps = ProcessList.new
-    [2] pry(main)> ps.first.command
-    => "/usr/lib/systemd/systemd --switched-root --system --deserialize 23"
-
+```ruby
+$ pry
+[1] pry(main)> require './ps_test'; ps = ProcessList.new
+[2] pry(main)> ps.first.command
+=> "/usr/lib/systemd/systemd --switched-root --system --deserialize 23"
+```
 
 Fedora20で動作確認はしたが、他の環境で動くのかどうかは全くわからない。

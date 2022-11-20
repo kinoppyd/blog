@@ -1,15 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-11-30 15:11:37+00:00
 layout: post
-link: http://tolarian-academy.net/make-slack-bot-at-once/
-permalink: /make-slack-bot-at-once
 title: アイディアが閃いた？　それすぐにSlackBotにしましょう。秒で。
-wordpress_id: 541
-categories:
-- Ruby
-- Slack
+excerpt_separator: <!--more-->
 ---
 
 この記事は、[Slack Advent Calendar](https://qiita.com/advent-calendar/2018/slack)と[Mobb/Repp Advent Calendar](https://qiita.com/advent-calendar/2018/mobb-repp) 共通の1日目の記事です
@@ -35,6 +29,7 @@ Botのアイディアは、秒で形に出来なくてはいけません。そ�
 
 可能です。あなたがRubyプログラマであれば。
 
+<!--more-->
 
 ## Mobb
 
@@ -45,27 +40,27 @@ Botのアイディアは、秒で形に出来なくてはいけません。そ�
 
 さて、Botを作りましょう。まずMobbをインストールします。
 
-    
-    gem install mobb
-
+```shell-session
+gem install mobb
+```
 
 次に、以下のようなbotの内容を app.rb というファイル名で保存します。
 
-    
-    require 'mobb'
-    
-    set :service, 'slack'
-    
-    on 'テクテクテクテク' do
-      'テクテクテクテク'.split("").shuffle.join
-    end
+```ruby
+require 'mobb'
 
+set :service, 'slack'
+
+on 'テクテクテクテク' do
+  'テクテクテクテク'.split("").shuffle.join
+end
+```
 
 そして、環境変数でSlackトークンを渡しながら起動します。
 
-    
-    SLACK_TOKEN=xxxxxxxxx ruby app.rb
-
+```shell-session
+SLACK_TOKEN=xxxxxxxxx ruby app.rb
+```
 
 以上。これで、指定したトークンを持っているBotがjoinしているチャネルで、誰かが「テクテクテクテク」という文字列を発言すると、botは「テクテクテクテク」をシャッフルして返答します。たとえば、「ククテテクテテク」みたいに。
 
@@ -91,30 +86,30 @@ Rubyプログラマの方はもうわかっていると思いますが、Mobbは
 
 Mobbで作れるBotは、先に出たテクテクテクテクのような一発ネタ以外にも、もう少し複雑な事もできます。たとえば、次のようなアプリケーションです。
 
-    
-    require 'mobb/base'
-    
-    class CoolBot < Mobb::Base
-     set :service, 'slack'
-     set :bot_name, 'cool bot'
-    
-     helpers do
-       def greet(target)
-         "hi, I'm #{settings.bot_name}. How's it going #{target}?"
-       end
-     end
-    
-     on /I'm (\w+)/ do |target|
-       greet(target)
-     end
-    
-     every day, at: '15:00', dest_to: 'times_kinoppyd' do
-       "Hey kinoppyd waz up? need coffee?"
-     end
-    end
-    
-    CoolBot.run!
+```ruby
+require 'mobb/base'
 
+class CoolBot < Mobb::Base
+ set :service, 'slack'
+ set :bot_name, 'cool bot'
+
+ helpers do
+   def greet(target)
+     "hi, I'm #{settings.bot_name}. How's it going #{target}?"
+   end
+ end
+
+ on /I'm (\w+)/ do |target|
+   greet(target)
+ end
+
+ every day, at: '15:00', dest_to: 'times_kinoppyd' do
+   "Hey kinoppyd waz up? need coffee?"
+ end
+end
+
+CoolBot.run!
+```
 
 このbotは、I'm ほげほげと挨拶してきた人に返答し、毎日15時になると自分にコーヒーを勧めてくれるbotです。簡単で単純なように思えますが、意外に難しい機能の実装が、たったこの数十行で完了します。
 

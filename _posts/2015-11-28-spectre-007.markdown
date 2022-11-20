@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-11-28 10:26:03+00:00
 layout: post
-link: http://tolarian-academy.net/spectre-007/
-permalink: /spectre-007
 title: Spectre 007 を観てきた
-wordpress_id: 329
-categories:
-- ポエム
 ---
 
 

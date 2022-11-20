@@ -1,15 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-08-23 14:43:31+00:00
 layout: post
-link: http://tolarian-academy.net/sinatra-code-reading-book-at-techbookfest5/
-permalink: /sinatra-code-reading-book-at-techbookfest5
 title: 技術書展5で、Sinatraのコードリーディング本を頒布します
-wordpress_id: 521
-categories:
-- Ruby
-- プログラミング
 ---
 
 ## 技術書展5に当選しました

@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-25 15:01:12+00:00
 layout: post
-link: http://tolarian-academy.net/mobb-0-5-and-repp-0-4-out-now/
-permalink: /mobb-0-5-and-repp-0-4-out-now
 title: Mobb 0.5 and Repp 0.4 out now
-wordpress_id: 632
-categories:
-- 未分類
 ---
 
 このエントリは Mobb/Repp Advent Calendar の二十五日目です
@@ -35,62 +29,62 @@ Mobb 0.5.0では、Advent Calendar で予告していたいくつかの機能が
 
 これらの機能の新規実装により、 chain/trigger, react_to_bot/include_myself, matched, say_nothing/silent, pass キーワードが新たにMobbに追加されました。
 
-    
-    require 'mobb'
-    
-    # chain/trigger
-    on 'hello' do
-      chain 'chain1', 'chain2'
-      'yo'
-    end
-    
-    trigger 'chain1' do
-      chain 'chain3'
-      'yoyo'
-    end
-    
-    trigger 'chain2' do
-      'yoyoyo'
-    end
-    
-    trigger 'chain3' do
-      'yoyoyoyo'
-    end
-    
-    # react_to_bot/include_myself
-    on /i'm (\w+)/, react_to_bot: true do |name|
-      "hello #{name}"
-    end
-    
-    on /yo (\w+)/, react_to_bot: true, include_myself: true do |name|
-      "yo #{name}"
-    end
-    
-    # matched
-    on /taks (?<task_name>\w+)/ do
-      "act #{matched[:task_name]}"
-    end
-    
-    # say_nothing/silent
-    on /do (\w+)/ do |task|
-      say_nothing if task == 'slow_task'
-      "act #{task}"
-    end
-    
-    on 'bad!', silent: true do
-      $stderr.puts("#{@env.user.name} is bad")
-    end
-    
-    # pass
-    on 'yo' do
-      pass
-      'yo'
-    end
-    
-    on 'yo' do
-      'yoyo'
-    end
+```ruby
+require 'mobb'
 
+# chain/trigger
+on 'hello' do
+  chain 'chain1', 'chain2'
+  'yo'
+end
+
+trigger 'chain1' do
+  chain 'chain3'
+  'yoyo'
+end
+
+trigger 'chain2' do
+  'yoyoyo'
+end
+
+trigger 'chain3' do
+  'yoyoyoyo'
+end
+
+# react_to_bot/include_myself
+on /i'm (\w+)/, react_to_bot: true do |name|
+  "hello #{name}"
+end
+
+on /yo (\w+)/, react_to_bot: true, include_myself: true do |name|
+  "yo #{name}"
+end
+
+# matched
+on /taks (?<task_name>\w+)/ do
+  "act #{matched[:task_name]}"
+end
+
+# say_nothing/silent
+on /do (\w+)/ do |task|
+  say_nothing if task == 'slow_task'
+  "act #{task}"
+end
+
+on 'bad!', silent: true do
+  $stderr.puts("#{@env.user.name} is bad")
+end
+
+# pass
+on 'yo' do
+  pass
+  'yo'
+end
+
+on 'yo' do
+  'yoyo'
+end
+```
 
 また、次の機能は予告していましたが0.5.0には入りませんでした。
 
@@ -107,5 +101,3 @@ Mobb 0.5.0では、Advent Calendar で予告していたいくつかの機能が
 
 
 25日間なんとかACを完走できました、これからもMobbをよろしくおねがいします。
-
-

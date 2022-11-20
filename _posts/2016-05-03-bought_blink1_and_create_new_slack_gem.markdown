@@ -1,15 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2016-05-03 03:46:35+00:00
 layout: post
-link: http://tolarian-academy.net/bought_blink1_and_create_new_slack_gem/
-permalink: /bought_blink1_and_create_new_slack_gem
 title: blink(1)を買ったので、雑にGemを作ってSlack監視botを作った
-wordpress_id: 398
-categories:
-- Ruby
-- プログラミング
+excerpt_separator: <!--more-->
 ---
 
 ## blink(1)
@@ -35,6 +29,7 @@ WindowsだとIFTTTと連携したりしていろいろ光らせられるらし�
 
 ならば自分で作るしか無いと思い、とりあえず予行練習ということで、blink(1)用のDSLを書いてみた。
 
+<!--more-->
 
 ### Blinkman
 
@@ -49,27 +44,27 @@ blink(1)となんかしらのadapterを繋げて、DSLで光らせるgemを書�
 
 使い方は、Gemfileにblink-slackへの依存を書いて、簡単なDSLを書いて起動するだけ。
 
-    
-    source "https://rubygems.org"
-    gem "blinkman-slack"
+```ruby
+source "https://rubygems.org"
+gem "blinkman-slack"
+```
 
 
+```ruby
+require 'blinkman'
 
-    
-    require 'blinkman'
-    
-    bot = Blinkman::Bot.new do
-      blink blue 2.times, during(250), when_if { |message| message.type == 'message' }
-    end
-    
-    bot.listen
+bot = Blinkman::Bot.new do
+  blink blue 2.times, during(250), when_if { |message| message.type == 'message' }
+end
+
+bot.listen
+```
 
 
-
-    
-    $ bundle install --path tmp/bundler
-    $ SLACK_TOKEN='your_slack_token' bundle exec ruby test.rb
-
+```shell-session
+$ bundle install --path tmp/bundler
+$ SLACK_TOKEN='your_slack_token' bundle exec ruby test.rb
+```
 
 DSLの構成としては、blink blue の様に blink hoge で発光する色を指定し（現状で有効な色はred, green, blueのみ）、その後に 2.times で2回チカチカ、durin(250) で250 millisec で実行する、と指定する。
 

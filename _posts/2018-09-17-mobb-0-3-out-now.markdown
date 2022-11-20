@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-09-17 13:07:05+00:00
 layout: post
-link: http://tolarian-academy.net/mobb-0-3-out-now/
-permalink: /mobb-0-3-out-now
 title: Mobb 0.3 をリリースしました、これで実践的に毎秒クソボットをリリースできます
-wordpress_id: 528
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 ## Mobb 0.3.0 をリリースしました
@@ -28,11 +23,11 @@ categories:
 
 cron/every キーワードは、名前の通りなにかを定期実行するためのものです。具体的なシンタックスは、次のように書きます。
 
-    
-    cron '0 12-21 * * *', dest_to: 'times_kinoppyd' do
-      "Hi bro, wazup?
-    end
-
+```ruby
+cron '0 12-21 * * *', dest_to: 'times_kinoppyd' do
+  "Hi bro, wazup?
+end
+```
 
 この例では、毎日12時から21時までの毎事0分に、botが times_kinoppyd という配信先（Slackであれば #times_kinoppyd) に対して、 "Hi bro, wazup?" というメッセージを配信します。
 
@@ -40,24 +35,25 @@ cron キーワードは、そのまま Cron の文法が使えます。具体的
 
 また、 cron の簡易的な使い方を目的として、 every というキーワードも追加しています。
 
-    
-    every :day, at: '14:00', dest_to: 'times_kinoppyd' do
-      "ぞい"
-    end
-
+```ruby
+every :day, at: '14:00', dest_to: 'times_kinoppyd' do
+  "ぞい"
+end
+```
 
 cron よりも、より直感的に定期実行を記述できます。これも、 [whenever](https://github.com/javan/whenever) というGemを内部で利用しており、 [whenever](https://github.com/javan/whenever) が解釈できる引数をそのまま渡すことができます。例えば次の例では、2というIntegerオブジェクトへのWheneverの拡張により、hoursというメソッドが追加されていて、それをそのまま使用することができます。
 
-    
-    every 2.hours, dest_to: 'times_kinoppyd' do
-      'ぞい'
-    end
-
+```ruby
+every 2.hours, dest_to: 'times_kinoppyd' do
+  'ぞい'
+end
+```
 
 every キーワードが受け取る事のできるシンタックスに関しては、 [whenever のREADME](https://github.com/javan/whenever)を参考にしてください。
 
 注意点として、 cron/every キーワードでは、必ず dest_to というコンディションが必要な点に注意してください。これを設定しないと、Botはどこのチャネルにポストすれば良いのかがわからず、メッセージが闇に消えることになります。（Shellアダプタなど、チャネルの区別が無い環境であれば必要ありません）
 
+<!--more-->
 
 ## cron/every の実装
 

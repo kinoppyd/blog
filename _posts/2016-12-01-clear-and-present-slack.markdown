@@ -1,25 +1,14 @@
 ---
 author: kinoppyd
-comments: true
 date: 2016-12-01 17:16:29+00:00
 layout: post
-link: http://tolarian-academy.net/clear-and-present-slack/
-permalink: /clear-and-present-slack
 title: 今そこにあるSlack
-wordpress_id: 415
-categories:
-- Ruby
-- Slack
+excerpt_separator: <!--more-->
 ---
 
 この記事は [『Slack Advent Calendar 2016』](http://qiita.com/advent-calendar/2016/slack)２日目の記事です。
 
 昨日はru_shalmさんの「[Slackで業務チャンネルの平穏を維持するbot、そして人間のトークンをbotに与える話](http://qiita.com/ru_shalm/items/f88ce03adb5d792c415e)」でした。
-
-
-## 今そこにあるSlack
-
-
 
 
 ### Slackで何が起こっているか、知ってますか？
@@ -28,6 +17,8 @@ categories:
 Slackはいつでもそこにいるわけですが、実際に自分が観測しているSlackの世界は意外と限定的です。自分がjoinしているチャネルで何の発言がされて、自分がどんなリアクションを付けられ、またあるいはアットマークを付けて呼び出される、くらいの情報しか通常は知る方法がありません。
 
 しかし、Slackにはあなたの知らないたくさんのチャネルがあり、そのたくさんのチャネルでは沢山の人達が会話を楽しみリアクションを付けたり、また新しいチャネルを作ったりチャネルをアーカイブしたりしています。もしかしたら、新しい絵文字を追加しているかもしれないし、登録した絵文字を消しているかもしれません。自分が所属している組織では、2016年12月2日2時14分現在、2478個のチャネルがあり、4496個の絵文字が登録されています。それに対して、自分が参加しているチャネルは100程度と、知っているSlackの世界はごく限られた一部だけです。
+
+<!--more-->
 
 数人しか参加していない、規模の小さな Slack team であれば、もしかしたらあなたはSlackの世界で起こっているすべてのことを知っているかもしれません。すべてのチャネルに参加し、すべての発言やリアクションを見ることができます。ですが、誰かが発言し、すぐに削除した発言は見ることが出来るでしょうか？　誰かがこっそり作った（プライベートではない）チャネルの存在を、知ることは出来るでしょうか？
 
@@ -43,7 +34,7 @@ Real Time Messaging APIから飛んでくる通知を、逐一どこかのチャ
 
 ある日のリアルタイム通知botの様子
 
-[![screenshot-from-2016-12-02-020908](http://tolarian-academy.net/wp-content/uploads/2016/12/Screenshot-from-2016-12-02-020908.png)](http://tolarian-academy.net/wp-content/uploads/2016/12/Screenshot-from-2016-12-02-020908.png)
+[![screenshot-from-2016-12-02-020908]({{ site.baseurl }}/assets/images/2016/12/Screenshot-from-2016-12-02-020908.png)]({{ site.baseurl }}/assets/images/2016/12/Screenshot-from-2016-12-02-020908.png)
 
 
 ### Caution

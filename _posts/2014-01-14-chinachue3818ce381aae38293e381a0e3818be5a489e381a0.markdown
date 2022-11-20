@@ -1,20 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-01-14 14:08:22+00:00
 layout: post
-link: http://tolarian-academy.net/chinachu%e3%81%8c%e3%81%aa%e3%82%93%e3%81%a0%e3%81%8b%e5%a4%89%e3%81%a0/
-permalink: /chinachu%e3%81%8c%e3%81%aa%e3%82%93%e3%81%a0%e3%81%8b%e5%a4%89%e3%81%a0
 title: Chinachuがなんだか変だ
-wordpress_id: 65
-categories:
-- Debian
-- Linux
-- アニメ
-tags:
-- chinachu
-- Debian
-- Linux
+excerpt_separator: <!--more-->
 ---
 
 たしかにアニメの方のChinachuも変だったけど、録画サーバーの方のChinachuも少し変だ。
@@ -24,8 +13,9 @@ tags:
 
 これはいかんともしがたいので、とりあえずログを見てみると、どうやらチューナーがロックされたままになっていて、解除されること無く録画の時間に到達し、何も出来ないまま終了していたようである。
 で、一体どこでロックされたままになったのかというと、同じログをたどっているうちにこんなのが出てきた。
-[crayon]
+<!--more-->
 
+```
 13 Jan 21:20:23 - GETTING EPG.
 13 Jan 21:20:23 - [0] {"type":"GR","channel":"16","n":0}
 13 Jan 21:20:23 - [0] LOCK: PT2-T1 (n=0)
@@ -116,8 +106,8 @@ tags:
 13 Jan 21:22:47 - UNLINK: /tmp/chinachu-tmp-hqdpcdyb.m2ts
 13 Jan 21:22:47 - [5] EPG: データが空 (result.tv.channel is undefined)
 13 Jan 21:22:47 - [5] -- (retrying, residue=2)
+```
 
-[/crayon]
 データが空地獄、というか、デバイスがロックされたままになっている。
 そして、ここからさきは、同じようなエラーが出てたり、あるいはなんかよくわからないが上手く行ってたりを1時間おきくらいに繰り返している。
 

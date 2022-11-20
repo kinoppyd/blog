@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2016-07-03 13:48:30+00:00
 layout: post
-link: http://tolarian-academy.net/slack_as_a_game_platform_in_yapc_asia_2016/
-permalink: /slack_as_a_game_platform_in_yapc_asia_2016
 title: YAP(achimon)C::Asia Hachioji 2016 mid で、 Slack as a Game platform というLTしてきました
-wordpress_id: 403
-categories:
-- ポエム
+excerpt_separator: <!--more-->
 ---
 
 [kinoppyさんの「Slack as a Game platform」 / kinoppyd さん - ニコナレ](http://niconare.nicovideo.jp/watch/kn1568)
@@ -25,6 +20,7 @@ YAPC::Asiaが去年最終回を迎えて、いつかYAPCで登壇したいなと
 
 あとで自分のトークを見返せる（聞き返せる？）ニコナレ、素晴らしいサービスですね。
 
+<!--more-->
 
 ## SlackGameのgemの０．２．０をリリースしました
 

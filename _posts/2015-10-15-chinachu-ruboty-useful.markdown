@@ -1,16 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-10-15 18:01:33+00:00
 layout: post
-link: http://tolarian-academy.net/chinachu-ruboty-useful/
-permalink: /chinachu-ruboty-useful
 title: Chinachu + Ruboty = 超便利
-wordpress_id: 305
-categories:
-- Linux
-- Ruby
-- アニメ
+excerpt_separator: <!--more-->
 ---
 
 ## ruboty-chinachuプラグイン作ったよ
@@ -23,6 +16,7 @@ categories:
 Chinachuは、Nodeで実装されたLinux用の世界一キュートな録画サーバーだが、キュートなだけではなくAPIが完備されていて、プログラマフレンドリーでサイコーな録画サーバーでもある。前に[導入用のエントリ](http://tolarian-academy.net/christmas-anime-2014/)も書いた。
 
 
+<!--more-->
 
 ### 導入
 
@@ -56,15 +50,15 @@ Rubotyの動かしかたそのものは、Qiitaとかで検索するとたくさ
 
 予約リストはこう
 
-[![ruboty-chinachu-reserved](http://tolarian-academy.net/wp-content/uploads/2015/10/ruboty-chinachu-reserved.png)](http://tolarian-academy.net/wp-content/uploads/2015/10/ruboty-chinachu-reserved.png)
+[![ruboty-chinachu-reserved]({{ site.baseurl }}/assets/images/2015/10/ruboty-chinachu-reserved.png)]({{ site.baseurl }}/assets/images/2015/10/ruboty-chinachu-reserved.png)
 
 現在放送中はこんな感じ
 
-[![ruboty-chinachu-broadcasting](http://tolarian-academy.net/wp-content/uploads/2015/10/ruboty-chinachu-broadcasting.png)](http://tolarian-academy.net/wp-content/uploads/2015/10/ruboty-chinachu-broadcasting.png)
+[![ruboty-chinachu-broadcasting]({{ site.baseurl }}/assets/images/2015/10/ruboty-chinachu-broadcasting.png)]({{ site.baseurl }}/assets/images/2015/10/ruboty-chinachu-broadcasting.png)
 
 これをruboty-cronを組み合わせれば、かわいいbotが定時に今日のアニメ予約リスト一覧を教えてくれる
 
-[![ruboty-chinachu-reserved-cron](http://tolarian-academy.net/wp-content/uploads/2015/10/ruboty-chinachu-reserved-cron.png)](http://tolarian-academy.net/wp-content/uploads/2015/10/ruboty-chinachu-reserved-cron.png)
+[![ruboty-chinachu-reserved-cron]({{ site.baseurl }}/assets/images/2015/10/ruboty-chinachu-reserved-cron.png)]({{ site.baseurl }}/assets/images/2015/10/ruboty-chinachu-reserved-cron.png)
 
 これで、毎日何時までに家に帰れば良いのかを把握できる
 

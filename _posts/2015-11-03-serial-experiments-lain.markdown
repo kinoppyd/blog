@@ -1,15 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-11-03 20:21:30+00:00
 layout: post
-link: http://tolarian-academy.net/serial-experiments-lain/
-permalink: /serial-experiments-lain
 title: serial experiments lain を観た
-wordpress_id: 326
-categories:
-- アニメ
-- ポエム
+excerpt_separator: <!--more-->
 ---
 
 
@@ -26,6 +20,7 @@ categories:
 
 [https://youtu.be/Bb1bXNI4mUQ](https://youtu.be/Bb1bXNI4mUQ)（バンダイチャンネルで公開されている無料の1話目）
 
+<!--more-->
 
 ## 購入
 

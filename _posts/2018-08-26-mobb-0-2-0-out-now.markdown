@@ -1,15 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-08-26 16:45:21+00:00
 layout: post
-link: http://tolarian-academy.net/mobb-0-2-0-out-now/
-permalink: /mobb-0-2-0-out-now
 title: Mobb 0.2.0 out now
-wordpress_id: 523
-categories:
-- Ruby
-- プログラミング
+excerpt_separator: <!--more-->
 ---
 
 ## Mobb 0.2.0 をリリースしました
@@ -31,73 +25,74 @@ categories:
 
 helpersメソッドは、onイベントの中でアクセス可能なメソッドをMobbアプリケーションのトップレベルに定義するためのメソッドです。
 
-    
-    require 'mobb'
-    
-    helpers do
-      def greet(name)
-        "Hello #{name}"
-      end
-    end
-    
-    on "Hello" do
-      greet(@env.user.name)
-    end
+```ruby
+require 'mobb'
 
+helpers do
+  def greet(name)
+    "Hello #{name}"
+  end
+end
+
+on "Hello" do
+  greet(@env.user.name)
+end
+```
 
 このように、 on メソッドのブロックの中でアクセスできる greet メソッドのような、ヘルパーと呼ばれるメソッドを定義します。
 
 本来、 on メソッドのブロックは、この記述の場合は main オブジェクトに対するクロージャになっています。しかし、MobbやSinatraは内部でこの binding を書き換えるトリックを使っており、通常の手順では main オブジェクトに定義したメソッドや値を参照できません。例えば、次のコードは実際にブロックの中が呼び出される時にエラーになります。
 
-    
-    require 'mobb'
-    
-    def yo
-      "Yo"
-    end
-    
-    on 'Yo' do
-      yo # error on runtime!
-    end
+```ruby
+require 'mobb'
 
+def yo
+  "Yo"
+end
+
+on 'Yo' do
+  yo # error on runtime!
+end
+```
 
 そのため、 helpers というメソッドを使い、一時的に self を on メソッドのブロックが実行される時と同じスコープに書き換えます。そして、そのスコープ内で def を使ってメソッドを定義することで、 on のブロックからアクセスできるヘルパーメソッドを定義することができるのです。
 
+<!--more-->
 
 ### Conditions
 
 
 conditionsは、 on に対して次のようなオプションを付与するように振る舞います。
 
-    
-    require 'mobb'
-    
-    on 'Yo', ignore_bot: true do
-      'Yo'
-    end
-    
-    on /Hi/, reply_to_me: true do
-      "Hi #{@env.user.name}"
-    end
+```ruby
+require 'mobb'
 
+on 'Yo', ignore_bot: true do
+  'Yo'
+end
+
+on /Hi/, reply_to_me: true do
+  "Hi #{@env.user.name}"
+end
+```
 
 この例では、 bot以外からの Yo という発言に Yo と返事をし、自分に対するリプライの中に Hi の文字が含まれていれば、 Hi と返事をします。特に Yo の方は、 ignore_bot のコンディションを有効にしないと、自身の発言に対しても Yo と反応してしまい、無限ループが発生します。
 
 現在、デフォルトで用意されている condition は、 ignore_bot と reply_to_me で、いずれも bool の値をとります。ですが、次のようにして独自の condition を定義することも可能です。
 
-    
-    require 'mobb'
-    
-    set(:probability) { |value| condition { rand <= value } }
-    
-    on /Yo/, reply_to_me: true, probability: 0.1 do
-      "Yo"
-    end
-    
-    on /Yo/, reply_to_me: true do
-      "Ha?"
-    end
+```ruby
+require 'mobb'
 
+set(:probability) { |value| condition { rand <= value } }
+
+on /Yo/, reply_to_me: true, probability: 0.1 do
+  "Yo"
+end
+
+on /Yo/, reply_to_me: true do
+  "Ha?"
+end
+```
 
 set メソッドで probability という Condition を定義しています。ブロックの中では、  value という引数を受け取り、 condition メソッドのブロック引数の中でそれを利用しています。この例では、 Yo という呼びかけに対して1/10の確率で Yo と返し、それ以外は Ha? と返します。Mobbでは、同じマッチングの on を複数定義すると、定義した順に評価して先に一致した on のブロックを実行します。 probability という condition は、9/10の確率で失敗するので、失敗した場合は下のブロックが実行されるというわけです（下のブロックは確率的な condition が設定されていないので、必ず成功します）。
 

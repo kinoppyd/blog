@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-12-04 11:58:24+00:00
 layout: post
-link: http://tolarian-academy.net/%e3%81%8a%e5%90%8d%e5%89%8d-com%e3%81%8c%e3%83%a4%e3%83%90%e3%81%9d%e3%81%86/
-permalink: /'%e3%81%8a%e5%90%8d%e5%89%8d-com%e3%81%8c%e3%83%a4%e3%83%90%e3%81%9d%e3%81%86'
 title: お名前.comがヤバそう
-wordpress_id: 175
-categories:
-- ポエム
 ---
 
 夕方ごろに、こんな感じの話が職場でも話題になった。

@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-07-14 11:38:30+00:00
 layout: post
-link: http://tolarian-academy.net/ps-ruby-sandbox-eval-bot/
-permalink: /ps-ruby-sandbox-eval-bot
 title: 追伸：Rubyのサンドボックスを作って、evalするBotを作った
-wordpress_id: 517
-categories:
-- Ruby
+excerpt_separator: <!--more-->
 ---
 
 ## 注意：安全じゃないです
@@ -42,6 +37,7 @@ http://tolarian-academy.net/ruby-sandbox-eval-bot/
 
 前回の最後の追伸から一夜明けて、またいくつかの指摘を頂いた。それぞれに関して対策を講じていく。
 
+<!--more-->
 
 ### refine CleanRoomできる
 
@@ -64,27 +60,27 @@ http://tolarian-academy.net/ruby-sandbox-eval-bot/
 検証のためにこういうコードを書いてみると、確かにusingしているオブジェクトの中で自身をrefineすると、すでに効いているusingが無効になるようだった。
 
 
-    
-    module Sandbox
-      refine String do
-        def to_s; "override"; end
-      end
-    end
-    
-    module CleanRoom
-      using Sandbox
-      puts "string".to_s
-      refine CleanRoom do
-        puts "string".to_s
-      end
-    end
-    
-    puts "string".to_s
-    
-    # => override
-    # => string
-    # => string
+```ruby
+module Sandbox
+  refine String do
+    def to_s; "override"; end
+  end
+end
 
+module CleanRoom
+  using Sandbox
+  puts "string".to_s
+  refine CleanRoom do
+    puts "string".to_s
+  end
+end
+
+puts "string".to_s
+
+# => override
+# => string
+# => string
+```
 
 
 試しにusingのなかのrefileのなかで self を見てみると、#<refinement:CleanRoom@CleanRoom> というオブジェクトが得られた。CRubyのコードを追うのは大変なのでこれがどういうものなのかがよくわからないけれど、ここに書かれた仕様を読むと、特定のスコープでrefinementという匿名オブジェクトを継承クラスに加えているだけなので、どうしてusingの内容が無効化されるのかはよくわかりません。

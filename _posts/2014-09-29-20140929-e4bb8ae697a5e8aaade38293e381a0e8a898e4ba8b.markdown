@@ -1,15 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-09-29 16:57:33+00:00
 layout: post
-link: http://tolarian-academy.net/20140929-%e4%bb%8a%e6%97%a5%e8%aa%ad%e3%82%93%e3%81%a0%e8%a8%98%e4%ba%8b/
-permalink: /20140929-%e4%bb%8a%e6%97%a5%e8%aa%ad%e3%82%93%e3%81%a0%e8%a8%98%e4%ba%8b
 title: 2014/09/29 今日読んだ記事
-wordpress_id: 163
-categories:
-- Linux
-- プログラミング
 ---
 
 #### [CentOS6をホストとしていて、かつ.ssh/configに頼ったAnsibleは動かない](http://k1low.hatenablog.com/entry/2013/10/15/230229)

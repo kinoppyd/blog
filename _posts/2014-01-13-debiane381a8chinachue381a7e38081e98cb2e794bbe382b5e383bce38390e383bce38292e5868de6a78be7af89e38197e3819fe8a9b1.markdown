@@ -1,20 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-01-13 12:11:03+00:00
 layout: post
-link: http://tolarian-academy.net/debian%e3%81%a8chinachu%e3%81%a7%e3%80%81%e9%8c%b2%e7%94%bb%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e3%82%92%e5%86%8d%e6%a7%8b%e7%af%89%e3%81%97%e3%81%9f%e8%a9%b1/
-permalink: /debian%e3%81%a8chinachu%e3%81%a7%e3%80%81%e9%8c%b2%e7%94%bb%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e3%82%92%e5%86%8d%e6%a7%8b%e7%af%89%e3%81%97%e3%81%9f%e8%a9%b1
 title: DebianとChinachuで、録画サーバーを再構築した話
-wordpress_id: 46
-categories:
-- Debian
-- Linux
-- アニメ
-tags:
-- chinachu
-- Debian
-- Linux
+excerpt_separator: <!--more-->
 ---
 
 **家の録画サーバーが不安定になった。**
@@ -28,7 +17,9 @@ tags:
 [Chinachu](http://chinachu.akkar.in/)である。Linuxで動く録画サーバーで、しかも[オープンソース](https://github.com/kanreisa/Chinachu)。
 実際にC85のサークルスペースでは、NUCとPT3を使った実機のお手本みたいなものまで置いてあり、既にこの時点で自分の頭のなかには、「専用録画サーバーを作らなきゃ」という意識があった。多分、正月前後で録画マシンが急に不安定になったのは、そんな自分の頭のなかを読まれたのだと思う。
 
-**<!-- more -->まずDebianをインストールする**
+<!--more-->
+
+**まずDebianをインストールする**
 
 Debianを入れるのは、[このマシン](http://www.links.co.jp/items/foxconn-barebone/r30d4.html)。前に家族が使っていたものだけど、使わなくなってから引き取ってずっと足元で腐ってた。とりあえずケースからマザーと電源だけ取り出して、PT2を刺す。
 Atomとかいう微妙CPUと、1Gとかいう微妙メモリだけど、録画くらいならなんとかなると思う。こいつにTOSHIBAの2.5インチ500GのHDDを5000円くらいで買ってきて接続。SSDにしたかったけど、悩んでやめた。

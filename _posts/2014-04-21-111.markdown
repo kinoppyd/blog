@@ -1,41 +1,34 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-04-21 09:49:36+00:00
 layout: post
-link: http://tolarian-academy.net/111/
-permalink: /'111'
 title: MacのGitでmvしたらコケた
-wordpress_id: 111
-categories:
-- Mac
-- プログラミング
-tags:
-- Git
-- Mac
+excerpt_separator: <!--more-->
 ---
 
 前にも一回同じ事で困ったことがあるけど、二度と困らないようにブログにしておく。
 
 gitを使ってファイルを管理しているとき、gitに無断でファイルの移動はやってはいけない。gitがそのファイルを追いかけてくれなくなるからだ。
 
-    
-    git mv hoge foo
-
+```shell-session
+git mv hoge foo
+```
 
 って感じに、ファイルを移動することで正しく追跡を続けてくれる。
 
 困ったのは、Macを使っているときに、次のようなファイル移動をしようとしたとき。
 
-    
-    git mv FizzBuzz Fizzbuzz
-
+```shell-session
+git mv FizzBuzz Fizzbuzz
+```
 
 こういうエラーがでる。
 
-    
-    fatal: destination exists, source=FizzBuzz, destination=Fizzbuzz
+<!--more-->
 
+```
+fatal: destination exists, source=FizzBuzz, destination=Fizzbuzz
+```
 
 何のことかというと、Macのファイルシステムではファイル名の大文字と小文字を区別しないそうな。
 
@@ -43,17 +36,17 @@ gitを使ってファイルを管理しているとき、gitに無断でファ�
 
 まあでも、次の操作はできるんだけどね。よくわからない。（あと、Windowsもどうなるかわからない）
 
-    
-    touch hoge
-    mv hoge Hoge
-
+```shell-session
+touch hoge
+mv hoge Hoge
+```
 
 とりあえず、解決策としては、-f を付ければいい。
 
 Gitにおいて非常に怖いコマンド -f だが、やむを得ない
 
-    
-    git mv -f FizzBuzz Fizzbuzz
-
+```shell-session
+git mv -f FizzBuzz Fizzbuzz
+```
 
 これでいけた。

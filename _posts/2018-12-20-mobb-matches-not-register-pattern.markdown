@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-20 08:02:18+00:00
 layout: post
-link: http://tolarian-academy.net/mobb-matches-not-register-pattern/
-permalink: /mobb-matches-not-register-pattern
 title: Mobbのマッチングにどれもヒットしなかった場合のフック
-wordpress_id: 613
-categories:
-- 未分類
 ---
 
 このエントリは、 Mobb/Repp Advent Calendar の二十日目です
@@ -28,17 +22,17 @@ Webフレームワークの場合、どこにもマッチしなかった場合�
 
 しかしその一方で、どこにもマッチしなかった入力に対してなにか処理をしたいという需要はあると思います。それは、マッチングの対象ではない要素に対してなにかをしたい場合であったり（フィルタを使うという手もありますが）、すべての入力に対して一律なにか処理をしたりという場合です。
 
-    
-    require 'mobb'
-    
-    on 'Hi' do
-      'Yo'
-    end
-    
-    on_unregistered do
-      # デバッグメッセージ
-      puts　"#{@env.body} は登録されているパターンにマッチしませんでした"
-    end
+```ruby
+require 'mobb'
 
+on 'Hi' do
+  'Yo'
+end
+
+on_unregistered do
+  # デバッグメッセージ
+  puts　"#{@env.body} は登録されているパターンにマッチしませんでした"
+end
+```
 
 on_unregistered キーワードは、すべてのマッチング処理の最後にチェックされ、どこにも一致しているものがない場合は必ずこのブロックを実行するというものです。うえのbotでは、マッチングのデバッグを行うために、一致しなかったすべての処理を出力しています。

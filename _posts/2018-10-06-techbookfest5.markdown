@@ -1,15 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-10-06 13:24:34+00:00
 layout: post
-link: http://tolarian-academy.net/techbookfest5/
-permalink: /techbookfest5
 title: 技術書典5にて、Sinatraのコード解説本を頒布します。あと執筆環境の話。
-wordpress_id: 534
-categories:
-- ポエム
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 ## 技術書典5に参加します
@@ -27,6 +21,7 @@ categories:
 
 本文は、おおよそ二週間かからずに書き終わりました。しかし、その特急スケジュールのおかげで文字以外の図解などを作る暇がなく、やや読んでて疲れる本になってしまったという自覚があります。今回の技術書典でこの本を求めてくれる人が多ければ、もっと読みやすくした版を後日作成し、本を買っていただいた方には何かしらの形で無料で配れればと思ったりもしますが、その思いを実行できるくらい当日売れることを祈るばかりです。
 
+<!--more-->
 
 ## 本の執筆環境
 

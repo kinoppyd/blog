@@ -1,22 +1,16 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-09-25 05:28:11+00:00
 layout: post
-link: http://tolarian-academy.net/fdisk%e3%81%a3%e3%81%a6%e3%80%812t%e3%82%92%e8%b6%85%e3%81%88%e3%82%8bhdd%e3%81%ab%e3%83%91%e3%83%bc%e3%83%86%e3%82%a3%e3%82%b7%e3%83%a7%e3%83%b3%e5%88%87%e3%82%8c%e3%81%aa%e3%81%84%e3%82%93%e3%81%a0/
-permalink: /fdisk%e3%81%a3%e3%81%a6%e3%80%812t%e3%82%92%e8%b6%85%e3%81%88%e3%82%8bhdd%e3%81%ab%e3%83%91%e3%83%bc%e3%83%86%e3%82%a3%e3%82%b7%e3%83%a7%e3%83%b3%e5%88%87%e3%82%8c%e3%81%aa%e3%81%84%e3%82%93%e3%81%a0
 title: fdiskって、2Tを超えるHDDにパーティション切れないんだね
-wordpress_id: 149
-categories:
-- Debian
 ---
 
 正確には2Tかどうか調べてないけど、fdiskコマンドは容量の大きなストレージに対してパーティションが切れない
 
 自分の運用では特にパーティションが必要なかったため、次のコマンドでディスク自体をフォーマット。いいのか悪いのかはいまいちわからないけど、とりあえず動いている。
 
-    
-    mkfs -t ext4 /dev/sdb
-
+```shell-session
+mkfs -t ext4 /dev/sdb
+```
 
 partedというコマンドを使うとパーティションが切れるらしいが、aptitude search しても一発で出てこなかったのと、特に今はパーティション必要ないので、後日調べる。

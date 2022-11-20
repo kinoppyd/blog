@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-08-22 15:51:04+00:00
 layout: post
-link: http://tolarian-academy.net/2015yapcasiaday2/
-permalink: /2015yapcasiaday2
 title: YAPC::Asia Day2 行ってきたよ
-wordpress_id: 282
-categories:
-- Perl
+excerpt_separator: <!--more-->
 ---
 
 ## 行ってきたよ
@@ -17,6 +12,8 @@ categories:
 毎度おなじみ、ブログを書くまでがYAPCだと骨の髄までたたき込まれたので書くよ。
 
 訂正：所々スピーカーの方の名前を間違えていたので修正しました
+
+<!--more-->
 
 
 ### [Mackerel開発におけるScalaとGo、そしてPerl](http://yapcasia.org/2015/talk/show/5b1cd536-07ed-11e5-9e42-79c97d574c3a)
@@ -153,6 +150,3 @@ Makiさんが、YAPC::Asiaの歴史を簡単に振り返って、ベストトー
 > 
 > 
 — kinoppyd (@GhostBrain) [2015, 8月 22](https://twitter.com/GhostBrain/status/635011506891984896)</blockquote>
-
-
-

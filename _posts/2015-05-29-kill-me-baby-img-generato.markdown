@@ -1,15 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-05-29 18:44:22+00:00
 layout: post
-link: http://tolarian-academy.net/kill-me-baby-img-generato/
-permalink: /kill-me-baby-img-generato
 title: やったーキルミーベイベーの画像ジェネレーター作ったよー
-wordpress_id: 262
-categories:
-- Ruby
-- アニメ
 ---
 
 ## エクセレントなフォント

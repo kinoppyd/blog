@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-15 17:24:17+00:00
 layout: post
-link: http://tolarian-academy.net/kick-cron-every-second-in-mobb/
-permalink: /kick-cron-every-second-in-mobb
 title: Mobbのcronを秒単位で動かす
-wordpress_id: 593
-categories:
-- 未分類
 ---
 
 このエントリは Mobb/Repp Advent Calendar の十六日目です
@@ -22,13 +16,13 @@ categories:
 
 MobbのCronは、CronのSyntaxをパースするため、最小の実行単位が分までしか設定できません。しかし、世の中には意外と毎秒何かを監視するという行動に需要があり、Mobbで作られたBotも毎秒何かを実行させたいという人は多いので、CronSyntaxを使わず毎秒実行するトリガーを、次のバージョンで追加することにしました。
 
-    
-    require 'mobb'
-    
-    every_seconds do
-      # act every seconds
-    end
+```ruby
+require 'mobb'
 
+every_seconds do
+  # act every seconds
+end
+```
 
 every/cron キーワードはすでに使用されているため、新しいキーワードを設定する必要があります。every_secondsキーワードです。every_secondsに渡されたブロックは、毎秒ブロックの中身を実行します。注意しなくてはいけないのは、every_secondsは1つのBotで1度しか設定できない（複数設定された場合は最初に設定したものが優先される）ということです。
 

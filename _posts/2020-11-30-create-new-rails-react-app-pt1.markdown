@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2020-11-30 20:04:09+00:00
 layout: post
-link: http://tolarian-academy.net/create-new-rails-react-app-pt1/
-permalink: /create-new-rails-react-app-pt1
 title: 大急ぎでRails+Reactのアプリケーションを作るときにやったこと前編
-wordpress_id: 663
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 このエントリは、[SmartHR Advent Calender 2020](https://qiita.com/advent-calendar/2020/smarthr) の1日目です
@@ -68,12 +63,14 @@ categories:
 
 ## rails new
 
+<!--more-->
+
 
 兎にも角にも、新しいアプリを作るにはここからはじまる。rails newは、新しいバージョンのRailsがリリースされたときに、記念行事のようにポチッとやるだけで、実はそんなに何度もちゃんとやったことがないので、ヘルプをしっかり読んだ。その結果、このコマンドになった。
 
-    
-    rails new nekonekokawaii -d postgresql --skip-keeps --skip-action-mailer --skip-action-mailbox --skip-action-text --skip-action-cable --skip-sprockets --skip-turbolinks --webpacker=react
-
+```shell-session
+rails new nekonekokawaii -d postgresql --skip-keeps --skip-action-mailer --skip-action-mailbox --skip-action-text --skip-action-cable --skip-sprockets --skip-turbolinks --webpacker=react
+```
 
 順にオプションの話をしていく
 
@@ -122,49 +119,50 @@ DockerComposeは、各自でインストールしておいてほしい。今はL
 
 DBは本番運用に耐えるものならば何でもいいが、HerokuへのデプロイをゴールとしたのでPostgreSQLを用意した。プロジェクトディレクトのルートにdocker-compose.ymlファイルを用意し、中身を書く。
 
-    
-    version: "3.8"
-    services:
-      db:
-        image: postgres:13.1
-        ports:
-          - 5432:5432
-        environment:
-          POSTGRES_PASSWORD: nekonekokawaii
-          POSTGRES_USER: nekonekokawaii
-          POSTGRES_DB: nekonekokawaii_development
-          PGDATA: /var/lib/postgresql/data/pgdata
-        volumes:
-            - ./tmp/pgdata:/var/lib/postgresql/data/pgdata
-
+```yaml
+version: "3.8"
+services:
+  db:
+    image: postgres:13.1
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: nekonekokawaii
+      POSTGRES_USER: nekonekokawaii
+      POSTGRES_DB: nekonekokawaii_development
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+        - ./tmp/pgdata:/var/lib/postgresql/data/pgdata
+```
 
 config/database.ymlには、DockerComposeで立ち上げたDBにつなぐための設定を追加する。
 
-    
-    diff --git a/config/database.yml b/config/database.yml
-    index 70531de..0d9f807 100644
-    --- a/config/database.yml
-    +++ b/config/database.yml
-    @@ -16,4 +16,6 @@
-     #
-     default: &default
-    +  username: nekonekokawaii
-    +  password: nekonekokawaii
-       adapter: postgresql
-       encoding: unicode
-    @@ -25,4 +27,5 @@ development:
-       <<: *default
-       database: nekonekokawaii_development
-    +  host: 127.0.0.1
-    
-       # The specified database role being used to connect to postgres.
+```diff
+diff --git a/config/database.yml b/config/database.yml
+index 70531de..0d9f807 100644
+--- a/config/database.yml
++++ b/config/database.yml
+@@ -16,4 +16,6 @@
+ #
+ default: &default
++  username: nekonekokawaii
++  password: nekonekokawaii
+   adapter: postgresql
+   encoding: unicode
+@@ -25,4 +27,5 @@ development:
+   <<: *default
+   database: nekonekokawaii_development
++  host: 127.0.0.1
+
+   # The specified database role being used to connect to postgres.
+```
 
 
 これらの設定を用意した後、docker-composeコマンドでDBを立ち上げる。
 
-    
-    docker-compose up -d
-
+```shell-session
+docker-compose up -d
+```
 
 これで開発用のDBが用意された。
 
@@ -180,9 +178,10 @@ Webpackerを利用し、React+TypeScript環境を、フロントのコードをR
 
 まずはTypeScriptを入れる。そして、型チェックをBabelでの変換時ではなく、Webpackのコンパイル時に行うように設定を追加する。
 
-    
-    bundle exec rails webpacker:instlal:typescript
-    yarn add --dev fork-ts-checker-webpack-plugin
+```shell-session
+bundle exec rails webpacker:instlal:typescript
+yarn add --dev fork-ts-checker-webpack-plugin
+```
 
 
 [bundle exec rails webpacker:install:typescript · kinoppyd/nekonekokawaii@4d01262](https://github.com/kinoppyd/nekonekokawaii/commit/4d01262fa8b6c8346d918c692ccd22866fe1d67b)
@@ -191,28 +190,29 @@ Webpackerを利用し、React+TypeScript環境を、フロントのコードをR
 
 2つのコマンドを実行したら、config/webpack/development.ymlを編集する。
 
-    
-    diff --git a/config/webpack/environment.js b/config/webpack/environment.js
-    index f10aeb5..86cd25b 100644
-    --- a/config/webpack/environment.js
-    +++ b/config/webpack/environment.js
-    @@ -3,3 +3,16 @@ const typescript =  require('./loaders/typescript')
-    
-     environment.loaders.prepend('typescript', typescript)
-     module.exports = environment
-    +
-    +const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-    +const path = require("path");
-    +
-    +environment.plugins.append(
-    +    "ForkTsCheckerWebpackPlugin",
-    +    new ForkTsCheckerWebpackPlugin({
-    +          typescript: {
-    +                  configFile: path.resolve(__dirname, "../../tsconfig.json"),
-    +                },
-    +          async: false,
-    +        })
-    +);
+```diff
+diff --git a/config/webpack/environment.js b/config/webpack/environment.js
+index f10aeb5..86cd25b 100644
+--- a/config/webpack/environment.js
++++ b/config/webpack/environment.js
+@@ -3,3 +3,16 @@ const typescript =  require('./loaders/typescript')
+
+ environment.loaders.prepend('typescript', typescript)
+ module.exports = environment
++
++const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
++const path = require("path");
++
++environment.plugins.append(
++    "ForkTsCheckerWebpackPlugin",
++    new ForkTsCheckerWebpackPlugin({
++          typescript: {
++                  configFile: path.resolve(__dirname, "../../tsconfig.json"),
++                },
++          async: false,
++        })
++);
+```
 
 
 [Add pre-compile type check settings · kinoppyd/nekonekokawaii@b7e48f8](https://github.com/kinoppyd/nekonekokawaii/commit/b7e48f8052336333c1fc06e34ac2e19b8dbebfc5)
@@ -223,11 +223,12 @@ Webpackerを利用し、React+TypeScript環境を、フロントのコードをR
 
 また、デフォルトで作られているapp/javascript配下のReactコンポーネントはJSXなので、TSXにリネームする。とはいえ自動生成されたHelloReactコンポーネントは使うことは無いので、これは別にやってもやらなくてもいい。
 
-    
-    diff --git a/app/javascript/packs/hello_react.jsx b/app/javascript/packs/hello_react.tsx
-    similarity index 100%
-    rename from app/javascript/packs/hello_react.jsx
-    rename to app/javascript/packs/hello_react.tsx
+```diff
+diff --git a/app/javascript/packs/hello_react.jsx b/app/javascript/packs/hello_react.tsx
+similarity index 100%
+rename from app/javascript/packs/hello_react.jsx
+rename to app/javascript/packs/hello_react.tsx
+```
 
 
 [Rename jsx to tsx · kinoppyd/nekonekokawaii@ccef21c](https://github.com/kinoppyd/nekonekokawaii/commit/ccef21cd1ccfac8fc13722a341933377620672c1)
@@ -236,28 +237,29 @@ Webpackerを利用し、React+TypeScript環境を、フロントのコードをR
 
 asをたくさん書くのが面倒なのでSyntheticDefaultImportsを有効にする。そしていくつかのstrict系オプションを有効にする。noUnusedLocalsとかnoUnusedParametersとかも有効にしたほうが良いのだろうけど、開発中に機能をつけたり消したりしてると意外と腹が立つのでとりあえず外しておいた。TSあんまり詳しくないけど、productionのビルドのときだけ有効にする方法とかないのかな……とか思ったりする。
 
-    
-    diff --git a/tsconfig.json b/tsconfig.json
-    index 7425c2b..2206176 100644
-    --- a/tsconfig.json
-    +++ b/tsconfig.json
-    @@ -8,7 +8,15 @@
-         "moduleResolution": "node",
-         "sourceMap": true,
-         "target": "es5",
-    -    "jsx": "react"
-    +    "jsx": "react",
-    +    "allowJs": false,
-    +    "allowSyntheticDefaultImports": true,
-    +    "removeComments": true,
-    +    "strictNullChecks": true,
-    +    "strictPropertyInitialization": true,
-    +    "noFallthroughCasesInSwitch": true,
-    +    "noImplicitAny": true,
-    +    "noImplicitThis": true
-       },
-       "exclude": [
-         "**/*.spec.ts",
+```diff
+diff --git a/tsconfig.json b/tsconfig.json
+index 7425c2b..2206176 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -8,7 +8,15 @@
+     "moduleResolution": "node",
+     "sourceMap": true,
+     "target": "es5",
+-    "jsx": "react"
++    "jsx": "react",
++    "allowJs": false,
++    "allowSyntheticDefaultImports": true,
++    "removeComments": true,
++    "strictNullChecks": true,
++    "strictPropertyInitialization": true,
++    "noFallthroughCasesInSwitch": true,
++    "noImplicitAny": true,
++    "noImplicitThis": true
+   },
+   "exclude": [
+     "**/*.spec.ts",
+```
 
 
 [Modify tsconfig · kinoppyd/nekonekokawaii@0101fe6](https://github.com/kinoppyd/nekonekokawaii/commit/0101fe61a0c15fc25afccd1194093381e081fdf9)
@@ -266,26 +268,27 @@ asをたくさん書くのが面倒なのでSyntheticDefaultImportsを有効に�
 
 まず、Webpackerの設定を変える。
 
-    
-    diff --git a/config/webpacker.yml b/config/webpacker.yml
-    index 352f8b2..985129b 100644
-    --- a/config/webpacker.yml
-    +++ b/config/webpacker.yml
-    @@ -1,7 +1,7 @@
-     # Note: You must restart bin/webpack-dev-server for changes to take effect
-    
-     default: &default
-    -  source_path: app/javascript
-    +  source_path: client/src
-       source_entry_path: packs
-       public_root_path: public
-       public_output_path: packs
+```diff
+diff --git a/config/webpacker.yml b/config/webpacker.yml
+index 352f8b2..985129b 100644
+--- a/config/webpacker.yml
++++ b/config/webpacker.yml
+@@ -1,7 +1,7 @@
+ # Note: You must restart bin/webpack-dev-server for changes to take effect
 
+ default: &default
+-  source_path: app/javascript
++  source_path: client/src
+   source_entry_path: packs
+   public_root_path: public
+   public_output_path: packs
+```
 
 そしてファイルを移動する。
 
-    
-    git mv app/javascript/ client
+```shell-session
+git mv app/javascript/ client
+```
 
 
 これで、client/srcのディレクトリが、Webpackerの扱うフロントのコードのルートとなる。後々、Webpackに切り替えるときも、app/javascriptよりもここに配置してあるのは自然だと思うので、早めにやっておくに越したことはない。
@@ -319,25 +322,27 @@ Webpakerを使って作成されたReactのページに、Rails側からPropsを
 
 
 
-    
-    diff --git a/Gemfile b/Gemfile
-    index 1db5059..36c0dd9 100644
-    --- a/Gemfile
-    +++ b/Gemfile
-    @@ -19,6 +19,8 @@ gem 'jbuilder', '~> 2.7'
-     # Use Active Storage variant
-     # gem 'image_processing', '~> 1.2'
-    
-    +gem 'react-rails', '~> 2.6'
-    +
-     # Reduces boot times through caching; required in config/boot.rb
-     gem 'bootsnap', '>= 1.4.2', require: false
+```diff
+diff --git a/Gemfile b/Gemfile
+index 1db5059..36c0dd9 100644
+--- a/Gemfile
++++ b/Gemfile
+@@ -19,6 +19,8 @@ gem 'jbuilder', '~> 2.7'
+ # Use Active Storage variant
+ # gem 'image_processing', '~> 1.2'
+
++gem 'react-rails', '~> 2.6'
++
+ # Reduces boot times through caching; required in config/boot.rb
+ gem 'bootsnap', '>= 1.4.2', require: false
+```
 
 
 
-    
-    bundle install
-    bundle exec rails generate react:install
+```shell-session
+bundle install
+bundle exec rails generate react:install
+```
 
 
 generate react:install コマンドは忘れやすいので注意。
@@ -352,135 +357,138 @@ generate react:install コマンドは忘れやすいので注意。
 
 ずっと準備をしてきたので、そろそろコードを書いてReactとRailsの動作を確認しないと不安になる。ということで、railsでおなじみのgenerateを使ってPostリソースを追加して表示を確認してみることにする。
 
-    
-    bundle exec rails g resource post title:string body:text
+```shell-session
+bundle exec rails g resource post title:string body:text
+```
 
 
 [bundle exec rails g resource post title:string body:text · kinoppyd/nekonekokawaii@71f8a3f](https://github.com/kinoppyd/nekonekokawaii/commit/71f8a3f1a2dab7573d3477da98486c896e2496d1)
 
 確認用にSeedデータも用意する。
 
-    
-    Post.create!(title: 'test post 1', body: 'miow!')
-    Post.create!(title: 'test post 2', body: 'miow! miow!')
+```shell-session
+Post.create!(title: 'test post 1', body: 'miow!')
+Post.create!(title: 'test post 2', body: 'miow! miow!')
+```
 
 
 DBをマイグレーションして、DockerComposeで用意したDBと疎通していることを確かめつつSeedデータを入れる。
 
-    
-    bundle exec rails db:migrate
-    bundle exec rails db:seed
+```shell-session
+bundle exec rails db:migrate
+bundle exec rails db:seed
+```
 
 
 データを表示するためのコンポーネントを作っていく。ディレクトリ構成は次のようにする。
 
-    
-    client/src/components
-    ├── organisms
-    │   └── Post.tsx
-    └── templates
-        └── Posts
-            ├── Index.tsx
-            └── Show.tsx
+```tree
+client/src/components
+├── organisms
+│   └── Post.tsx
+└── templates
+    └── Posts
+        ├── Index.tsx
+        └── Show.tsx
+```
 
 
+```typescript
+import React from 'react'
 
-    
-    import React from 'react'
-    
-    export interface PostProps {
-      title: string
-      body: string
-    }
-    
-    const Post: React.FC<PostProps> = ({title, body}) => {
-      return(
-        <div>
-          <h1>{title}</h1>
-          <div>{body}</div>
-        </div>
-      )
-    }
-    
-    export default Post
+export interface PostProps {
+  title: string
+  body: string
+}
 
+const Post: React.FC<PostProps> = ({title, body}) => {
+  return(
+    <div>
+      <h1>{title}</h1>
+      <div>{body}</div>
+    </div>
+  )
+}
 
-
-    
-    import React from 'react'
-    
-    import Post, { PostProps } from '../../organisms/Post'
-    
-    export interface PostsTemplateProps {
-      posts: PostProps[]
-    }
-    
-    const PostsTemplate: React.FC<PostsTemplateProps> = ({posts}) => {
-      return(
-        <div>
-          {posts.map(post => (
-            <Post {...post} />
-          ))}
-        </div>
-      )
-    }
-    
-    export default PostsTemplate
+export default Post
+```
 
 
+```typescript
+import React from 'react'
 
-    
-    import React from 'react'
-    
-    import Post, { PostProps } from '../../organisms/Post'
-    
-    export interface PostsTemplateProps {
-      post: PostProps
-    }
-    
-    const PostsTemplate: React.FC<PostTemplateProps> = ({post}) => {
-      return(
-        <div>
-          <Post {...post} />
-        </div>
-      )
-    }
-    
-    export default PostsTemplate
+import Post, { PostProps } from '../../organisms/Post'
 
+export interface PostsTemplateProps {
+  posts: PostProps[]
+}
+
+const PostsTemplate: React.FC<PostsTemplateProps> = ({posts}) => {
+  return(
+    <div>
+      {posts.map(post => (
+        <Post {...post} />
+      ))}
+    </div>
+  )
+}
+
+export default PostsTemplate
+```
+
+
+```typescript
+import React from 'react'
+
+import Post, { PostProps } from '../../organisms/Post'
+
+export interface PostsTemplateProps {
+  post: PostProps
+}
+
+const PostsTemplate: React.FC<PostTemplateProps> = ({post}) => {
+  return(
+    <div>
+      <Post {...post} />
+    </div>
+  )
+}
+
+export default PostsTemplate
+```
 
 Postの内容をレンダリングするPostと、一覧表示のIndex、詳細表示のShowを用意した。client配下のディレクトリ構成は、なるべくAtomic Desingの推奨するディレクトリ構成を模倣し、コードの分割に耐えるようにしていく。
 
 表示用のコンポーネントはこれで完成。 ./bin/webpack コマンドを実行し、コンパイルできることを確認する。
 
-    
-    ./bin/webpack
-
+```shell-session
+./bin/webpack
+```
 
 もちろん、これらのファイルを書きながらシェルでwebpack-dev-serverを動かして、常にファイルの変更を検知しながらコンパイルエラーを確認しても良い。
 
-    
-    ./bin/webpack-dev-server
-
+```shell-session
+./bin/webpack-dev-server
+```
 
 フロントが終わったら、バックエンドのコードを書く。まずは、Controllerの簡単なリソース取得の箇所。
 
-    
-    diff --git a/app/controllers/posts_controller.rb b/app/controllers/posts_controller.rb
-    index a66e6b8..1cf768f 100644
-    --- a/app/controllers/posts_controller.rb
-    +++ b/app/controllers/posts_controller.rb
-    @@ -1,2 +1,9 @@
-     class PostsController < ApplicationController
-    +  def index
-    +    @posts = Post.all.order(created_at: :desc)
-    +  end
-    +
-    +  def show
-    +    @post = Post.find(params[:id])
-    +  end
-     end
-
+```diff
+diff --git a/app/controllers/posts_controller.rb b/app/controllers/posts_controller.rb
+index a66e6b8..1cf768f 100644
+--- a/app/controllers/posts_controller.rb
++++ b/app/controllers/posts_controller.rb
+@@ -1,2 +1,9 @@
+ class PostsController < ApplicationController
++  def index
++    @posts = Post.all.order(created_at: :desc)
++  end
++
++  def show
++    @post = Post.find(params[:id])
++  end
+ end
+```
 
 このコードは特に何の変哲もなく、Controller内でindexはPostを全件取得し、showでは特定のIDのものを取得しているだけだ。
 
@@ -488,21 +496,21 @@ Postの内容をレンダリングするPostと、一覧表示のIndex、詳細�
 
 Viewのファイルは次のように用意する。
 
-    
-    <%= react_component("templates/Posts/Index", { posts: @posts }) %>
+```ruby
+<%= react_component("templates/Posts/Index", { posts: @posts }) %>
+```
 
 
+```ruby
+<%= react_component("templates/Posts/Show", { post: @post }) %>
 
-    
-    <%= react_component("templates/Posts/Show", { post: @post }) %>
-    
-
+```
 
 それぞれのControllerが標準で使うViewのERBファイルに、react_componentヘルパを書いて、コンポーネントのPropsに該当するハッシュを渡すだけだ。ページのレンダリングは全てReactに任せるので、これだけで良い。
 
 これらのファイルを保存し、rails serverを立ち上げて `/posts` にアクセスすると、Reactで作成された一覧のページが表示される。
 
-[![スクリーンショット 2020-11-30 4.51.13](http://tolarian-academy.net/wp-content/uploads/2020/12/スクリーンショット-2020-11-30-4.51.13.png)](http://tolarian-academy.net/wp-content/uploads/2020/12/スクリーンショット-2020-11-30-4.51.13.png)
+[![スクリーンショット 2020-11-30 4.51.13]({{ site.baseurl }}/assets/images/2020/12/スクリーンショット-2020-11-30-4.51.13.png)]({{ site.baseurl }}/assets/images/2020/12/スクリーンショット-2020-11-30-4.51.13.png)
 
 特に何のスタイリングもしてないので、こんな感じの表示になると思う。
 
@@ -516,10 +524,10 @@ Viewのファイルは次のように用意する。
 
 UI Frameworkには、[SmartHR UI](https://github.com/kufu/smarthr-ui)を使う。これはSmartHR社が公開しているアプリケーション用のコンポーネント集で、React+StyledComponentsで作られている。普通にアプリを作るのであれば、[Material UI](https://material-ui.com/)とかを使うべきなのだろうが、もともとは社内用のアプリを作っていた過程の記録なので、宣伝も兼ねてSmartHR UIを使う。また、スタイリングには[Styled Components](https://styled-components.com/)を使う。CSS in JSには色々思うことが多い人も少なくないだろうが、コンポーネントの中にスタイルを閉じ込められて簡単に管理できるし何よりRails側のCSS配信とかを考える必要がなくなるので、Styled Componentsを利用する。
 
-    
-    yarn add smarthr-ui
-    yarn add styled-components @types/styled-components
-
+```shell-session
+yarn add smarthr-ui
+yarn add styled-components @types/styled-components
+```
 
 インストール
 
@@ -529,164 +537,164 @@ UI Frameworkには、[SmartHR UI](https://github.com/kufu/smarthr-ui)を使う�
 
 次に、client/src/components/atomsディレクトリを作成して、基本となるパーツをimport、プロジェクト用にスタイリングしていく。ディレクトリ構成は次のようになる。Atomic Designにならって、最小の部品はcomponents/atomsディレクトリに置いていく。さっきと違ってindexファイルを置いてimportしやすくしているが、これはやってもやらなくてもいいし、むしろreact-railsの前では無力になるので結局export default書く必要があったりとややこしい。
 
-    
-    client/src/components/atoms
-    ├── Base
-    │   ├── Base.tsx
-    │   └── index.ts
-    ├── Header
-    │   ├── Header.tsx
-    │   └── index.ts
-    └── Heading
-        ├── Heading.tsx
-        └── index.ts
-
+```tree
+client/src/components/atoms
+├── Base
+│   ├── Base.tsx
+│   └── index.ts
+├── Header
+│   ├── Header.tsx
+│   └── index.ts
+└── Heading
+    ├── Heading.tsx
+    └── index.ts
+```
 
 ひとまず、BaseとHeadingをSmartHR UIからimportして少しStyledComponentsで加工。HeaderはSmatHR UIのパーツをそのまま使うのは難しいので、適当にCSSを書きます。
 
-    
-    import { Heading as SmartHRHeading } from 'smarthr-ui'
-    
-    export const Heading = SmartHRHeading
+```typescript
+import { Heading as SmartHRHeading } from 'smarthr-ui'
+
+export const Heading = SmartHRHeading
+```
 
 
+```typescript
+import React from 'react'
+import styled from 'styled-components'
+import { Base as SmartHRBase } from 'smarthr-ui'
 
-    
-    import React from 'react'
-    import styled from 'styled-components'
-    import { Base as SmartHRBase } from 'smarthr-ui'
-    
-    export const Base = styled(SmartHRBase)`
-        margin: 16px 32px;
-        padding: 6px 24px 12px 24px;
-    `
+export const Base = styled(SmartHRBase)`
+    margin: 16px 32px;
+    padding: 6px 24px 12px 24px;
+`
+```
 
 
+```typescript
+import React from 'react'
+import styled from 'styled-components'
 
-    
-    import React from 'react'
-    import styled from 'styled-components'
-    
-    export const Header: React.FC<{}> = () => {
-      return(
-        <HeaderArea>
-          <Logo>nekonekokawaii</Logo>
-        </HeaderArea>
-      )
-    }
-    
-    const HeaderArea = styled.header`
-      height: 50px;
-      padding: 0 4px;
-      background-color: #00C4CC;
-    `
-    
-    const Logo = styled.span`
-      margin: 0px 4px;
-      text-align:center;
-      font-weight:normal;
-      color:#EEE;
-      font-size:42px;
-      letter-spacing:-4px;
-    `
-    
-    export default Header
+export const Header: React.FC<{}> = () => {
+  return(
+    <HeaderArea>
+      <Logo>nekonekokawaii</Logo>
+    </HeaderArea>
+  )
+}
 
+const HeaderArea = styled.header`
+  height: 50px;
+  padding: 0 4px;
+  background-color: #00C4CC;
+`
+
+const Logo = styled.span`
+  margin: 0px 4px;
+  text-align:center;
+  font-weight:normal;
+  color:#EEE;
+  font-size:42px;
+  letter-spacing:-4px;
+`
+
+export default Header
+```
 
 こんな感じで、スタイリングした部品を用意していく。同じように、既存のテンプレートとコンポーネントも書き換えていく。
 
-    
-    diff --git a/app/views/layouts/application.html.erb b/app/views/layouts/application.html.erb
-    index 2f7a52b..908882c 100644
-    --- a/app/views/layouts/application.html.erb
-    +++ b/app/views/layouts/application.html.erb
-    @@ -9,7 +9,8 @@
-         <%= javascript_pack_tag 'application' %>
-       </head>
-    
-    -  <body>
-    +  <body style="margin: 0px">
-    +    <%= react_component("atoms/Header/Header") %>
-         <%= yield %>
-       </body>
-     </html>
+```diff
+diff --git a/app/views/layouts/application.html.erb b/app/views/layouts/application.html.erb
+index 2f7a52b..908882c 100644
+--- a/app/views/layouts/application.html.erb
++++ b/app/views/layouts/application.html.erb
+@@ -9,7 +9,8 @@
+     <%= javascript_pack_tag 'application' %>
+   </head>
+
+-  <body>
++  <body style="margin: 0px">
++    <%= react_component("atoms/Header/Header") %>
+     <%= yield %>
+   </body>
+ </html>
+```
 
 
+```diff
+diff --git a/client/src/components/organisms/Post.tsx b/client/src/components/organisms/Post.tsx
+index d2799fa..c7aa768 100644
+--- a/client/src/components/organisms/Post.tsx
++++ b/client/src/components/organisms/Post.tsx
+@@ -1,5 +1,9 @@
+ import React from 'react'
 
-    
-    diff --git a/client/src/components/organisms/Post.tsx b/client/src/components/organisms/Post.tsx
-    index d2799fa..c7aa768 100644
-    --- a/client/src/components/organisms/Post.tsx
-    +++ b/client/src/components/organisms/Post.tsx
-    @@ -1,5 +1,9 @@
-     import React from 'react'
-    
-    +import { Base }from '../atoms/Base'
-    +import { Heading } from '../atoms/Heading'
-    +import styled from "styled-components";
-    +
-     export interface PostProps {
-       title: string
-       body: string
-    @@ -7,11 +11,16 @@ export interface PostProps {
-    
-     const Post: React.FC<PostProps> = ({title, body}) => {
-       return(
-    -    <div>
-    -      <h1>{title}</h1>
-    +    <Base>
-    +      <Title type='blockTitle' tag='h1'>{title}</Title>
-           <div>{body}</div>
-    -    </div>
-    +    </Base>
-       )
-     }
-    
-    +
-    +const Title = styled(Heading)`
-    +  background:linear-gradient(transparent 80%, #00C4CC 0%);
-    +  margin-bottom: 32px;
-    +`
-     export default Post
++import { Base }from '../atoms/Base'
++import { Heading } from '../atoms/Heading'
++import styled from "styled-components";
++
+ export interface PostProps {
+   title: string
+   body: string
+@@ -7,11 +11,16 @@ export interface PostProps {
+
+ const Post: React.FC<PostProps> = ({title, body}) => {
+   return(
+-    <div>
+-      <h1>{title}</h1>
++    <Base>
++      <Title type='blockTitle' tag='h1'>{title}</Title>
+       <div>{body}</div>
+-    </div>
++    </Base>
+   )
+ }
+
++
++const Title = styled(Heading)`
++  background:linear-gradient(transparent 80%, #00C4CC 0%);
++  margin-bottom: 32px;
++`
+ export default Post
+```
 
 
+```diff
+diff --git a/client/src/components/templates/Posts/Index.tsx b/client/src/components/templates/Posts/Index.tsx
+index 6bdf440..8a6580d 100644
+--- a/client/src/components/templates/Posts/Index.tsx
++++ b/client/src/components/templates/Posts/Index.tsx
+@@ -1,4 +1,5 @@
+ import React from 'react'
++import styled from 'styled-components'
 
-    
-    diff --git a/client/src/components/templates/Posts/Index.tsx b/client/src/components/templates/Posts/Index.tsx
-    index 6bdf440..8a6580d 100644
-    --- a/client/src/components/templates/Posts/Index.tsx
-    +++ b/client/src/components/templates/Posts/Index.tsx
-    @@ -1,4 +1,5 @@
-     import React from 'react'
-    +import styled from 'styled-components'
-    
-     import Post, { PostProps } from '../../organisms/Post'
-    
-    @@ -8,12 +9,17 @@ export interface PostsTemplateProps {
-    
-     const PostsTemplate: React.FC<PostsTemplateProps> = ({posts}) => {
-       return(
-    -    <div>
-    +    <Content>
-           {posts.map(post => (
-             <Post {...post} />
-           ))}
-    -    </div>
-    +    </Content>
-       )
-     }
-    
-    +const Content = styled.div`
-    +  margin: 32px 10%;
-    +  min-width: 800px;
-    +`
-    +
-     export default PostsTemplate
+ import Post, { PostProps } from '../../organisms/Post'
 
+@@ -8,12 +9,17 @@ export interface PostsTemplateProps {
+
+ const PostsTemplate: React.FC<PostsTemplateProps> = ({posts}) => {
+   return(
+-    <div>
++    <Content>
+       {posts.map(post => (
+         <Post {...post} />
+       ))}
+-    </div>
++    </Content>
+   )
+ }
+
++const Content = styled.div`
++  margin: 32px 10%;
++  min-width: 800px;
++`
++
+ export default PostsTemplate
+```
 
 これでなんとなくスタイルがついたはずなので、再び /posts を表示してみるとこうなる。
 
-[![スクリーンショット 2020-12-01 2.18.49](http://tolarian-academy.net/wp-content/uploads/2020/12/スクリーンショット-2020-12-01-2.18.49.png)](http://tolarian-academy.net/wp-content/uploads/2020/12/スクリーンショット-2020-12-01-2.18.49.png)
+[![スクリーンショット 2020-12-01 2.18.49]({{ site.baseurl }}/assets/images/2020/12/スクリーンショット-2020-12-01-2.18.49.png)]({{ site.baseurl }}/assets/images/2020/12/スクリーンショット-2020-12-01-2.18.49.png)
 
 なんとなーくそれっぽくなってきた。
 

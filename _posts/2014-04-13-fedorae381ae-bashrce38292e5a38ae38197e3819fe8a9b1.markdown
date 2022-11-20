@@ -1,19 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-04-13 10:57:52+00:00
 layout: post
-link: http://tolarian-academy.net/fedora%e3%81%ae-bashrc%e3%82%92%e5%a3%8a%e3%81%97%e3%81%9f%e8%a9%b1/
-permalink: /fedora%e3%81%ae-bashrc%e3%82%92%e5%a3%8a%e3%81%97%e3%81%9f%e8%a9%b1
 title: Fedoraの.bashrcを壊した話
-wordpress_id: 108
-categories:
-- Fedora
-- Linux
-- プログラミング
-tags:
-- Fedora
-- Linux
+excerpt_separator: <!--more-->
 ---
 
 Fedoraというか、Redhat系のお話
@@ -37,6 +27,8 @@ Fedoraというか、Redhat系のお話
 って感じ。
 一番悩んだのは、.bashrcで設定しているPATHとかAliasとかは反映されているので、どうも.bashrcのエラーって感じではなさそうということ。
 だが、新しいPCを買ったのは2月で、2月は地獄のように忙しい毎日を過ごし、3月も別の趣味に一ヶ月を投じてしまったので、ほとんど ターミナルを触ることなく、放置してしまった。
+
+<!--more-->
 
 今週に入り、やっとコードを書く時間を取り返したので、いろいろ調べたり人に聞いたりしてみて、解決策を探した。
 友人の言っていた、「OSのデフォルトの設定ファイルが読み込まれてないんじゃないの？」という意見が最も近い気がして、Linuxのbashrcファイルの扱いを調べていくと、次の情報にいきあたった。
@@ -66,11 +58,11 @@ Fedoraというか、Redhat系のお話
 
 というわけで、次の記述を.bashrcの中に書くことで解決した。
 
-    
-    if [ -f /etc/bashrc ]; then
-            . /etc/bashrc
-    fi
-
+```shell
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+```
 
 Githubの方にも[コミット済み](https://github.com/YasuhiroKinoshita/dot_files/commit/b2c07734aaf0075464634529382718f2f0fe3c2d)。
 

@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-04 16:29:42+00:00
 layout: post
-link: http://tolarian-academy.net/mobb-helpers-register/
-permalink: /mobb-helpers-register
 title: Mobbの機能拡張を実現するhelpersとregister
-wordpress_id: 567
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 この記事は Mobb/Repp Advent Calendar の五日目です
@@ -25,36 +20,36 @@ categories:
 
 helpersメソッドは、トップレベルモード(require 'mobb'をしてそのままロジックを書き始めるケース）では暗黙的に作成されるMobbのアプリケーションクラスを、モジュラーモード(require 'mobb/base' して自分でクラスを定義するケース）ではhelpersが呼び出されたクラスをそれぞれコンテキストとして、渡されたブロックをclass_evalで実行します。ブロックではなくモジュールを渡した場合は、そのモジュールがincludeされます。
 
-    
-    require 'mobb'
-    
+```ruby
+require 'mobb'
+
+def hoge
+  'hoge'
+end
+
+on 'hello' do
+  hoge
+end
+```
+
+
+```ruby
+require 'mobb/base'
+
+class Bot < Mobb::Base
+  helpers do
     def hoge
       'hoge'
     end
-    
-    on 'hello' do
-      hoge
-    end
+  end
 
+  on 'hello' do
+    hoge
+  end
+end
 
-
-    
-    require 'mobb/base'
-    
-    class Bot < Mobb::Base
-      helpers do
-        def hoge
-          'hoge'
-        end
-      end
-    
-      on 'hello' do
-        hoge
-      end
-    end
-    
-    Bot.run!
-
+Bot.run!
+```
 
 モジュラーモードでは、そもそもhelpersの中で定義しようがクラスの中で定義しようが、クラスのインスタンスメソッドとして定義されるのであまり違いはありません。ですが、トップレベルモードの場合、Rubyのmainクラスで定義したメソッドはObjectのプライベートメソッドとして定義されるので、いろいろなものを汚染しかねません。そのため、暗黙的に作られるMobbアプリケーションのクラスに、helpersを使って直接定義を行います。
 
@@ -64,6 +59,7 @@ helpersメソッドは、トップレベルモード(require 'mobb'をしてそ�
 
 helpersメソッドの中身は、Mobb::Baseを継承したアプリケーションを拡張しています。
 
+<!--more-->
 
 ### register
 
@@ -74,72 +70,72 @@ includeとextendの違いはいくつかありますが、その一つにinclude
 
 たとえば、次のコードは実際にhelloを受け取ったときに失敗します。
 
-    
-    require 'mobb/base'
-    
-    class Bot < Mobb::Base
-     extends do
-        def hoge
-          'hoge'
-        end
-      end
-    
-      on 'hello' do
-        hoge # これは失敗する
-      end
-    end
-    
-    Bot.run!
+```ruby
+require 'mobb/base'
 
+class Bot < Mobb::Base
+ extends do
+    def hoge
+      'hoge'
+    end
+  end
+
+  on 'hello' do
+    hoge # これは失敗する
+  end
+end
+
+Bot.run!
+```
 
 なぜならば、helloのブロックが実行されるのは、Botインスタンスのコンテキストですが、registerメソッドが作成するのはBotのクラスメソッドだからです。インスタンスからは、クラスメソッドを参照することは通常できません。正しく動かす場合には、settingsを使ってアプリケーションクラスに対するアクセスが必要です。
 
-    
-    require 'mobb/base'
-    
-    class Bot < Mobb::Base
-      register do
-        def hoge
-          'hoge'
-        end
-      end
-    
-      on 'hello' do
-        settings.hoge # これは成功する
-      end
-    end
-    
-    Bot.run!
+```ruby
+require 'mobb/base'
 
+class Bot < Mobb::Base
+  register do
+    def hoge
+      'hoge'
+    end
+  end
+
+  on 'hello' do
+    settings.hoge # これは成功する
+  end
+end
+
+Bot.run!
+```
 
 また、helpersと大きく違うのは、registerはextendを実行したあとのフックを持っています。
 
-    
-    require 'mobb/base'
-    
-    class Bot < Mobb::Base
-      register do
-        def self.registered(klass)
-          puts "extended to #{klass}"
-        end
-    
-        def hoge
-          'hoge'
-        end
-      end
-    
-      on 'hello' do
-        settings.hoge
-      end
-    end
-    
-    Bot.run!
-    
-    # 実行すると、次の出力が得られる
-    # ruby app.rb
-    # extended to Bot
-    # == Mobb (v0.4.0) is in da house with Shell. Make some noise!
+```ruby
+require 'mobb/base'
 
+class Bot < Mobb::Base
+  register do
+    def self.registered(klass)
+      puts "extended to #{klass}"
+    end
+
+    def hoge
+      'hoge'
+    end
+  end
+
+  on 'hello' do
+    settings.hoge
+  end
+end
+
+Bot.run!
+
+# 実行すると、次の出力が得られる
+# ruby app.rb
+# extended to Bot
+# == Mobb (v0.4.0) is in da house with Shell. Make some noise!
+```
 
 registerを使用すると、Botクラスの各メソッドにアクセスが可能です。つまり、Mobb::Baseクラスを直接機能拡張することが可能なのです。
 
@@ -149,50 +145,50 @@ registerを使用すると、Botクラスの各メソッドにアクセスが可
 
 さて、helpersとextendsですが、面白いことにこの2つのメソッドはそれぞれ互いを互いの中で呼ぶことが出来ます。例えば、このような使い方です。
 
-    
-    require 'mobb/base'
-    
-    class Bot < Mobb::Base
-      register do
-        def self.registered(klass)
-          klass.helpers do
-            def hoge
-              'hoge'
-            end
-          end
+```ruby
+require 'mobb/base'
+
+class Bot < Mobb::Base
+  register do
+    def self.registered(klass)
+      klass.helpers do
+        def hoge
+          'hoge'
         end
-    
-      end
-    
-      on 'hello' do
-        hoge
       end
     end
-    
-    Bot.run!
 
+  end
+
+  on 'hello' do
+    hoge
+  end
+end
+
+Bot.run!
+```
 
 registerの中からhelpersを使うには、registeredの引数に渡されたアプリケーションクラスを経由して行います。
 
-    
-    require 'mobb/base'
-    
-    class Bot < Mobb::Base
-      helpers do
-        register do
-          def hoge
-            'hoge'
-          end
-        end
-      end
-    
-      on 'hello' do
-        settings.hoge
+```ruby
+require 'mobb/base'
+
+class Bot < Mobb::Base
+  helpers do
+    register do
+      def hoge
+        'hoge'
       end
     end
-    
-    Bot.run!
+  end
 
+  on 'hello' do
+    settings.hoge
+  end
+end
+
+Bot.run!
+```
 
 helpersの中からregisterを使うのは、わかりやすいですね。コンテキストが特に変わっていないからです。
 

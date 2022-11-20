@@ -1,17 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-07-30 04:41:04+00:00
 layout: post
-link: http://tolarian-academy.net/option%e5%9e%8b%e3%81%aemap%e3%81%a8flatmap%e3%81%8c%e3%82%88%e3%81%86%e3%82%84%e3%81%8f%e3%82%8f%e3%81%8b%e3%81%a3%e3%81%9f%ef%bc%88scala%e3%81%ae%e8%a9%b1%ef%bc%89/
-permalink: /option%e5%9e%8b%e3%81%aemap%e3%81%a8flatmap%e3%81%8c%e3%82%88%e3%81%86%e3%82%84%e3%81%8f%e3%82%8f%e3%81%8b%e3%81%a3%e3%81%9f%ef%bc%88scala%e3%81%ae%e8%a9%b1%ef%bc%89
 title: Option型のmapとflatMapがようやくわかった（Scalaの話）
-wordpress_id: 134
-categories:
-- Scala
-- プログラミング
-tags:
-- Scala
+excerpt_separator: <!--more-->
 ---
 
 Scalaを始めて1ヶ月と少し。Option型のmapとflatMapを使う場面が現れ、一体こいつが何なのかを理解するのに時間がかかった。
@@ -20,33 +12,32 @@ mapは、A => B の関数を引数に取る。Option[A]の中身を取り出し�
 
 内側でやっていることは
 
-    
-    @inline filan def map(f: A => B): Option[B] = 
-        if(isEmpty) None else Some(f(this.get))
-
+```scala
+@inline filan def map(f: A => B): Option[B] = 
+    if(isEmpty) None else Some(f(this.get))
+```
 
 で、一番頭を悩ませたのがflatMapで、一体こいつは何のために居るのかで悩んだ。
 
 flatMapの定義はこんなかんじ
 
-    
-    @inline final def flatMap[B](f: A => Option[B]): Option[B] =
-        if(isEmpty) None else f(this.get)
-
+```scala
+@inline final def flatMap[B](f: A => Option[B]): Option[B] =
+    if(isEmpty) None else f(this.get)
+```
+<!--more-->
 
 悩んだ結果、わかったのは、flatMapはmapを更に多重に呼び出すために居るらしいということ。
 
 [参考にしたページ](http://xerial.org/scala-cookbook/recipes/2012/08/15/option/)に似た例を使うと
 
-    
-    def login(name :Option[String], password[Option]): Boolean =
-        name.flatMap(u => pwssword.map( p => database.isValid(u, p) ) ).getOrElse(false)
-
+```scala
+def login(name :Option[String], password[Option]): Boolean =
+    name.flatMap(u => pwssword.map( p => database.isValid(u, p) ) ).getOrElse(false)
+```
 
 は、呼び出しを見ると、もしpがNoneだった場合に、password.mapの結果はNoneになる。だが、mapは A=>Bであって、A=>Noneを認めていない。
 
 だが、flatMapはA=>Option[B]を引数に取り、かつNoneはOptionのサブクラスなので、A=>Noneとなってもコンパイルエラーを起こさない。
 
 つまり、flatMapはmapを連続で使うときのためのもの、と認識することにした。関数型脳の道は遠い。
-
-

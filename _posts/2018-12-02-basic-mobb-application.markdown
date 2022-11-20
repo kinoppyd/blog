@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2018-12-02 15:23:45+00:00
 layout: post
-link: http://tolarian-academy.net/basic-mobb-application/
-permalink: /basic-mobb-application
 title: Mobbの基本的な書き方
-wordpress_id: 560
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 このエントリは、[Mobb/Repp Advent Calendar](https://qiita.com/advent-calendar/2018/mobb-repp) の三日目です
@@ -26,32 +21,33 @@ Mobb/Reppがなんなのかは昨日までのエントリで書いたので、�
 
 
 
-    
-    receive 'テクテクテクテク' do
-      # テクテクテクテク という発言があったらこのブロックに入る
-    end
-    
-    on 'ポッポポッポハトポッポ' do
-      # on は receive のエイリアス
-    end
+```ruby
+receive 'テクテクテクテク' do
+  # テクテクテクテク という発言があったらこのブロックに入る
+end
 
+on 'ポッポポッポハトポッポ' do
+  # on は receive のエイリアス
+end
+```
 
+<!--more-->
 
 
 ### 正規表現とのマッチ
 
 
 
-    
-    on /^ほげほげ/ do
-      # ほげほげで始まる行の発言があったらこのブロックに入る
-    end
-    
-    on /(\w+) is 何/ do |something|
-      # ほげ is 何 のような発言があったらこのブロックに入る
-      # パターンマッチの結果は、ブロック引数で受け取れる
-    end
+```ruby
+on /^ほげほげ/ do
+  # ほげほげで始まる行の発言があったらこのブロックに入る
+end
 
+on /(\w+) is 何/ do |something|
+  # ほげ is 何 のような発言があったらこのブロックに入る
+  # パターンマッチの結果は、ブロック引数で受け取れる
+end
+```
 
 
 
@@ -59,21 +55,21 @@ Mobb/Reppがなんなのかは昨日までのエントリで書いたので、�
 
 
 
-    
-    cron '0 0 * * * * ' do
-      # cronのシンタックスをパースして、指定された時間にこのブロックに入る
-      # 上の例では、毎日0時にこのブロックに入る
-    end
-    
-    every '0 0 1 * * *' do
-      # every は cron のエイリアス
-    end
-    
-    every 1.day, at: '12:00' do
-      # Whenever(https://github.com/javan/whenever) の文法も使用できる
-      # 上の例では、毎日12：00にこのブロックに入る
-    end
+```ruby
+cron '0 0 * * * * ' do
+  # cronのシンタックスをパースして、指定された時間にこのブロックに入る
+  # 上の例では、毎日0時にこのブロックに入る
+end
 
+every '0 0 1 * * *' do
+  # every は cron のエイリアス
+end
+
+every 1.day, at: '12:00' do
+  # Whenever(https://github.com/javan/whenever) の文法も使用できる
+  # 上の例では、毎日12：00にこのブロックに入る
+end
+```
 
 
 
@@ -81,16 +77,16 @@ Mobb/Reppがなんなのかは昨日までのエントリで書いたので、�
 
 
 
-    
-    require 'mobb/base'
-    
-    class Bot < Mobb::Base
-      # ignore_botフィルタは、次のバージョンから廃止され、デフォルトとなる
-      on /Yo/, ignore_bot: true do |name|
-        'Yo'
-      end
-    end
+```ruby
+require 'mobb/base'
 
+class Bot < Mobb::Base
+  # ignore_botフィルタは、次のバージョンから廃止され、デフォルトとなる
+  on /Yo/, ignore_bot: true do |name|
+    'Yo'
+  end
+end
+```
 
 
 
@@ -98,23 +94,23 @@ Mobb/Reppがなんなのかは昨日までのエントリで書いたので、�
 
 
 
-    
-    # モジュラースタイルでは、ヘルパーメソッドを定義することで各ブロック内で独自のメソッドを呼び出せる
-    
-    require 'mobb/base'
-    
-    class Bot < Mobb::Base
-      helpers do
-        def hello(name)
-          "hello #{name}"
-        end
-      end
-    
-      on /My name is (\w+)/ do |name|
-        hello(name)
-      end
-    end
+```ruby
+# モジュラースタイルでは、ヘルパーメソッドを定義することで各ブロック内で独自のメソッドを呼び出せる
 
+require 'mobb/base'
+
+class Bot < Mobb::Base
+  helpers do
+    def hello(name)
+      "hello #{name}"
+    end
+  end
+
+  on /My name is (\w+)/ do |name|
+    hello(name)
+  end
+end
+```
 
 
 
@@ -122,20 +118,20 @@ Mobb/Reppがなんなのかは昨日までのエントリで書いたので、�
 
 
 
-    
-    on /Yo/, reply_to_me: true do
-      # 自身へのリプライメッセージかつ、/Yo/の正規表現にマッチするときにこのブロックにはいる
-      # 自身の名前は、`set :name` で設定する
-    end
-    
-    # 独自のフィルタは、このように定義する
-    set :end_with do |value|
-      condition do
-        # ここでは@envで飛んできた発言にアクセスしているが、次のバージョンからは非推奨とされるので注意
-        @env.body.end_with?(value)
-      end
-    end
+```ruby
+on /Yo/, reply_to_me: true do
+  # 自身へのリプライメッセージかつ、/Yo/の正規表現にマッチするときにこのブロックにはいる
+  # 自身の名前は、`set :name` で設定する
+end
 
+# 独自のフィルタは、このように定義する
+set :end_with do |value|
+  condition do
+    # ここでは@envで飛んできた発言にアクセスしているが、次のバージョンからは非推奨とされるので注意
+    @env.body.end_with?(value)
+  end
+end
+```
 
 
 
@@ -143,10 +139,10 @@ Mobb/Reppがなんなのかは昨日までのエントリで書いたので、�
 
 
 
-    
-    set :name, 'smart bot'
-    set :environment, :production
-
+```ruby
+set :name, 'smart bot'
+set :environment, :production
+```
 
 
 

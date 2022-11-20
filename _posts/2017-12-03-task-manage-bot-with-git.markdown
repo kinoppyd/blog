@@ -1,16 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2017-12-03 15:00:10+00:00
 layout: post
-link: http://tolarian-academy.net/task-manage-bot-with-git/
-permalink: /task-manage-bot-with-git
 title: Gitをバックエンドにしたタスク管理bot
-wordpress_id: 483
-categories:
-- Ruby
-- Slack
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 この記事は、[ドワンゴ Advent Calendar 2017](https://qiita.com/advent-calendar/2017/dwango) の4日目の記事です。
@@ -29,6 +22,7 @@ categories:
 
 botを作ることの理由を問われても、まあなんとなくとしか言いようが無いですが、Slack上のbotだったらまあ大体みんな見てるだろうという程度の理由です。
 
+<!--more-->
 
 ## 簡単なタスク管理システムってなんだろう
 
@@ -99,12 +93,12 @@ Gitの世界には、通常開発者が利用する add や checkout や push �
 
 例えば、Gitのワークスペースにあるファイル「something.txt」を追加して、内容を編集しコミットすることを考えてください。通常の我々の操作では、次のようなことを行います。
 
-    
-    $ touch something.txt
-    $ vim something.txt # edit file
-    $ git add something.txt
-    $ git commit -m 'add something file'
-
+```shell-session
+$ touch something.txt
+$ vim something.txt # edit file
+$ git add something.txt
+$ git commit -m 'add something file'
+```
 
 ファイルを編集し、git add コマンドでファイルをステージし、git commit コマンドで新しいコミットを作成します。それでは、その時にGitの裏側の世界では何が起こっているかを見てみましょう。
 
@@ -146,11 +140,11 @@ blobオブジェクトは、あるファイルのある時点での完全な内�
 
 ツリーオブジェクトとは、Linuxのディレクトリ構成に似た情報が書かれたファイルです。参照ツリーの内容の例として、次のようなものが挙げられます。
 
-    
-    100644 blob a906cb2a4a904a152e80877d4088654daad0c859      README
-    100644 blob 8f94139338f9404f26296befa88755fc2598c289      Rakefile
-    040000 tree 99f1a6d12cb4b6f19c8655fca46c3ecf317074e0      lib
-
+```
+100644 blob a906cb2a4a904a152e80877d4088654daad0c859      README
+100644 blob 8f94139338f9404f26296befa88755fc2598c289      Rakefile
+040000 tree 99f1a6d12cb4b6f19c8655fca46c3ecf317074e0      lib
+```
 
 各行の最初のブロックがファイルのアクセス権限、次のブロックがオブジェクトのタイプ、その次のブロックがアクセスすべきオブジェクトのSHA1値で、最後のブロックがファイル名です。これは、Linuxのシェルで ls -la コマンドを打った時の情報によく似ています。blobをファイル、treeをディレクトリと置き換えれば、ほぼおなじ情報が得られます。これらの各行がファイルの情報と参照先を表しています。
 
@@ -196,61 +190,61 @@ Gitの裏側の世界を理解すれば、libgit2を使ってgitリポジトリ�
 
 Ruggedを使ってgitリポジトリするには、次のようにします。
 
-    
-    require 'rugged'
-    
-    Rugged::Repository.init_at("PATH_TO_REPOSITORY") # git init されていない状態では初期化が必要
-    repo = Rugged::Repository.new("PATH_TO_REPOSITORY")
+```ruby
+require 'rugged'
 
+Rugged::Repository.init_at("PATH_TO_REPOSITORY") # git init されていない状態では初期化が必要
+repo = Rugged::Repository.new("PATH_TO_REPOSITORY")
+```
 
 これで、リポジトリオブジェクトが作成できます。先程まで説明していたGitの内容アドレスファイルシステムの挙動を実際に見てみましょう。
 
-    
-    require 'rugged'
-    
-    # カレントディレクトリをgitリポジトリとして扱う
-    repo = Rugged::Repository.new(".")
-    
-    ＃ Gitのblobオブジェクトを作成し、object_id(SHA1値）を取得する
-    oid = repo.write("Content of blob file", :blob)
-    ＃ => "2d339c7cd8ba8f8a327e541ed03970c9d1fa9821"
-    
-    # object_idで、Gitのファイルシステムに保存した内容を参照する
-    repo.exists?("2d339c7cd8ba8f8a327e541ed03970c9d1fa9821")
-    # => true
-    obj = repo.read("2d339c7cd8ba8f8a327e541ed03970c9d1fa9821")
-    # => #<Rugged::OdbObject:0x007fc892ae2c68>
-    obj.data
-    # => "Content of blob file"
+```ruby
+require 'rugged'
 
+# カレントディレクトリをgitリポジトリとして扱う
+repo = Rugged::Repository.new(".")
+
+＃ Gitのblobオブジェクトを作成し、object_id(SHA1値）を取得する
+oid = repo.write("Content of blob file", :blob)
+＃ => "2d339c7cd8ba8f8a327e541ed03970c9d1fa9821"
+
+# object_idで、Gitのファイルシステムに保存した内容を参照する
+repo.exists?("2d339c7cd8ba8f8a327e541ed03970c9d1fa9821")
+# => true
+obj = repo.read("2d339c7cd8ba8f8a327e541ed03970c9d1fa9821")
+# => #<Rugged::OdbObject:0x007fc892ae2c68>
+obj.data
+# => "Content of blob file"
+```
 
 writeメソッドでリポジトリにblobオブジェクトを書き込み、exists?メソッドでGitのオブジェクトの中に作成したオブジェクトが存在するか確認しています。そしてその後、readメソッドでオブジェクトを読み込み、そのオブジェクトのdataメソッドでblobの中身を読み取りました。
 
 このように、Gitリポジトリをlibgit2で操作すると、まるでKVSのようにblobファイルを保存できるデータベースとして扱えます。同じように、コミットも見てみましょう。
 
-    
-    # 上のコードの続きです
-    
-    # indexとはステージングのことであり、ステージングの参照ツリーに先程のblobを追加する
-    # 参照ツリーに追加する時に、ファイル名とファイルモードを指定
-    repo.index.add(path: "test.txt", oid: oid, mode: 0100644)
-    # => nil
-    
-    # ステージングの参照ツリーをオブジェクトとして書き出し、object_idを計算する
-    tree = repo.index.write_tree(repo)
-    => "7464bdfe6184a4c66f7ae00554d0762cf5822bbd"
-    
-    # コミットを作成
-    Rugged::Commit.create(
-      repo, 
-      tree: tree, # 作成した参照ツリーのオブジェクトID
-      author: { email: "admin@example.com", name: "kinpppyd", time: Time.now },
-      committer: { email: "admin@example.com", name: "kinpppyd", time: Time.now },
-      message: "initial",
-      parents: [] # 一番最初のコミットなので、parentは誰もいない
-    )
-    => "d98b01bb7e2a47f473db567ec077df5d16aacf89"
+```ruby
+# 上のコードの続きです
 
+# indexとはステージングのことであり、ステージングの参照ツリーに先程のblobを追加する
+# 参照ツリーに追加する時に、ファイル名とファイルモードを指定
+repo.index.add(path: "test.txt", oid: oid, mode: 0100644)
+# => nil
+
+# ステージングの参照ツリーをオブジェクトとして書き出し、object_idを計算する
+tree = repo.index.write_tree(repo)
+=> "7464bdfe6184a4c66f7ae00554d0762cf5822bbd"
+
+# コミットを作成
+Rugged::Commit.create(
+  repo, 
+  tree: tree, # 作成した参照ツリーのオブジェクトID
+  author: { email: "admin@example.com", name: "kinpppyd", time: Time.now },
+  committer: { email: "admin@example.com", name: "kinpppyd", time: Time.now },
+  message: "initial",
+  parents: [] # 一番最初のコミットなので、parentは誰もいない
+)
+=> "d98b01bb7e2a47f473db567ec077df5d16aacf89"
+```
 
 先ほど作成したblobをステージング（index）の参照ツリーに追加し、その状態をtreeオブジェクトとしてGitのに記録します。そして、その時に発行されたSHA1を利用して、コミットオブジェクトを作成しました。当然、コミットもオブジェクトで、SHA1のオブジェクトIDが発行されます。
 
@@ -262,66 +256,66 @@ writeメソッドでリポジトリにblobオブジェクトを書き込み、ex
 
 全体のコードは長いので、[GitQueue](https://rubygems.org/gems/git_queue)というGemを作りました。次のコードは、簡単な使い方のスニペットです。
 
-    
-    require 'git_queue'
-    
-    # リポジトリの初期化、すでにあれば必要ない
-    Rugged::Repository.init_at("/tmp/tasks")
-    
-    task = GitQueue::Queue.new("/tmp/tasks")
-    
-    # 明日の予定を作る
-    task << "朝起きる"
-    task << "シャワーを浴びる"
-    task << "Advent Calendarを書く"
-    task << "コーヒーを淹れる"
-    
-    # 予定の一覧を見る
-    puts "task list =================="
-    puts task.queue.join("\n")
-    puts "task list =================="
-    
-    # 起きた
-    task.pop
-    # シャワーを浴びた
-    task.pop
-    
-    # Advent Calendarがなかなか書き上がらないので、先にコーヒーを淹れる
-    task.up(1)
-    
-    # コーヒーがはいった
-    task.pop
-    
-    # Advent Calendarが書き終わった
-    task.pop
-    
-    # 操作履歴を参照する
-    puts "task history =================="
-    puts task.history.join("\n")
-    puts "task history =================="
+```ruby
+require 'git_queue'
 
+# リポジトリの初期化、すでにあれば必要ない
+Rugged::Repository.init_at("/tmp/tasks")
+
+task = GitQueue::Queue.new("/tmp/tasks")
+
+# 明日の予定を作る
+task << "朝起きる"
+task << "シャワーを浴びる"
+task << "Advent Calendarを書く"
+task << "コーヒーを淹れる"
+
+# 予定の一覧を見る
+puts "task list =================="
+puts task.queue.join("\n")
+puts "task list =================="
+
+# 起きた
+task.pop
+# シャワーを浴びた
+task.pop
+
+# Advent Calendarがなかなか書き上がらないので、先にコーヒーを淹れる
+task.up(1)
+
+# コーヒーがはいった
+task.pop
+
+# Advent Calendarが書き終わった
+task.pop
+
+# 操作履歴を参照する
+puts "task history =================="
+puts task.history.join("\n")
+puts "task history =================="
+```
 
 出力は次の通り
 
-    
-    task list ==================
-    朝起きる
-    シャワーを浴びる
-    Advent Calendarを書く
-    コーヒーを淹れる
-    task list ==================
-    task history ==================
-    Pop item Advent Calendarを書く
-    Pop item コーヒーを淹れる
-    Switch コーヒーを淹れる with Advent Calendarを書く
-    Pop item シャワーを浴びる
-    Pop item 朝起きる
-    Add item コーヒーを淹れる
-    Add item Advent Calendarを書く
-    Add item シャワーを浴びる
-    Add item 朝起きる
-    task history ==================
-
+```
+task list ==================
+朝起きる
+シャワーを浴びる
+Advent Calendarを書く
+コーヒーを淹れる
+task list ==================
+task history ==================
+Pop item Advent Calendarを書く
+Pop item コーヒーを淹れる
+Switch コーヒーを淹れる with Advent Calendarを書く
+Pop item シャワーを浴びる
+Pop item 朝起きる
+Add item コーヒーを淹れる
+Add item Advent Calendarを書く
+Add item シャワーを浴びる
+Add item 朝起きる
+task history ==================
+```
 
 Arrayのようなインターフェイスを持っていますが、Arrayとは違いFIFOの処理を邪魔するようなメソッドは生えていません。例外的にタスクの順序入れ替えは出来ますが、末尾挿入と先頭取り出し以外の方法でタスクを出し入れすることは出来ません。
 
@@ -333,87 +327,87 @@ Arrayのようなインターフェイスを持っていますが、Arrayとは�
 
 このエントリの目的はGitをバックエンドとした履歴記憶機能付きキューでタスク管理botを作ることなので、スニペット程度ですが簡単にbotを実装してみます。
 
-    
-    require "slack-ruby-client"
-    require "git_queue"
-    
-    Slack.configure do |config|
-      config.token = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-    end
-    Slack::RealTime::Client.config do |config|
-      config.websocket_ping = 42
-    end
-    
-    ADMINISTRATORS = [
-      "UXXXXXXXXXXXXXXXXX",
-    ]
-    
-    IGNORE_CHANNELS = [
-      "general",
-      "random",
-    ]
-    
-    @client = Slack::Web::Client.new
-    @rtm = Slack::RealTime::Client.new
-    
-    def users(refresh = false)
-      refresh ? @users = @client.users_list.members : @users ||= @client.users_list.members
-    end
-    
-    
-    @rtm.on :message do |data|
-      if ADMINISTRATORS.include?(data.user)
-        case data.text
-        when /^ユーザーを追加[ |　]+(.+)$/
-          target = users.find { |u| u.name == $1 }
-          if target
-            GitQueue::Storage.create("/tmp/#{target.id}")
-            @client.chat_postMessage(channel: data.channel, text: "#{$1} を追加したような気がするよ")
-          else
-            @client.chat_postMessage(channel: data.channel, text: "ちょっと誰かわからなかった")
-          end
-        end
-    
-        case data.text
-        when /^(.+)にタスクを追加[ |　]+(.+)$/
-          begin
-            target = users.find { |u| u.name == $1 }
-            queue = GitQueue::Queue.new("/tmp/#{target.id}")
-            tasks = queue.push($2)
-            @client.chat_postMessage(channel: data.channel, text: "タスク #{tasks.last} を追加したよ")
-          rescue
-            @client.chat_postMessage(channel: data.channel, text: "ちょっと誰かわからなかった")
-          end
-    
-        when /^taskueue タスク(が)?終わったよ$/
-          begin
-            user = users.find { |u| u.id == data.user }
-            queue = GitQueue::Queue.new("/tmp/#{user.id}")
-            done = queue.pop
-            tasks = queue.queue
-            @client.chat_postMessage(channel: data.channel, text: "タスク #{done} が完了したよ、次のタスクは#{tasks.first}だよ")
-          rescue
-            @client.chat_postMessage(channel: data.channel, text: "あなた誰？")
-          end
-        when /^taskueue タスクの一覧/
-          begin
-            user = users.find { |u| u.id == data.user }
-            queue = GitQueue::Queue.new("/tmp/#{user.id}")
-            tasks = queue.queue
-            @client.chat_postMessage(channel: data.channel, text: "タスクの一覧だよ\n#{tasks.map { |task| "- #{task}" }.join("\n")}")
-          rescue
-            @client.chat_postMessage(channel: data.channel, text: "あなた誰？")
-          end
-        end
-      end
-    end
-    
-    loop do
-      begin
-        @rtm.start!
+```ruby
+require "slack-ruby-client"
+require "git_queue"
+
+Slack.configure do |config|
+  config.token = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+end
+Slack::RealTime::Client.config do |config|
+  config.websocket_ping = 42
+end
+
+ADMINISTRATORS = [
+  "UXXXXXXXXXXXXXXXXX",
+]
+
+IGNORE_CHANNELS = [
+  "general",
+  "random",
+]
+
+@client = Slack::Web::Client.new
+@rtm = Slack::RealTime::Client.new
+
+def users(refresh = false)
+  refresh ? @users = @client.users_list.members : @users ||= @client.users_list.members
+end
+
+
+@rtm.on :message do |data|
+  if ADMINISTRATORS.include?(data.user)
+    case data.text
+    when /^ユーザーを追加[ |　]+(.+)$/
+      target = users.find { |u| u.name == $1 }
+      if target
+        GitQueue::Storage.create("/tmp/#{target.id}")
+        @client.chat_postMessage(channel: data.channel, text: "#{$1} を追加したような気がするよ")
+      else
+        @client.chat_postMessage(channel: data.channel, text: "ちょっと誰かわからなかった")
       end
     end
 
+    case data.text
+    when /^(.+)にタスクを追加[ |　]+(.+)$/
+      begin
+        target = users.find { |u| u.name == $1 }
+        queue = GitQueue::Queue.new("/tmp/#{target.id}")
+        tasks = queue.push($2)
+        @client.chat_postMessage(channel: data.channel, text: "タスク #{tasks.last} を追加したよ")
+      rescue
+        @client.chat_postMessage(channel: data.channel, text: "ちょっと誰かわからなかった")
+      end
+
+    when /^taskueue タスク(が)?終わったよ$/
+      begin
+        user = users.find { |u| u.id == data.user }
+        queue = GitQueue::Queue.new("/tmp/#{user.id}")
+        done = queue.pop
+        tasks = queue.queue
+        @client.chat_postMessage(channel: data.channel, text: "タスク #{done} が完了したよ、次のタスクは#{tasks.first}だよ")
+      rescue
+        @client.chat_postMessage(channel: data.channel, text: "あなた誰？")
+      end
+    when /^taskueue タスクの一覧/
+      begin
+        user = users.find { |u| u.id == data.user }
+        queue = GitQueue::Queue.new("/tmp/#{user.id}")
+        tasks = queue.queue
+        @client.chat_postMessage(channel: data.channel, text: "タスクの一覧だよ\n#{tasks.map { |task| "- #{task}" }.join("\n")}")
+      rescue
+        @client.chat_postMessage(channel: data.channel, text: "あなた誰？")
+      end
+    end
+  end
+end
+
+loop do
+  begin
+    @rtm.start!
+  end
+end
+```
 
 色々と処理が雑ですが、スニペットなので許してください。
 
@@ -456,5 +450,3 @@ Arrayのようなインターフェイスを持っていますが、Arrayとは�
 
  	
   * botを作るのは楽しい
-
-

@@ -1,14 +1,8 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-09-22 13:08:49+00:00
 layout: post
-link: http://tolarian-academy.net/my-first-gem-wtfpl/
-permalink: /my-first-gem-wtfpl
 title: Gemを初めてRubyGemsにリリースしたよ
-wordpress_id: 296
-categories:
-- Ruby
 ---
 
 ## <del></del>作ったもの
@@ -29,11 +23,11 @@ categories:
 
 
 
-    
-    $ echo 'gem "wtfpl_init" >> Gemfile
-    $ bundle install
-    $ bundle exec wtfpl
-
+```shell-session
+$ echo 'gem "wtfpl_init" >> Gemfile
+$ bundle install
+$ bundle exec wtfpl
+```
 
 これで、wtfplコマンドを実行したディレクトリにLICENSE.mdファイルが作られて、中にはWTFPLのplain text が入っている。
 
@@ -50,9 +44,9 @@ RubyGemsのページが王道なのだろうけど、Bundlerが大部分を肩�
 
 
 
-    
-    $ curl -u YOUR_RUBYGEMS_USER https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials; chmod 0600 ~/.gem/credentials
-
+```shell-session
+$ curl -u YOUR_RUBYGEMS_USER https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials; chmod 0600 ~/.gem/credentials
+```
 
 このコマンドで、RubyGemsからGemのパブリッシュに必要なAPIキーを手に入れられる。もちろん、先にRubyGemsに登録しておく必要はあるので、サインアップを忘れずに。
 
@@ -64,11 +58,11 @@ curlでアクセスするときにユーザーネームを渡すので、Basic�
 
 BundlerのRakeタスクを使って、Gemをビルド＆パブリッシュする
 
-    
-    $ bundle exec rake spec
-    $ bundle exec rake build
-    $ bundle exec rake release
-
+```shell-session
+$ bundle exec rake spec
+$ bundle exec rake build
+$ bundle exec rake release
+```
 
 とりあえずテスト回して、ビルドして、リリース。rake releaseを実行すると、Githubに対象のタグを勝手に打ってくれるらしい。（Rakeタスクを呼んでないからどういう動作になっているのか分からないので、後日読もう）
 

@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2015-12-18 19:28:39+00:00
 layout: post
-link: http://tolarian-academy.net/slack-as-a-game-platform/
-permalink: /slack-as-a-game-platform
 title: ゲームプラットフォームとしてのSlack
-wordpress_id: 353
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 この記事は、[ Slack Advent Calendar](http://qiita.com/advent-calendar/2015/slack) の19日目です。
@@ -58,6 +53,8 @@ categories:
 まあなんというか、Slackはゲームプラットフォームなのに割とゲームを作る能力としては低いです。むしろ最近は、副産物としてのチャットツールの方を成長させようと躍起になり、ゲームプラットフォームとしての本分を忘れ去っているように見えます。
 
 
+<!--more-->
+
 ## Slack Game
 
 
@@ -75,33 +72,33 @@ Slack上でゲームを作ることを支援する、RubyGemです。
 
 とりあえず、手っ取り早く説明するために、デフォルトでデモとして入っているライフゲームを動かします。
 
-    
-    echo "source 'https://rubygems.org'\ngem'slack_game" >  Gemfile
-    bundle install --path tmp/bundle
-    export SLACK_TOKEN=your_slack_token
-    export CHANNEL=you_slack_channel
-    export LIFE_ALIVE=:black_large_square:
-    export DEFAULT_SPACER=:white_large_square:
-    echo "require 'slack_game'; SlackGame::Game::Lifegame.new(ENV['CHANNEL'], 20).main_loop" > test.rb
-    bundle exec ruby test.rb
-    
+```shell-session
+echo "source 'https://rubygems.org'\ngem'slack_game" >  Gemfile
+bundle install --path tmp/bundle
+export SLACK_TOKEN=your_slack_token
+export CHANNEL=you_slack_channel
+export LIFE_ALIVE=:black_large_square:
+export DEFAULT_SPACER=:white_large_square:
+echo "require 'slack_game'; SlackGame::Game::Lifegame.new(ENV['CHANNEL'], 20).main_loop" > test.rb
+bundle exec ruby test.rb
 
+```
 
-[![lifegame](http://tolarian-academy.net/wp-content/uploads/2015/12/lifegame.gif)](http://tolarian-academy.net/wp-content/uploads/2015/12/lifegame.gif)
+[![lifegame]({{ site.baseurl }}/assets/images/2015/12/lifegame.gif)]({{ site.baseurl }}/assets/images/2015/12/lifegame.gif)
 
 なんとなく、雰囲気はつかめてもらえたのでは無いでしょうか？
 
 次に、最も簡単なサンプルをGistに用意しました。SlackGameのgemの中に用意されている、Demoというゲームを解説するために、適当に作りました
 
-    
-    git clone https://gist.github.com/kinoppyd/00f50bb4eee7ad8c62ae game_example
-    cd game_example
-    export SLACK_TOKEN=your_slack_token
-    export DEFAULT_SPACER=:fog:
-    export CHANNEL=bot_test
-    bundle install --path tmp/bundle
-    bundle exec ruby run.rb
-
+```shell-session
+git clone https://gist.github.com/kinoppyd/00f50bb4eee7ad8c62ae game_example
+cd game_example
+export SLACK_TOKEN=your_slack_token
+export DEFAULT_SPACER=:fog:
+export CHANNEL=bot_test
+bundle install --path tmp/bundle
+bundle exec ruby run.rb
+```
 
 コード自体はこんな感じ
 

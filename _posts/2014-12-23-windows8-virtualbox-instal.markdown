@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-12-23 12:10:31+00:00
 layout: post
-link: http://tolarian-academy.net/windows8-virtualbox-instal/
-permalink: /windows8-virtualbox-instal
 title: Windows8のDSPを買って、VirtualBoxにインストールした
-wordpress_id: 213
-categories:
-- Windows
+excerpt_separator: <!--more-->
 ---
 
 ## Windowsが必要だった理由

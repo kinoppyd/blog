@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2016-12-18 16:26:59+00:00
 layout: post
-link: http://tolarian-academy.net/good-hid-i-bought-2016/
-permalink: /good-hid-i-bought-2016
 title: 今年買って良かった入力デバイス
-wordpress_id: 442
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 このエントリーは、「[ドワンゴ Advent Calendar 2016](http://qiita.com/advent-calendar/2016/dwango)」の19日目です
@@ -31,7 +26,7 @@ categories:
 
 なので、いい加減何の管理もできていない状態を解消したいと思い、とりあえず全部の蔵書のISBNを集めて、データベース化しようと思いました。少ない量であれば、スマホのバーコードリーダーでもいいのですが、スマホのリーダーアプリはカメラで読み取る性質上連続読み取りにあまり向いてないため、専用のリーダーを買いました
 
-
+<!--more-->
 
 [http://amzn.to/2gP78M6](http://amzn.to/2gP78M6)
 
@@ -43,49 +38,49 @@ USB接続できるバーコードリーダーは、基本的にどれもキー�
 
 RaspberryPiにWi-Fiドングルの接続をし、設定が終わっている前提で進めていきます。また、たぶんUSBからの給電不足何だと思いますが、リーダーから出る音が凄い変です。変ですが、一応動くので無視して進めます。
 
-[![img_2022](http://tolarian-academy.net/wp-content/uploads/2016/12/IMG_2022.jpg)](http://tolarian-academy.net/wp-content/uploads/2016/12/IMG_2022.jpg)
+[![img_2022]({{ site.baseurl }}/assets/images/2016/12/IMG_2022.jpg)]({{ site.baseurl }}/assets/images/2016/12/IMG_2022.jpg)
 
 RaspberryPiにバーコードリーダーを取り付けて読み取れるようにはなりましたが、なんか不便なので、適当なスクリプト書いてWi-FiでSIBNを飛ばすようにします。
 
-    
-    require 'uri'
-    
-    class Client
-      def initialize(uri)
-        @uri = uri
-      end
-    
-      def send(isbn)
-        # お好みの通信方法
-        `curl -X POST #{@uri}/isb/#{isbn}`
-      end
-    end 
-    
-    client = Client.new(URI.parse("http://192.168.0.19"))
-    
-    while line = STDIN.readline.chomp
-      exit if line == 'exit'
-      puts "SEND: #{line}"
-      Thread.new { client.send(line) }.run
-    end
-    
+```ruby
+require 'uri'
 
+class Client
+  def initialize(uri)
+    @uri = uri
+  end
+
+  def send(isbn)
+    # お好みの通信方法
+    `curl -X POST #{@uri}/isb/#{isbn}`
+  end
+end 
+
+client = Client.new(URI.parse("http://192.168.0.19"))
+
+while line = STDIN.readline.chomp
+  exit if line == 'exit'
+  puts "SEND: #{line}"
+  Thread.new { client.send(line) }.run
+end
+
+```
 
 標準入力から受け取ったISBNを、ひたすらCURLでローカルのどっかに飛ばすスクリプトです。流石にこのサンプルは簡略化しすぎているので、実際はもうちょっと真面目にClientクラスを実装したり、画面になんか表示したりするわけですが、そこは適宜読み替えてください。
 
 あとはRaspberryPi上でコレを起動しておけば、接続されたバーコードリーダーが読み取ったISBNを、ひたすらローカルのマシンに送りつけます。サーバー側は、超テキトウにこんな感じでしょうか。
 
-    
-    require 'sinatra'
-    
-    post '/isbn/:isbn' do
-      isbn = params['isbn']
-      # お好みの保存処理
-      do_something_to_register_isbn(isbn)
-      200
-    end
-    
+```ruby
+require 'sinatra'
 
+post '/isbn/:isbn' do
+  isbn = params['isbn']
+  # お好みの保存処理
+  do_something_to_register_isbn(isbn)
+  200
+end
+
+```
 
 これをどっかのマシンで起動しておけば、RaspberryPiからISBNが送られるたびに、お好みの do_something_to_register_isbn メソッドを使って、ActiveRecordなりなんなりでISBNをどこかに保存できます。実際はもうちょっと真面目にエラー処理とか書いてますが、ややこしいのでこんな感じで。
 
@@ -117,7 +112,7 @@ RaspberryPiにバーコードリーダーを取り付けて読み取れるよう
 
 また自分でも、あまりの値段の高さ（約三万ちょっと）に購入をためらっていた頃、 [ErgoDox users meet up](https://eventdots.jp/event/588645) という割と頭のおかしいイベントに出てきて、Ergodoxの魅力を握力王に熱く語ってもらいながら（実際は筋肉の話ばっかりだったけど）購入熱を高めていき、9月に会社の同僚と一緒に共同購入しました。その時の様子がこちらです。
 
-[![img_1909](http://tolarian-academy.net/wp-content/uploads/2016/12/IMG_1909.jpg)](http://tolarian-academy.net/wp-content/uploads/2016/12/IMG_1909.jpg)
+[![img_1909]({{ site.baseurl }}/assets/images/2016/12/IMG_1909.jpg)]({{ site.baseurl }}/assets/images/2016/12/IMG_1909.jpg)
 
 Ergodoxを買って使った感想は、これはもう最高です。素晴らしい部分を箇条書きにしてみました。
 

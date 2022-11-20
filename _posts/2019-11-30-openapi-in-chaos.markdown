@@ -1,14 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2019-11-30 18:10:09+00:00
 layout: post
-link: http://tolarian-academy.net/openapi-in-chaos/
-permalink: /openapi-in-chaos
 title: APIがカオスってたプロダクトでOpenAPI対応やってみた
-wordpress_id: 657
-categories:
-- 未分類
+excerpt_separator: <!--more-->
 ---
 
 このエントリは、 [SmartHR Advent Calendar 2019](https://qiita.com/advent-calendar/2019/smarthr) 1日目の記事です
@@ -23,7 +18,6 @@ categories:
 いまのプロダクトには途中参加なので、先人たちの名誉のために言っておきますが、そもそものAPIの設計がカオスっていたというわけではありません。グラフを描写するフロントライブラリのAPIの都合や、検索フィルタの条件が複雑すぎるために、エンティティの一部がカオスっていたというのが正しい表現です。とはいえ、それのおかげでAPIのレスポンスの全容がつかみにくく、またきちんとした型定義が無かったために、せっかくフロントはTypeScriptを使っているにも関わらず型の恩恵を受けられない箇所があったことは残念でした。他にも、現在のバックエンドはRailsを使っているのですが、ActiveRecordを使った実直な実装が果たしてこの先BIツールの要求に対して耐えられるのであろうかということも検討する段階にあり、もしバックのアーキテクチャを変えたときにフロントと不整合を起こさないためにも、APIの厳密な仕様を確定させることが必要だと感じていました。
 
 そのため、フロント側のAPIクライアントを型付きで自動生成したい、そしてバックエンドの変更でフロントを破壊したくない、という2つのモチベーションで、プロダクトにOpenAPIを入れることにしました。
-
 
 ## OpenAPI
 
@@ -41,6 +35,8 @@ Ruby製のプロダクトで（別にRubyに限った話ではなく、ほとん
 もう1つは、[swagger-grape](https://github.com/ruby-grape/grape-swagger)などを使い、実際のAPIの実装仕様そのものからOpenAPIの定義を作り出す方法です。この方法の優れた点は、OpenAPIの定義が絶対にAPIサーバーの実装と乖離しないことです。そのため、APIサーバーから自動で生成されるOpenAPIの定義から、更に自動で生成される各言語用のAPIクライアントは、常に間違いなく最新のAPIサーバーの仕様を満たしていると保証されている点です。
 
 この2つの方法には、それぞれ利点と欠点があり、そしてほぼお互いに真逆の特性を持っていると言えます。前者のメリットは、APIの定義は決してズレないということであり、後者のデメリットはAPIサーバーの実装によって定義はすぐに変わるということです。そして後者のメリットは、極力少ないコードで型情報付きのAPIのクライアントを自動生成できることで、前者のデメリットはAPIの定義の作成や変更に大きなコストがかかることです。
+
+<!--more-->
 
 この相反するメリットとデメリットに対して、今年はいろいろな人と意見交換をしましたが、概ね次のような話に集約しました。
 
@@ -149,24 +145,24 @@ OpenAPI定義ファイルを作り終わったら、そのファイルをCommitt
 
 具体的に言うと、新規リソースを作るときのPOSTのボティって、大抵の場合はその要素を取得するときのGETのサブセットになりますよね？　例えば、ユーザーリソースがid, name, email持つ場合、GETではその3つを持ってくるけど、POSTするときに必要なのってnameとemailだけですよよね？　その2つの要素の違いって、idがあるかどうかだけなんですが、エンティティ的には別になってしまいます。しかしそれは、二重管理では……？　となります。allOfは、そんなときにこういう表現を可能にします。
 
-    
-    components:
-      schema:
-        user
-          title: user
-          allOf:
-            - type: object
-               properties:
-                id:
-                  type: string
-            - $ref: ./#components/usersElement
-        userElemetnt:
-          title: userElement
-          type: object
-            properties:
-              name: string
-              email: string
-
+```yaml
+components:
+  schema:
+    user
+      title: user
+      allOf:
+        - type: object
+           properties:
+            id:
+              type: string
+        - $ref: ./#components/usersElement
+    userElemetnt:
+      title: userElement
+      type: object
+        properties:
+          name: string
+          email: string
+```
 
 
 
@@ -193,14 +189,14 @@ OpenAPI3からtypeのnullが消えてた、知らんかった
 
 仕様上 {} で良いと思ってた。そうじゃない、こんな感じに書かないと死ぬ
 
-    
-    anyOf:
-      - type: string
-         nullable: true
-      - type: number
-      - type: integer
-      - type: boolean
-
+```yaml
+anyOf:
+  - type: string
+     nullable: true
+  - type: number
+  - type: integer
+  - type: boolean
+```
 
 あまりに妙なので、これに関してはまだ理解してない可能性がある
 

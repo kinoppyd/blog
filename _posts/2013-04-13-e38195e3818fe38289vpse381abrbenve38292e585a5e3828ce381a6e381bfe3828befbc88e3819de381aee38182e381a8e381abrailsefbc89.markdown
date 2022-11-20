@@ -1,20 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2013-04-13 09:22:37+00:00
 layout: post
-link: http://tolarian-academy.net/%e3%81%95%e3%81%8f%e3%82%89vps%e3%81%abrbenv%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%82%8b%ef%bc%88%e3%81%9d%e3%81%ae%e3%81%82%e3%81%a8%e3%81%abrails%ef%bc%89/
-permalink: /'%e3%81%95%e3%81%8f%e3%82%89vps%e3%81%abrbenv%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%82%8b%ef%bc%88%e3%81%9d%e3%81%ae%e3%81%82%e3%81%a8%e3%81%abrails%ef%bc%89'
 title: さくらVPSにrbenvを入れてみる（そのあとにRails）
-wordpress_id: 10
-categories:
-- Rails
-- Ruby
-- プログラミング
-tags:
-- Rails
-- Ruby
-- プログラミング
+excerpt_separator: <!--more-->
 ---
 
 [Ruby on Rails の勉強](http://www.amazon.co.jp/gp/product/4274068668/)を始めたので、デフォのRubyが1.8系のさくらVPSにrbenvを入れて、1.9系で開発が出来るようにする必要が。めんどくさい。

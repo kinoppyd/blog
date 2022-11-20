@@ -1,16 +1,9 @@
 ---
 author: kinoppyd
-comments: true
 date: 2014-12-14 16:03:09+00:00
 layout: post
-link: http://tolarian-academy.net/christmas-anime-2014/
-permalink: /christmas-anime-2014
 title: クリスマスに安心して一日中アニメを見るために録画鯖を作る技術
-wordpress_id: 197
-categories:
-- Debian
-- アニメ
-- プログラミング
+excerpt_separator: <!--more-->
 ---
 
 このエントリは、[ドワンゴ Advent Calendar 2014 - Qiita](http://qiita.com/advent-calendar/2014/dwango) の15日目のエントリです。昨日は[kokuyou](http://blog.kokuyouwind.com/archives/808)さん、明日はsaitenさんです。
@@ -19,7 +12,8 @@ categories:
 ### 要約
 
 
-Ansibleを使って、Chinachuがインストールされた録画サーバーを自動でセットアップするPlaybook作りました。<!-- more -->
+Ansibleを使って、Chinachuがインストールされた録画サーバーを自動でセットアップするPlaybook作りました。
+
 
 
 ### 安心してアニメが観たい。
@@ -29,6 +23,7 @@ Ansibleを使って、Chinachuがインストールされた録画サーバー�
 
 しかし世の中には、宗教的な理由や金銭的な理由で、テレビやレコーダーを買うことを拒む人が居ます。私もその1人です。このエントリでは、訳があってテレビやレコーダーを買えないけれど、クリスマスはどうせ暇だから一日中アニメを観たいという人のために、クリスマスまで安心してアニメを録画し続けることが出来る、録画サーバーの作り方を解説します。
 
+<!--more-->
 
 ### 安心とは
 
@@ -150,63 +145,63 @@ Chinachuのロールが前後に分解されているのは、ユーザーの切
 
 _roles/chinachu/vars/main.yml_
 
-    
-    ---
-    chinachu_dir: "/home/chinachu" # chinachuを実行するユーザーのホームディレクトリを設定します。基本的に、勝手に作られるのでこのまま
-    chinachu_root_dir_name: "chinachu" # ChinachuをCloneするディレクトリ名
-    chinachu_symlink: "chinachu_cmd" # Chinachuの実行ファイルへのシンボリックリンク名
-    chinachu_video_dir: "video" # 録画したファイルを保存する場所のディレクトリ名
-    
-    chinachu_user: "chinachu" # WebUIを使う際の、ログインユーザー名
-    chinachu_password: "chinachu" # WebUIを使う際の、パスワード
-    
-    # Twitterの通知を使用する場合に使うトークン。この行を削除すると、Twitterの設定は作成されません
-    ceinachu_twitter_consumer_key: "your_consumer_key"
-    chinachu_twitter_consumer_secret: "your_consumer_secret"
-    chinachu_twitter_access_token: "your_access_token"
-    chinachu_twitter_access_token_secret: "your_access_token_secret"
-    
-    # 録画対象の物理チャンネルIDのリスト
-    chinachu_channel_list:
-      - 18
-      - 20
-      - 21
-      - 22
-      - 23
-      - 24
-      - 25
-      - 26
-      - 27
-      - 28
-      - 30
+```yaml
+---
+chinachu_dir: "/home/chinachu" # chinachuを実行するユーザーのホームディレクトリを設定します。基本的に、勝手に作られるのでこのまま
+chinachu_root_dir_name: "chinachu" # ChinachuをCloneするディレクトリ名
+chinachu_symlink: "chinachu_cmd" # Chinachuの実行ファイルへのシンボリックリンク名
+chinachu_video_dir: "video" # 録画したファイルを保存する場所のディレクトリ名
 
+chinachu_user: "chinachu" # WebUIを使う際の、ログインユーザー名
+chinachu_password: "chinachu" # WebUIを使う際の、パスワード
+
+# Twitterの通知を使用する場合に使うトークン。この行を削除すると、Twitterの設定は作成されません
+ceinachu_twitter_consumer_key: "your_consumer_key"
+chinachu_twitter_consumer_secret: "your_consumer_secret"
+chinachu_twitter_access_token: "your_access_token"
+chinachu_twitter_access_token_secret: "your_access_token_secret"
+
+# 録画対象の物理チャンネルIDのリスト
+chinachu_channel_list:
+  - 18
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 30
+```
 
 _roles/pre-chinachu/vars/main.yml_
 
-    
-    pre_chinachu_private_key: "~/.ssh/id_rsa.pub" # chinachuユーザーにログインする際に使用する公開鍵<span style="font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;">&nbsp;</span>
-
+```yaml
+pre_chinachu_private_key: "~/.ssh/id_rsa.pub" # chinachuユーザーにログインする際に使用する公開鍵<span style="font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;">&nbsp;</span>
+```
 
 また、SambaやVagrantのインストールが必要ない場合は、次の行をコメントアウトしてください
 
 _chinachu.yml_
 
-    
-    ---
-    - hosts: chinachu-server
-      user: root
-      roles:
-        - common
-        - pt
-        - pre_chinachu
-        #- vm # この二行をコメントアウトする
-        #- samba
-    
-    - hosts: chinachu-server
-      user: chinachu
-      roles:
-        - chinachu<span style="font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;"> </span>
+```yaml
+---
+- hosts: chinachu-server
+  user: root
+  roles:
+    - common
+    - pt
+    - pre_chinachu
+    #- vm # この二行をコメントアウトする
+    #- samba
 
+- hosts: chinachu-server
+  user: chinachu
+  roles:
+    - chinachu<span style="font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;"> </span>
+```
 
 
 
@@ -217,16 +212,16 @@ PT3のドライバを入れた後など、どうしても物理的にマシン�
 
 _roles/pt/tasks/main.yml_
 
-    
-    - name: reboot
-      shell: sleep 2s && /sbin/reboot &
-    
-    - name: wait for the server to go down (reboot)
-      local_action: wait_for host={{ inventory_hostname }} port=22 state=stopped
-    
-    - name: wait for the server to come up
-      local_action: wait_for host={{ inventory_hostname }} port=22 delay=60
+```yaml
+- name: reboot
+  shell: sleep 2s && /sbin/reboot &
 
+- name: wait for the server to go down (reboot)
+  local_action: wait_for host={{ inventory_hostname }} port=22 state=stopped
+
+- name: wait for the server to come up
+  local_action: wait_for host={{ inventory_hostname }} port=22 delay=60
+```
 
 ただし、この設定では、仮想環境での実行がうまくいきません。基本的に録画サーバーは物理サーバーだと思うので、特に配慮はしませんが、仮想環境でPlaybookの実行テストを行う場合には注意が必要です。
 
@@ -238,21 +233,21 @@ _roles/pt/tasks/main.yml_
 
 _roles/pre_chinachu/tasks/main.yml_
 
-    
-    - name: create chinachu user
-      user: name=chinachu
-            password='$6$rounds=100000$t9cFLWAcHkPD2awG$alBfg4PJPCwARrxceQRB5rANzq8QvZwzdCyANDfa5SNTgruKIvhwXGziVopDHU64R7Zl7Fsf44ZEiN56H4fyj/'
-            home=/home/chinachu
-            shell=/bin/bash
-            groups=sudo
-      tags: chinachu_user
-    
-    - name: add authorized keys
-      authorized_key:
-          user=chinachu
-          key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-      tags: chinachu_user
+```yaml
+- name: create chinachu user
+  user: name=chinachu
+        password='$6$rounds=100000$t9cFLWAcHkPD2awG$alBfg4PJPCwARrxceQRB5rANzq8QvZwzdCyANDfa5SNTgruKIvhwXGziVopDHU64R7Zl7Fsf44ZEiN56H4fyj/'
+        home=/home/chinachu
+        shell=/bin/bash
+        groups=sudo
+  tags: chinachu_user
 
+- name: add authorized keys
+  authorized_key:
+      user=chinachu
+      key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+  tags: chinachu_user
+```
 
 userモジュールのpasswordオプションは、SHAでハッシュ化した値を渡さなくてはなりません。上のコードでは、'chinachu'という文字列をハッシュ化しています。詳細は公式FAQの[ここ](http://docs.ansible.com/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module)を参照。 
 
@@ -264,33 +259,33 @@ chinachuは、git cloneをしてきた後に、ディレクトリルートに居
 
 _roles/chinachu/files/chinachu_installer.sh_
 
-    
-    #!/usr/bin/expect
-    spawn ./chinachu_cmd installer # シンボリックリンクを貼ったchinachuコマンド
-    expect "what do you install? >"
-    send "1\n"
-    interact
-
+```sh
+#!/usr/bin/expect
+spawn ./chinachu_cmd installer # シンボリックリンクを貼ったchinachuコマンド
+expect "what do you install? >"
+send "1\n"
+interact
+```
 
 このファイルをリモートにコピーし、chinachuコマンドへのシンボリックリンク経由で実行します。chinachuは、シンボリックリンクからでも正しくパスを認識して実行することが可能です。できれば、インストールも引数で制御出来るようになればいいのですが……
 
 _roles/chinachu/tasks/main.yml_
 
-    
-    - name: create symlink
-      file: src={{ chinachu_dir }}/{{ chinachu_root_dir_name}}/chinachu dest={{ chinachu_symlink }} state=link
-      tags: chinachu
-    
-    - name: copy file
-      copy: src=chinachu_installer.sh dest={{ chinachu_dir }} mode=0744
-      tags: chinachu
-    
-    - name: install chinachu
-      command:
-          ./chinachu_installer.sh
-          chdir={{ chinachu_dir }}
-      tags: chinachu
+```yaml
+- name: create symlink
+  file: src={{ chinachu_dir }}/{{ chinachu_root_dir_name}}/chinachu dest={{ chinachu_symlink }} state=link
+  tags: chinachu
 
+- name: copy file
+  copy: src=chinachu_installer.sh dest={{ chinachu_dir }} mode=0744
+  tags: chinachu
+
+- name: install chinachu
+  command:
+      ./chinachu_installer.sh
+      chdir={{ chinachu_dir }}
+  tags: chinachu
+```
 
 
 
@@ -307,15 +302,15 @@ Chinachuは、[Debian](http://www.debian.or.jp/)上で動作させることを�
 
 あとは、次のコマンドで修了です
 
-    
-    ./init.sh
-
+```shell-session
+./init.sh
+```
 
 このスクリプトは、単に次のコマンドを実行しているだけです
 
-    
-    ansible-playbook -i production site.yml
-
+```shell-session
+ansible-playbook -i production site.yml
+```
 
 毎回タイプするのが面倒なので、作っただけです。Vagrantなどで作成したDebianのマシンで、試してみると何が起こるのか解ると思います。（ただし、VagrantやVirtualBoxでの起動では、PT3用のドライバ等をインストールしている最後のRoleで行う再起動のタスクがうまく行きません。このPlaybookは実機を前提としているので、そこの部分をコメントアウトして自分で再起動を試してください）
 
