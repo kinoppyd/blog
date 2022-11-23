@@ -245,7 +245,7 @@ _roles/pre_chinachu/tasks/main.yml_
 - name: add authorized keys
   authorized_key:
       user=chinachu
-      key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      key="{% raw %}{{ lookup('file', '~/.ssh/id_rsa.pub') }}{% endraw %}"
   tags: chinachu_user
 ```
 
