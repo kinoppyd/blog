@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "kinoppyd.dev"
+title: "kinoppyd dev"
 permalink: /blog
 pagination:
   enabled: true
