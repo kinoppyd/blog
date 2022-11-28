@@ -3,7 +3,7 @@ baseurl: ""
 title: "kinoppyd.dev"
 lang: "ja"
 timezone: "Asia/Tokyo"
-permalink: /blog/:title
+permalink: /blog/:title/
 
 plugins:
   - jekyll-postcss
