@@ -8,3 +8,5 @@ gem "jekyll-postcss", "~> 0.5.0"
 gem "jekyll-paginate-v2", "~> 3.0"
 
 gem "sass-embedded", "~> 1.56"
+
+gem "jekyll-compose", "~> 0.12.0"

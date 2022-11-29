@@ -8,6 +8,7 @@ permalink: /blog/:title/
 plugins:
   - jekyll-postcss
   - jekyll-paginate-v2
+  - jekyll-compose
 
 postcss:
   cache: false
