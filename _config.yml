@@ -9,6 +9,7 @@ plugins:
   - jekyll-postcss
   - jekyll-paginate-v2
   - jekyll-compose
+  - jekyll-seo-tag
 
 postcss:
   cache: false

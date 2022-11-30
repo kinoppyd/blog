@@ -10,3 +10,5 @@ gem "jekyll-paginate-v2", "~> 3.0"
 gem "sass-embedded", "~> 1.56"
 
 gem "jekyll-compose", "~> 0.12.0"
+
+gem "jekyll-seo-tag", "~> 2.8"
