@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-09-12 17:00:05+00:00
 layout: post
+image: /assets/images/icon.png
 title: dokku-alt の謎2
 ---
 

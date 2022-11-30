@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-18 06:50:08+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobb+GitQueueでバージョン管理付きのTODO Botを作る
 ---
 

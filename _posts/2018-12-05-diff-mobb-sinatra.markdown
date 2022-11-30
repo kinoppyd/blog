@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-05 17:52:08+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobbの実装とSinatraの実装の比較
 excerpt_separator: <!--more-->
 ---

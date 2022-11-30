@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2017-01-02 06:59:04+00:00
 layout: post
+image: /assets/images/icon.png
 title: Elixirのパターンマッチ、不変性、型、演算子とwith式
 excerpt_separator: <!--more-->
 ---

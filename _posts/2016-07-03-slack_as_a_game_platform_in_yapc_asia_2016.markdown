@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2016-07-03 13:48:30+00:00
 layout: post
+image: /assets/images/icon.png
 title: YAP(achimon)C::Asia Hachioji 2016 mid で、 Slack as a Game platform というLTしてきました
 excerpt_separator: <!--more-->
 ---

@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-01-27 12:29:48+00:00
 layout: post
+image: /assets/images/icon.png
 title: X61にCentOS6.4を入れてDBサーバーにした
 excerpt_separator: <!--more-->
 ---

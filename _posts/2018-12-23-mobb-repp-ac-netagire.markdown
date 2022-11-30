@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-23 14:39:17+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobb/Repp Advent Calendar のネタが尽きたので、対応したいハンドラとか書いときます
 ---
 

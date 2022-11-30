@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2017-07-09 15:30:24+00:00
 layout: post
+image: /assets/images/icon.png
 title: ガールズ&パンツァー シネマティックコンサートを観てきた
 ---
 

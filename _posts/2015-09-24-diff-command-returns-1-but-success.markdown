@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-09-24 09:55:01+00:00
 layout: post
+image: /assets/images/icon.png
 title: diffコマンドの exit code って、差分がなければ0、差分が有れば1、失敗したら2なんだね
 ---
 

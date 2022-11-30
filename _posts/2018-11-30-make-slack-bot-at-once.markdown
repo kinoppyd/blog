@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-11-30 15:11:37+00:00
 layout: post
+image: /assets/images/icon.png
 title: アイディアが閃いた？　それすぐにSlackBotにしましょう。秒で。
 excerpt_separator: <!--more-->
 ---

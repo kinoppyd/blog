@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-07 17:21:24+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobb, test, spec
 ---
 

@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-08-23 14:43:31+00:00
 layout: post
+image: /assets/images/icon.png
 title: 技術書展5で、Sinatraのコードリーディング本を頒布します
 ---
 

@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-09-28 09:25:23+00:00
 layout: post
+image: /assets/images/icon.png
 title: 2014/09/26 今日読んだもの
 ---
 

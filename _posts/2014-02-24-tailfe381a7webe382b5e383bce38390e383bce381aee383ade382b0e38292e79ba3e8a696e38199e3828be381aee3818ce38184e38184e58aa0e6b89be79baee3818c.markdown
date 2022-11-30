@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-02-24 15:18:01+00:00
 layout: post
+image: /assets/images/icon.png
 title: tailfでWebサーバーのログを監視するのがいい加減目が痛い
 excerpt_separator: <!--more-->
 ---

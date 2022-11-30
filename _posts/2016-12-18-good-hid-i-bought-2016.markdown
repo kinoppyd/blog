@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2016-12-18 16:26:59+00:00
 layout: post
+image: /assets/images/icon.png
 title: 今年買って良かった入力デバイス
 excerpt_separator: <!--more-->
 ---

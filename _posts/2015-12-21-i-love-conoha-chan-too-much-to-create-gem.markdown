@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-12-21 18:20:29+00:00
 layout: post
+image: /assets/images/icon.png
 title: ConoHaちゃんが好きすぎるので、WebAPIを叩くためのGemを（途中まで）作ってみた
 excerpt_separator: <!--more-->
 ---

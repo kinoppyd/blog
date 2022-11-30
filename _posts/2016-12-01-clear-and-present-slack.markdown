@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2016-12-01 17:16:29+00:00
 layout: post
+image: /assets/images/icon.png
 title: 今そこにあるSlack
 excerpt_separator: <!--more-->
 ---

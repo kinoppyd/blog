@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2016-12-14 17:22:50+00:00
 layout: post
+image: /assets/images/icon.png
 title: Chaos ConoHa
 excerpt_separator: <!--more-->
 ---

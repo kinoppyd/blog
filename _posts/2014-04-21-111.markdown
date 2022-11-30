@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-04-21 09:49:36+00:00
 layout: post
+image: /assets/images/icon.png
 title: MacのGitでmvしたらコケた
 excerpt_separator: <!--more-->
 ---

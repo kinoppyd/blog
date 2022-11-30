@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-06-04 09:35:50+00:00
 layout: post
+image: /assets/images/icon.png
 title: Scalaで日本語使ってずっこけるのは、Javaの設定がイマイチだから
 ---
 

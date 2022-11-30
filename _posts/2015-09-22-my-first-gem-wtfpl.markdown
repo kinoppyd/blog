@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-09-22 13:08:49+00:00
 layout: post
+image: /assets/images/icon.png
 title: Gemを初めてRubyGemsにリリースしたよ
 ---
 

@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-07-26 18:29:02+00:00
 layout: post
+image: /assets/images/icon.png
 title: UbuntuでMySQLの通信をSSL化するときは、証明書のディレクトリが重要らしい
 ---
 

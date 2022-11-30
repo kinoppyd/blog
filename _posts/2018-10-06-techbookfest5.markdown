@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-10-06 13:24:34+00:00
 layout: post
+image: /assets/images/icon.png
 title: 技術書典5にて、Sinatraのコード解説本を頒布します。あと執筆環境の話。
 excerpt_separator: <!--more-->
 ---

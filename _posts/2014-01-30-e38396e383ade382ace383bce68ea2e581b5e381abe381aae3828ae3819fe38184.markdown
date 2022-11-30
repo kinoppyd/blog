@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-01-30 15:14:55+00:00
 layout: post
+image: /assets/images/icon.png
 title: ブロガー探偵になりたい
 excerpt_separator: <!--more-->
 ---

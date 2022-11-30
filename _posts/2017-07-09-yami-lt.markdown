@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2017-07-09 16:39:59+00:00
 layout: post
+image: /assets/images/icon.png
 title: 会社で闇LT大会を開催しました
 excerpt_separator: <!--more-->
 ---

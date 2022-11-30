@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-06-02 11:41:01+00:00
 layout: post
+image: /assets/images/icon.png
 title: Scalaの世界に入門する
 excerpt_separator: <!--more-->
 ---

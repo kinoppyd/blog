@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2019-08-30 14:44:49+00:00
 layout: post
+image: /assets/images/icon.png
 title: 株式会社ドワンゴを退職します（5年2ヶ月ぶり1回目）
 ---
 

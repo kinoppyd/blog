@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-10 16:40:50+00:00
 layout: post
+image: /assets/images/icon.png
 title: Rubyを使って秒でBotを作るなら、秒でRedisだって使えなきゃ、やっぱり話にならないですよね？
 excerpt_separator: <!--more-->
 ---

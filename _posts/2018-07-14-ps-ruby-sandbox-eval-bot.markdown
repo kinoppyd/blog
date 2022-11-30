@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-07-14 11:38:30+00:00
 layout: post
+image: /assets/images/icon.png
 title: 追伸：Rubyのサンドボックスを作って、evalするBotを作った
 excerpt_separator: <!--more-->
 ---

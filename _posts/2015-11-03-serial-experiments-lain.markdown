@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-11-03 20:21:30+00:00
 layout: post
+image: /assets/images/icon.png
 title: serial experiments lain を観た
 excerpt_separator: <!--more-->
 ---

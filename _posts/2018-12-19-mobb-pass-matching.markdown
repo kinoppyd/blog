@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-19 06:28:43+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobbにおけるマッチのパッシング
 ---
 

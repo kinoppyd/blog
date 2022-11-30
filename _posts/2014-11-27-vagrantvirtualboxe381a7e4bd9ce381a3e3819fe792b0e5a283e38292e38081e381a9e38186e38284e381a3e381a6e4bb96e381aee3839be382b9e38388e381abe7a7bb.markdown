@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-11-27 18:36:25+00:00
 layout: post
+image: /assets/images/icon.png
 title: Vagrant+Virtualboxで作った環境を、どうやって他のホストに移すか？
 ---
 

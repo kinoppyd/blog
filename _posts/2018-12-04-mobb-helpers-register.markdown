@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-04 16:29:42+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobbの機能拡張を実現するhelpersとregister
 excerpt_separator: <!--more-->
 ---

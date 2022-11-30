@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-12-14 16:03:09+00:00
 layout: post
+image: /assets/images/icon.png
 title: クリスマスに安心して一日中アニメを見るために録画鯖を作る技術
 excerpt_separator: <!--more-->
 ---

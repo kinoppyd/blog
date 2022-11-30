@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-05-17 09:10:53+00:00
 layout: post
+image: /assets/images/icon.png
 title: ConoHaとさくらのVPSにdokku-altを入れて、ブログと開発環境を柔軟に
 excerpt_separator: <!--more-->
 ---

@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2013-04-13 09:22:37+00:00
 layout: post
+image: /assets/images/icon.png
 title: さくらVPSにrbenvを入れてみる（そのあとにRails）
 excerpt_separator: <!--more-->
 ---

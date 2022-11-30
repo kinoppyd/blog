@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-11 17:02:01+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobbのメソッド呼び出しをチェーンする、 chain/trigger シンタックス
 excerpt_separator: <!--more-->
 ---

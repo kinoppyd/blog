@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-01 16:06:24+00:00
 layout: post
+image: /assets/images/icon.png
 title: 秒でBotを作れるMobb、その裏にあるReppって何者？
 excerpt_separator: <!--more-->
 ---

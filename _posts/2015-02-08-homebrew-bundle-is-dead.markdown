@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-02-08 18:06:03+00:00
 layout: post
+image: /assets/images/icon.png
 title: Homebrewのbundleコマンドが終わっていたことに初めて気づいた
 ---
 

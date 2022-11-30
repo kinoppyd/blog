@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-01-28 14:37:34+00:00
 layout: post
+image: /assets/images/icon.png
 title: X61をアップグレードするかどうか、さくらクラウドで実験してみた（続報）
 excerpt_separator: <!--more-->
 ---

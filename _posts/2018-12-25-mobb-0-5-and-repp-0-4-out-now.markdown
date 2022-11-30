@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-25 15:01:12+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobb 0.5 and Repp 0.4 out now
 ---
 

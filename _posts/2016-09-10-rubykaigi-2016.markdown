@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2016-09-10 13:02:27+00:00
 layout: post
+image: /assets/images/icon.png
 title: RubyKaigi 2016 に行ってきました
 excerpt_separator: <!--more-->
 ---

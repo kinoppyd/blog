@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2016-05-03 03:46:35+00:00
 layout: post
+image: /assets/images/icon.png
 title: blink(1)を買ったので、雑にGemを作ってSlack監視botを作った
 excerpt_separator: <!--more-->
 ---

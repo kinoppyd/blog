@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-20 08:02:18+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobbのマッチングにどれもヒットしなかった場合のフック
 ---
 

@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2019-04-11 17:40:21+00:00
 layout: post
+image: /assets/images/icon.png
 title: 技術書典6で、メタプログラミングRuby本を出します
 excerpt_separator: <!--more-->
 ---

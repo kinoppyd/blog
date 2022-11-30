@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-15 17:24:17+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobbのcronを秒単位で動かす
 ---
 

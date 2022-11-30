@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-12-23 12:10:31+00:00
 layout: post
+image: /assets/images/icon.png
 title: Windows8のDSPを買って、VirtualBoxにインストールした
 excerpt_separator: <!--more-->
 ---

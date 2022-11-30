@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-12 17:22:54+00:00
 layout: post
+image: /assets/images/icon.png
 title: BotはBotと会話するべきかどうか？
 ---
 

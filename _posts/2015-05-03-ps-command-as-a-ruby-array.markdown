@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-05-03 18:11:45+00:00
 layout: post
+image: /assets/images/icon.png
 title: psコマンドをStructの配列として扱うRubyのクラスを適当に書いた
 ---
 

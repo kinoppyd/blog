@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2019-11-30 18:10:09+00:00
 layout: post
+image: /assets/images/icon.png
 title: APIがカオスってたプロダクトでOpenAPI対応やってみた
 excerpt_separator: <!--more-->
 ---

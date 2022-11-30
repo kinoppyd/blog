@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2019-09-21 04:10:08+00:00
 layout: post
+image: /assets/images/icon.png
 title: 技術書典7で、「ActiveRecord完全に理解した」という本を出します。
 excerpt_separator: <!--more-->
 ---

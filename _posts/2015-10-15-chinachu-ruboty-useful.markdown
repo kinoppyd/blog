@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-10-15 18:01:33+00:00
 layout: post
+image: /assets/images/icon.png
 title: Chinachu + Ruboty = 超便利
 excerpt_separator: <!--more-->
 ---

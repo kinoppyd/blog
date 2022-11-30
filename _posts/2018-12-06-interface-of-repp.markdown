@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-06 18:24:06+00:00
 layout: post
+image: /assets/images/icon.png
 title: Reppのインターフェイス
 excerpt_separator: <!--more-->
 ---

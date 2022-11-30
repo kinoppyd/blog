@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-01-13 12:11:03+00:00
 layout: post
+image: /assets/images/icon.png
 title: DebianとChinachuで、録画サーバーを再構築した話
 excerpt_separator: <!--more-->
 ---

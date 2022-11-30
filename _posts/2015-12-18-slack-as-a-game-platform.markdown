@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-12-18 19:28:39+00:00
 layout: post
+image: /assets/images/icon.png
 title: ゲームプラットフォームとしてのSlack
 excerpt_separator: <!--more-->
 ---

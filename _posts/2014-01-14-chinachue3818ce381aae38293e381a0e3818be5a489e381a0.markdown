@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-01-14 14:08:22+00:00
 layout: post
+image: /assets/images/icon.png
 title: Chinachuがなんだか変だ
 excerpt_separator: <!--more-->
 ---

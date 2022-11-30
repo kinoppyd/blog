@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-04-13 10:57:52+00:00
 layout: post
+image: /assets/images/icon.png
 title: Fedoraの.bashrcを壊した話
 excerpt_separator: <!--more-->
 ---

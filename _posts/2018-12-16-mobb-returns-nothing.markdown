@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-16 16:18:13+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobb製のBotになにか処理をさせたが、何も反応を返したくないときはどうするのか
 ---
 

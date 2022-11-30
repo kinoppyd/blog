@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-21 14:32:58+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobbを使った複数サービス間のゲートウェイを実現する方法
 ---
 

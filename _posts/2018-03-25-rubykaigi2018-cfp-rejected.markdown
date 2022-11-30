@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-03-25 13:03:49+00:00
 layout: post
+image: /assets/images/icon.png
 title: RubyKaigi2018のCFP落ちたので後学のために置いておきます
 excerpt_separator: <!--more-->
 ---

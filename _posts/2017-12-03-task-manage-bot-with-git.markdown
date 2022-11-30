@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2017-12-03 15:00:10+00:00
 layout: post
+image: /assets/images/icon.png
 title: Gitをバックエンドにしたタスク管理bot
 excerpt_separator: <!--more-->
 ---

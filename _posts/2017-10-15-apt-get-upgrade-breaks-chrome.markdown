@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2017-10-15 15:52:52+00:00
 layout: post
+image: /assets/images/icon.png
 title: apt-get upgrade したら、Chromeが物故割れたのでなおした
 excerpt_separator: <!--more-->
 ---

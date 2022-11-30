@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-12-14 18:57:28+00:00
 layout: post
+image: /assets/images/icon.png
 title: Deep learning で、全ニコ生番組をリアルタイムで監視するシステム作ってみた
 excerpt_separator: <!--more-->
 ---

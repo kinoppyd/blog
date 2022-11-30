@@ -2,6 +2,7 @@
 author: kinoppyd
 layout: post
 title: hello jekyll
+image: /assets/images/icon.png
 date: 2022-12-01 00:00 +0900
 excerpt_separator: "<!--more-->"
 ---

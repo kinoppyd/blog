@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-13 17:32:30+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobbの正規表現解釈と、MatchDataの行方
 excerpt_separator: <!--more-->
 ---

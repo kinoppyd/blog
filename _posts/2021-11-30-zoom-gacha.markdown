@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2021-11-30 15:00:21+00:00
 layout: post
+image: /assets/images/icon.png
 title: zoomガチャ
 excerpt_separator: <!--more-->
 ---

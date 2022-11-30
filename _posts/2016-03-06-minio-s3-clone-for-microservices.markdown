@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2016-03-06 18:40:27+00:00
 layout: post
+image: /assets/images/icon.png
 title: S3クローンMinioを使って、自前MicroServices用データストレージを構築する
 excerpt_separator: <!--more-->
 ---

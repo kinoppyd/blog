@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-06-30 17:10:48+00:00
 layout: post
+image: /assets/images/icon.png
 title: Ruby製の軽量Botフレームワーク Mobb をリリースしました
 excerpt_separator: <!--more-->
 ---

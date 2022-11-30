@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-09 17:35:19+00:00
 layout: post
+image: /assets/images/icon.png
 title: Rubyを使って秒でBotを作るなら、秒でActiveRecord使えなきゃ話にならないですよね？
 excerpt_separator: <!--more-->
 ---

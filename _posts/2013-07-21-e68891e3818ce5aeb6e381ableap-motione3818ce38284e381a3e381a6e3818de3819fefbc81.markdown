@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2013-07-21 10:45:01+00:00
 layout: post
+image: /assets/images/icon.png
 title: 我が家にLEAP MOTIONがやってきた！
 excerpt_separator: <!--more-->
 ---

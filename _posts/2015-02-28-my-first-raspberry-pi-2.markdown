@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-02-28 10:46:19+00:00
 layout: post
+image: /assets/images/icon.png
 title: Raspberry Pi 2 に通電
 ---
 

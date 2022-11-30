@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-12-13 11:17:28+00:00
 layout: post
+image: /assets/images/icon.png
 title: Darsana Tokyo に参加してきた。そして、あまり楽しめなかったという反省。
 excerpt_separator: <!--more-->
 ---

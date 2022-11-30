@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2014-12-06 18:27:15+00:00
 layout: post
+image: /assets/images/icon.png
 title: ブログのDBを、ConoHa VPSに移行した。MySQLとSSLで通信する。
 excerpt_separator: <!--more-->
 ---

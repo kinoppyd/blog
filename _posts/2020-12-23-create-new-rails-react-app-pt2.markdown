@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2020-12-23 14:59:41+00:00
 layout: post
+image: /assets/images/icon.png
 title: 大急ぎでRails+Reactのアプリケーションを作るときにやったこと後編
 excerpt_separator: <!--more-->
 ---

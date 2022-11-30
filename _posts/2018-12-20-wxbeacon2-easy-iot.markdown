@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-20 16:00:22+00:00
 layout: post
+image: /assets/images/icon.png
 title: IoTしてますか？ 難しいですよね？ でもお手軽にWxBeacon2を使って室内環境監視ダッシュボードとか作れますよ？
 excerpt_separator: <!--more-->
 ---

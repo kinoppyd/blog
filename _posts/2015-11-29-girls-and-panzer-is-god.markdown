@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2015-11-29 16:01:56+00:00
 layout: post
+image: /assets/images/icon.png
 title: 劇場版ガールズ＆パンツァーを観てきた
 ---
 

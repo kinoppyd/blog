@@ -2,6 +2,7 @@
 author: kinoppyd
 date: 2018-12-24 14:53:57+00:00
 layout: post
+image: /assets/images/icon.png
 title: Mobb/Repp Advent Calendar のネタが尽きたので、開発してて面倒な話をします
 ---
 
