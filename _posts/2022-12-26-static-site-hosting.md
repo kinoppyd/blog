@@ -100,14 +100,14 @@ Cloud Load Balancing はちょっとややこしくて、フロントエンド�
 
 この機能もなんかイマイチ設定がよくわからなくて、何度も設定変えては試行錯誤みたいなことをやってしまいました。特に、これまでWordpressだったため、リソース管理はWordpress側でやっていた関係でパーマネントリンクの末尾に `/` は必要ありませんでしたが、静的ジェネレータを使うことになりディレクトリベースのパスルールが強制されるので、末尾の `/` が必須になりました。例えば、`tolarian-academu.net/zoom-gacha` という記事から `kinoppyd.dev/blog/zoom-gacha/` というURLにリダイレクトする必要があり、この設定がよくわからなかったですし、未だに納得のいく説明ができていないです。とりあえず、こんな感じの設定で動くようにはなっていますが……何で動くのかよくわかってないです。
 
-<img alt="Cloud Load Balancingのリダイレクト設定" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-26 1.16.10.png" width="50%">
+<img alt="Cloud Load Balancingのリダイレクト設定" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-26 1.16.10.png">
 
 ### めっちゃお金かかっとるやん
 
 お金かかってるんですよ。すごい。何でですかね……と思ったら、どうやらCloud Load Balancing のプライスは転送ルールの数によって決まるらしく、転送ルールを一個持っているだけで普通にまあまあな金額がかかるっぽいです。さらに、固定のIPもLB用に一つ持っているので、その値段もかかるっぽい？　です。ただ、GCPの支払い明細ってComputingとかそういう単位でしか出してくれないので、何にどれだけお金かかってるか正直よくわからないんですよね。
 
-<img alt="お金めっちゃかかってる画像1" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-22 1.20.21.png" width="40%">
-<img alt="お金めっちゃかかってる画像2" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-22 1.20.48.png" width="40%">
+<img alt="お金めっちゃかかってる画像1" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-22 1.20.21.png">
+<img alt="お金めっちゃかかってる画像2" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-22 1.20.48.png">
 
 \
 [ネットワーキングのすべての料金体系  |  Virtual Private Cloud  |  Google Cloud](https://cloud.google.com/vpc/network-pricing?hl=ja#lb)
@@ -127,15 +127,15 @@ GCP案がダメで、どうしよっかなVPSでも借りてNginx建てようか
 
 ます、ブログのリポジトリのSettingsから、左ペインのPagesを選んで、Build and DeploymentのSourceをActionsに設定します。
 
-<img alt="SourceをActionsに設定" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-22 0.04.14.png" width="70%">
+<img alt="SourceをActionsに設定" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-22 0.04.14.png">
 
 次に、使うActionsのWorkflowがサジェストされるので、Configureボタンを押します。
 
-<img alt="Configureを押す" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-22 0.04.40.png" width="70%">
+<img alt="Configureを押す" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-22 0.04.40.png">
 
 Actionsでデプロイするためのワークフローがエディタ上で表示されるので、内容を確認してコミットします。
 
-<img alt="Workflowが出るので編集して保存する" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-22 0.05.10.png" width="70%">
+<img alt="Workflowが出るので編集して保存する" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-22 0.05.10.png">
 
 デフォルトのワークフローの内容としては、チェックアウトしてJekyllの環境を用意し、ビルドしてPagesに投げるという一連の流れを行っており、ほとんど手を加えるところはありません。唯一、自分はtailwindを使っていたためPostCSS処理のためにNodeが必要で、nodeの環境セットアップだけを追加しました。
 
@@ -168,7 +168,7 @@ GitHub Pages に独自ドメインを設定すると、自動でSSL対応もや�
 
 証明書のチャレンジはいくつかの方法が用意されていますが、DNSのAレコードを確認する方法が使えるので、問題なくAPEXドメインでも設定が可能です。自分の環境では、IPv4だけではなくAAAAレコードでIPv6対応も入れないと、ドメインチャレンジが成功しませんでした。
 
-<img alt="なんだか不穏な警告が出ているが無視してる様子" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-22 1.12.00.png" width="70%">
+<img alt="なんだか不穏な警告が出ているが無視してる様子" src="{{ site.baseurl }}/assets/images/2022/12/スクリーンショット 2022-12-22 1.12.00.png">
 
 また、GitHub Pagesのドメイン設定では、APEXを設定する場合には `www` サブドメインの設定も推奨されているため、設定していないと警告が出ます。出ますが、私は無視しています。
 
