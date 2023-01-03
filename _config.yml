@@ -10,6 +10,7 @@ plugins:
   - jekyll-paginate-v2
   - jekyll-compose
   - jekyll-seo-tag
+  - jekyll-feed
 
 postcss:
   cache: false
