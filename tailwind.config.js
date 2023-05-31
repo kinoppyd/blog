@@ -9,8 +9,10 @@ module.exports = {
   ],
   darkmode: false,
   theme: {
-    theme: {
-      extend: {},
+    extend: {
+      fontFamily: {
+        noto: ['Noto Sans JP', "sans-serif"]
+      }
     },
   },
   plugins: [
