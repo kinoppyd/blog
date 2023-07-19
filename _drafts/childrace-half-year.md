@@ -7,21 +7,19 @@ title: 半年くらい子育てしてみた感想
 
 真面目な感想の前に全くしょうもないことを最初に言うと、実際に自分の子供を育ててみてものすごく思ったのは、人間の赤ちゃんは生物として弱すぎるのではないかということ。Wikipediaによると、ヒト属とチンパンジーの分岐が200万から1000万年前、ホモサピエンスとホモエレクトロスの分岐が20万から180万年前。ジャレド・ダイアモンド曰く人類が大躍進と呼ばれる変化をしたのが約5万年前。ってことは、5万年前の時点ではもうだいぶホモサピは自然界でだいぶ強い奴だった事はわかる。が、人類がだいぶ強くなったそのあたりから新生児が多少弱くても大丈夫な様になったとしても、5万年程度でこんっっっなに弱い新生児が生まれる様に進化したのか？　と考えるといくら何でも弱くなりすぎだと思う。生後半年経っても自分で動けもしない。すぐに泣くし、泣き止まない。食べられるものの制限も大きい。睡眠時間が不規則。などなど。いくら人類が火を使えて、社会性を持っていて、他の生物からの侵略に対して強かったとは言え、あまりにもこの乳幼児は弱すぎないか？　なんでこれで人類滅ばなかったんだ？　というのがここ半年の率直な感想です。ここからは真面目な感想を書きます。
 
-<div class="flex justify-center">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">赤ん坊、こんな全力でガン泣きして何やっても泣き止まず、輸送反応も示さないの、まだ人類に天敵がいた頃によく生き延びれたな……？　生物として弱すぎないか</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1616062828590534660?ref_src=twsrc%5Etfw">January 19, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
 
 ## 育休
 
 子育ての難易度は、パートナーが育休を取れるかどうかによってだいぶ変わると思う。少なくとも、我が家はそうだった。理不尽に泣き狂う赤子をあやすのは、想像以上のストレスだった。自分も当然頭では「乳児は理不尽に泣くものだし、泣き止ませる方法は無い」と理解していたが、それでも泣いている乳児をどうすることもできずにただあやすだけの時間はかなりの精神的負荷があった。まず泣き声というだけで純粋にメンタルに効くし、為す術が無いにもかかわらずあやさなくてはいけないという行為は気持ちをえぐる。男性の自分ですらそうなのだから、女性はもっとしんどい。特に産後はホルモンの影響で乳児の泣き声に敏感になるらしく、そりゃ産後鬱にもなるだろうと思った。最初の人間の赤ちゃん弱すぎんだろ感はこのときも醸成され、なんで保護対象を鬱にするような行動をとるんだよと感じた。いや、おそらく人類の社会性の問題というか、これまでは鬱になる母親は自然淘汰されていたのが社会がそれを受容できるようになっただけだとは思うのだが、それでもあまりに母胎に負担を掛けすぎだと思う、人類の赤ちゃん。
 
-<div class="flex justify-center gap-x-4">
+<div class="flex">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">赤ん坊が何やっても泣き止まず、ギャン泣きしてるのを抱っこしてあやすしかできない状態で、泣きすぎて疲れた赤ちゃんが急にスンッてなって「あなたは泣いてる理由わかってくれないんですね」みたいな顔でこっち見られるのほんと心にダメージ食らうなぁ……</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1612051274677260294?ref_src=twsrc%5Etfw">January 8, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">猫も赤ちゃんも「機嫌が悪い理由を察して」コミュニケーションだから疲れる</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1618860207383384064?ref_src=twsrc%5Etfw">January 27, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 
-<div class="flex justify-center">
+<div class="flex">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">特に自分自身の体調が悪いわけでもないのに、自分の行動ができないのだいぶストレスに感じる</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1634459395445895169?ref_src=twsrc%5Etfw">March 11, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">赤ん坊、起きているときは常に抱っこしてないと泣くから、その間何もできなくなってしまうのが本当にしんどいな</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1634459255427465217?ref_src=twsrc%5Etfw">March 11, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -31,9 +29,7 @@ title: 半年くらい子育てしてみた感想
 
 現実的に、まだまだ社会的に男性が育休を取得することが現実的ではない環境は多いかもしれないが、幸運にも男性が育休を取得できる職場に恵まれたのであれば、悩む余地はなく取得するべきだ。たとえそれが一ヶ月でも良い。とにかく、未知の生物と向き合う恐怖を分かち合うべきだ。
 
-<div class="flex justify-center">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">育休取ってるからまだ夫婦2人で対処できるからマシだなと思うけど、これを1人でと思うとゾッとする。</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1625101067620077573?ref_src=twsrc%5Etfw">February 13, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
 
 ## 診察と立ち会いと
 
@@ -62,9 +58,10 @@ title: 半年くらい子育てしてみた感想
 
 子供が生まれる少し前に、こういう内容の研究が話題になった。数ヶ月後に子供が生まれるのを控えた自分は、これで勝つるという気持ちだった。そして生まれた後に子供が寝ないとanyのSlackでぼやくと、みんなこのリンクを送ってきたので、認知度の高さたるやと感心した。
 
-[”だっこして歩く” 効果的 泣く赤ちゃんの寝かしつけ方で研究](https://www3.nhk.or.jp/news/html/20220914/k10013816711000.html)
+<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://www3.nhk.or.jp/news/html/20220914/k10013816711000.html)"></div><div class="bcard-site"><a href="https://www3.nhk.or.jp/news/html/20220914/k10013816711000.html" rel="nofollow" target="_blank">NHKニュース</a></div><div class="bcard-url"><a href="https://www3.nhk.or.jp/news/html/20220914/k10013816711000.html" rel="nofollow" target="_blank">https://www3.nhk.or.jp/news/html/20220914/k10013816711000.html</a></div></span><span class="bcard-main"><div class="bcard-title"><a href="https://www3.nhk.or.jp/news/html/20220914/k10013816711000.html" rel="nofollow" target="_blank">だっこして歩く 効果的 泣く赤ちゃんの寝かしつけ方で研究 | NHK</a></div><div class="bcard-description">【NHK】泣いている赤ちゃんを寝かしつけるには、だっこして歩くことが効果的だとする研究成果を理化学研究所などのグループが発表しまし&</div></span></div>
 
-[赤ちゃん抱っこして5分歩くと泣きやむ、育児に活用可能 日伊研究グループ](https://scienceportal.jst.go.jp/newsflash/20220926_n01/)
+<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://scienceportal.jst.go.jp/newsflash/20220926_n01/)"></div><div class="bcard-site"><a href="https://scienceportal.jst.go.jp/newsflash/20220926_n01/" rel="nofollow" target="_blank">Science Portal - 科学技術の最新情報サイト「サイエンスポータル」</a></div><div class="bcard-url"><a href="https://scienceportal.jst.go.jp/newsflash/20220926_n01/" rel="nofollow" target="_blank">https://scienceportal.jst.go.jp/newsflash/20220926_n01/</a></div></span><span class="bcard-main"><div class="bcard-title"><a href="https://scienceportal.jst.go.jp/newsflash/20220926_n01/" rel="nofollow" target="_blank">赤ちゃん抱っこして5分歩くと泣きやむ、育児に活用可能 日伊研究グループ | Science Portal - 科学技術の最新情報サイト「サイエンスポータル」</a></div><div class="bcard-description">
+　泣いた赤ちゃんを抱っこして5分歩くと泣きやみ、半数が寝つくことを実験で示した。理化学研究所など日本とイタリアの研究グループが発表した。さらに5～8分抱いてからベッドに寝かせると、起きずに眠ってくれ</div></span></div>
 
 なるほど、確かに移動反応というのはいろんな生物に存在するらしいし、合理的な気はした。実際にやってみると、効いたり効かなかったりしてなんとも言えない感じだった。寝るときはこれで寝るが、寝ないときは何をやっても寝ない。理不尽トートロジー。ただ、歩くとぐずっているのがやや軽減するのは確実らしく、家の廊下を意味も無く一時間歩き続けるみたいなことを結構やった。運動にはなったが、それでも自分の体重は増えた。
 
@@ -74,9 +71,7 @@ title: 半年くらい子育てしてみた感想
 
 子供のベッドは、何か色々と考えた結果、アップリカの折りたためるベッドにした。
 
-<div class="flex justify-center">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ベビーベッドは、折り畳んで持ち運びできるというところに惹かれてココネルというのを買った。確かに良くできてるが、結構組み立てるの大変だった。重い、硬い、力がいる。でも良くできてるとは思う。あと、本体より布団の方が高いことにビビった。 <a href="https://t.co/wAJD6kLcFG">pic.twitter.com/wAJD6kLcFG</a></p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1602306482972024833?ref_src=twsrc%5Etfw">December 12, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
 
 <div class="border-solid border-2 border-sky-500 p-2"><a href="https://www.amazon.co.jp/dp/B09FLHK37R?&linkCode=li2&tag=ppyd-22&linkId=26ce7cf2f1631523baa149405e7a05c8&language=ja_JP&ref_=as_li_ss_il" target="_blank"><div class="flex"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B09FLHK37R&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=ppyd-22&language=ja_JP" ><span class="m-4">Aprica(アップリカ) ベビーベッド ココネルエアー AB 0か月~2歳頃まで ミニ コンパクト 折りたたみ ベビーサークル (グレーベアー)</span></div></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=ppyd-22&language=ja_JP&l=li2&o=9&a=B09FLHK37R" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></div>
 
@@ -86,9 +81,7 @@ title: 半年くらい子育てしてみた感想
 
 あと、こういうベッド類って、基本的に女性の平均身長に合わせて作られてるっぽいので、男性の平均より少し高い自分の身長だと常に中腰の姿勢になる必要があり色々しんどかった。これは何を選んでも同じだと思う。
 
-<div class="flex justify-center">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ベビーベッドの高さが中途半端すぎて、いつも腰を折って作業してるから腰とか肩がほんと終わってる</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1627242651887210496?ref_src=twsrc%5Etfw">February 19, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
 
 ## ミルク
 
@@ -98,7 +91,7 @@ title: 半年くらい子育てしてみた感想
 
 東京都では、出産した家庭に対して10万円のいろんなものを選べるギフトクーポンみたいなのをくれる。赤ちゃんファースト事業というらしい。
 
-[東京都出産応援事業 ～コロナに負けない！～　東京都福祉局](https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html)
+<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html)"></div><div class="bcard-site"><a href="https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html" rel="nofollow" target="_blank">https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html</a></div></span><span class="bcard-main"><div class="bcard-title"><a href="https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html" rel="nofollow" target="_blank">東京都出産応援事業 ～コロナに負けない！～　東京都福祉局</a></div><div class="bcard-description"></div></span></div>
 
 このギフトを選ぶサイトが、いわゆる結婚式の引き出物とかのカタログギフトとかをやっている会社が受注しているっぽくて、作りが非常にアレだった。今時ページネーションのブラウザバックでPOST再送信の警告がでるサイトなんて久々に見たなという感じがした。少し話はそれたが、このギフトの中にアイクレオのミルクが含まれていて、我が家では赤ちゃんの寝室用の空気清浄機とアイクレオに全振りした結果、干し芋リストから贈ってもらったものと合わせて5ヶ月くらいはミルクを買わずに済んだ。サンキュー東京都。産休だけに。
 
@@ -112,7 +105,7 @@ title: 半年くらい子育てしてみた感想
 
 これはかなり便利で助かったが、しばらくすると我が家で防災用にローリングストックしているいろはすもどうやらミルクを作るのに適しているということがわかり、余り気味だったそちらを利用することにした。
 
-[赤ちゃんにもやさしい軟水 い･ろ･は･す (I LOHAS) 公式サイト](https://www.i-lohas.jp/products/safe/)
+<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://www.i-lohas.jp/products/safe/)"></div><div class="bcard-site"><a href="https://www.i-lohas.jp/products/safe/" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://www.i-lohas.jp/products/safe/" rel="nofollow" target="_blank">https://www.i-lohas.jp/products/safe/</a></div></span><span class="bcard-main"><div class="bcard-title"><a href="https://www.i-lohas.jp/products/safe/" rel="nofollow" target="_blank">赤ちゃんにもやさしい軟水</a></div><div class="bcard-description"></div></span></div>
 
 <div class="border-solid border-2 border-sky-500 p-2"><a href="https://www.amazon.co.jp/dp/B08TV9VDR7?&linkCode=li2&tag=ppyd-22&linkId=0438beac1dfc78415dde2ef62ec14dd5&language=ja_JP&ref_=as_li_ss_il" target="_blank"><div class="flex"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B08TV9VDR7&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=ppyd-22&language=ja_JP" ><span class="m-4">【Amazon.co.jp限定】CCL い・ろ・は・すラベルレス 2LPET ×8本</span></div></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=ppyd-22&language=ja_JP&l=li2&o=9&a=B08TV9VDR7" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></div>
 
@@ -155,17 +148,15 @@ title: 半年くらい子育てしてみた感想
 
 生まれて1年くらいは、子供の様々なアクティビティの記録が重要になる。きちんとした間隔で食事をあげたり、睡眠時間の過不足を確認したり、おしっこの間隔、うんちの回数、風呂の時間、体温、体重、などなど枚挙に暇がない。記録できるアプリは色々あるみたいだが、ウチの家はぴよろぐというものを使っている。このアプリの凄いところは、ちゃんと育児をしながら記録がしやすいようにUIが作られていること。さらにSiriなどの音声アシスタントにちゃんと対応しているところだ。めちゃめちゃ使いやすいなと感動すら覚えるレベルだった。あまりに良かったので、課金に迷いがなかったくらい良かった。
 
-[育児記録アプリ ぴよログ](https://www.piyolog.com/)
+<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://www.piyolog.com/)"></div><div class="bcard-site"><a href="https://www.piyolog.com/" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://www.piyolog.com/" rel="nofollow" target="_blank">https://www.piyolog.com/</a></div></span><span class="bcard-main"><div class="bcard-title"><a href="https://www.piyolog.com/" rel="nofollow" target="_blank">育児記録アプリ ぴよログ</a></div><div class="bcard-description">夫婦で共有できる無料育児記録アプリ。片手のかんたん操作で赤ちゃんの育児記録をつけられます。授乳タイマー機能やまとめ機能、成長曲線機能なども備えています。AIアシスタントにも対応！</div></span></div>
 
 また、こういうアプリの素晴らしいところは、夫婦で子供のアクティビティをリアルタイム共有できることだ。最後にご飯をあげた時間や、今日何時間お昼寝したかなどを、わざわざ聞かなくてもすぐに把握することができる（それとは別に、コミュニケーションとして口頭で聞いたりはするが）。そのため、24時間シフト制をしていたころなどは、眠る時間の交代時間に引き継ぎで言った言わないなどが発生せず、記録だけを見れば把握できるというところが素晴らしかった。
 
-<div class="flex justify-center">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ぴよログ、1ヶ月半使ったけど素晴らしいアプリだと思ったので課金します<a href="https://t.co/U1j5G6TPUT">https://t.co/U1j5G6TPUT</a></p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1617007552952401920?ref_src=twsrc%5Etfw">January 22, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
 
 写真の共有はみてねを使っている。嫁との共有なら別に必要ないが、じじばばやおじおば（いずれも子供から見て）に写真を共有するのに必要だ。特に、両家にとって初孫と言うこともあり、じじばばだけでなく、これまた両家のおばからの注目が非常に高い。家族間での写真共有で良くできていたのはみてねで、操作も簡単だったので使っている。
 
-[家族アルバム みてね - 子どもの写真、動画を共有・整理アプリ](https://mitene.us/)
+<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://mitene.us/)"></div><div class="bcard-site"><a href="https://mitene.us/" rel="nofollow" target="_blank">家族アルバム みてね</a></div><div class="bcard-url"><a href="https://mitene.us/" rel="nofollow" target="_blank">https://mitene.us/</a></div></span><span class="bcard-main withogimg"><div class="bcard-title"><a href="https://mitene.us/" rel="nofollow" target="_blank">家族アルバム みてね - 子どもの写真、動画を共有・整理アプリ</a></div><div class="bcard-description">子供の成長をいつでも、どこでも、いつまでも！子供の写真や動画をかんたんに共有、整理。家族みんなで楽しく会話したり、成長をふりかえることができます。</div><a href="https://mitene.us/" rel="nofollow" target="_blank"><div class="bcard-img" style="background-image: url(https://assets.mitene.us/assets/landing_page/main/top/ja_ogp-e057eba009016bbc9e6bbb29deddca70ee8b4d6849468ec5fbbb2cc09f28cb98.png)"></div></a></span></div>
 
 みてねは、子供がある程度大きくなってもGPS見守りなども用意しており、長期的に見て継続して欲しい事業だと思っているので、そのうち課金も考えている。が、みてねは課金モデルがよくかんがえられており、じじばばが勝手に課金できるようになっていて、実際課金してるっぽいので、ウチの家は特に何もせんでも良いんじゃ無いかと思っている。
 
@@ -175,9 +166,7 @@ title: 半年くらい子育てしてみた感想
 
 冷食は色々バリエーションがあって楽しい。便利に使えたのはシュウマイで、小分けになっているので途中で子供が起きても食べるのを放棄するのが簡単。一番おいしかったのはセブンプレミアムのミートソースだったと思う。
 
-<div class="flex justify-center">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">セブンプレミアムの金のミートソースが大変おいしいので、お願いなのでソースだけ冷凍で売って欲しい</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1621887586959790080?ref_src=twsrc%5Etfw">February 4, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
 
 ## 首
 
@@ -203,9 +192,7 @@ title: 半年くらい子育てしてみた感想
 
 両方とも股間のところに突起物があって、必要以上に姿勢を崩さないように配慮されているが、正直ある程度からだが大きくなると邪魔に感じる。特に、椅子タイプの奴はお尻を洗うのになかなか難儀するので、しっかりとお尻を洗いたいときなどは自分の膝の上に置いて洗っており二度手間感が無くは無い。
 
-<div class="flex justify-center">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">最近、我が子を普通の浴槽に入れてみて気づいたけど、赤さんめっちゃ水に浮く</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1630518963456348160?ref_src=twsrc%5Etfw">February 28, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
 
 ## ベビーカー
 
@@ -219,7 +206,7 @@ title: 半年くらい子育てしてみた感想
 
 抱っこひもは、実際に生まれる数ヶ月前に、アカチャンホンポに行って置いてある奴全部試着して試してみた。その結果、アンジェレッテというメーカーのクアトロエアーというやつが、うちの夫婦的には最も脱着や取り回しが良かったためそれにした。アカチャンホンポに置いてあるなんかちょっと怖い感じの赤ちゃん人形をひたすら抱っこしたり外したりを繰り返した結果選んだので、割と使いやすいと感じている。Amazon公式で取り扱ってなかったみたいなので、代わりにメーカーのリンクを置いておく。商品ページはそうでもないが、トップとかは割となんともいえない感じのデザインなWebサイトで、少し不安になる。
 
-[クアトロエアー3.2  angelette](https://www.angelette.jp/product-page/%E3%82%AF%E3%82%A2%E3%83%88%E3%83%AD%E3%82%A8%E3%82%A2%E3%83%BC3-2)
+<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://www.angelette.jp/product-page/クアトロエアー3-2)"></div><div class="bcard-site"><a href="https://www.angelette.jp/product-page/クアトロエアー3-2" rel="nofollow" target="_blank">angelette</a></div><div class="bcard-url"><a href="https://www.angelette.jp/product-page/クアトロエアー3-2" rel="nofollow" target="_blank">https://www.angelette.jp/product-page/クアトロエアー3-2</a></div></span><span class="bcard-main withogimg"><div class="bcard-title"><a href="https://www.angelette.jp/product-page/クアトロエアー3-2" rel="nofollow" target="_blank">クアトロエアー3.2 | angelette</a></div><div class="bcard-description">日本人の体形にフィットする日本製抱っこ紐。肩への負担を軽減する3.2cm厚のショルダーデザインがしっかりフィット。  ●肩への負担を軽減する3.2cm厚クッションがしっかりフィットしてくれるデザイン。●成長に合わせてずっと使える4wayで、前向き抱っこ・対面抱っこ・おんぶ・チェアベルト。対面抱っことおんぶは、1人でも簡単に切替えできます（くるっとおんぶ機能）。外出先でも安全に座らせられるチェアベルトとしての使用もできます。●赤ちゃんの背中に当たる部分のクッション材は「C-CORE 3D」を使用し、保温性・耐圧分散・通気性に優れています。●抱っこ紐をしっかり装着してから赤ちゃんを後乗せするセパレート構造で、抱っこ時の不安を軽減。バックルはコンパクトで頑丈なＹＫＫ製となっています。背当て部分がフルオープンでき、抱っこで眠ってしまった赤ちゃんをスムーズにベッドへ。●外出先のレストランや、よそのおうちでのお食事シーンでも、チェアベルトに早変わり。チェアに簡単装着で、いすから落下防止ができて安全。おまけに、抱っこ紐を入れる、専用収納袋付きです。●2種類の日よけフードは、ママが使用の時は、angelette柄の人気プリント柄、パパが使用の時は、無地のメッシュフードとデザイン性に富んだフード付きです。●フード不要時は、収納ポケットにしまいこんでしまえばラクチン。 　 【商品のご購入はこちら】</div><a href="https://www.angelette.jp/product-page/クアトロエアー3-2" rel="nofollow" target="_blank"><div class="bcard-img" style="background-image: url(https://static.wixstatic.com/media/adde4e_20e6d60afe274de0b682fb79520efaa7~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg)"></div></a></span></div>
 
 この抱っこひもは、サイズの変更が一番楽だったというところが大きい。夫婦の体格差が大きいので、ストラップの長さをすぐに変えて調整できる方が取り回しが良く、装着しながらの操作にもあまり困らなかったのでこれを選んだ。 あと、首が据わってない段階でも抱っこできるように補助が入っている。実際には、首が据わってない状態でであることはそんなになかったが、補助ベルトの安心感は確かだった。
 
@@ -227,7 +214,7 @@ title: 半年くらい子育てしてみた感想
 
 とはいえ、赤ちゃんの体がある程度大きくなり、安定感も増してくると、ゴツゴツの抱っこひもだけで生活するのはなかなか難儀になる。そのため、家の中や軽い外のお散歩程度であれば簡易的なもので良いと言うことで、フェリシモの抱っこひもをセカンダリーとして使用している。もはや最近はこちらがプライマリーと言っても差し支えない。猫の柄がはいったものが用意されており、猫好きにも安心な一本で、実際に子供を収納してみると良い感じに簡単に抱っこできて安定感もある。素晴らしい。さすがに長時間はしんどいが、本当にちょっとした抱っこならこれでよいので、なんならこれをつけて仕事しているくらいだ。
 
-[フェリシモの抱っこひも](https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html)
+<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html)"></div><div class="bcard-site"><a href="https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html" rel="nofollow" target="_blank">https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html</a></div></span><span class="bcard-main withogimg"><div class="bcard-title"><a href="https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html" rel="nofollow" target="_blank">フェリシモの抱っこひも｜フェリシモ｜フェリシモ</a></div><div class="bcard-description">抱っこ紐ならフェリシモの抱っこひもの専門サイト。フェリシモでは通販カタログで扱っている、ファッション、子供服から雑貨といった商品のオンラインショッピングをお楽しみいただけます。</div><a href="https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html" rel="nofollow" target="_blank"><div class="bcard-img" style="background-image: url(/on/demandware.static/Sites-FelissimoJp-Site/Library-Sites-SharedFelissimo/ja/common/images/ogimage.png)"></div></a></span></div>
 
 他の簡易抱っこひもは実際に買って試したが、妙に凝ってるというか、変にフィット感だそうとしているというか、このフェリシモの質実剛健な感じに全く歯が立たなかったので使っていない。
 
@@ -253,9 +240,7 @@ title: 半年くらい子育てしてみた感想
 
 記録とか分析は、クラウドに追加で課金しないとみることができない。ハナから課金する気は無かったから値段は覚えていないが、まあまあな額だった記憶がある。もともと、睡眠中の異常をその場で検知して欲しい目的で買ったので最低限はクリアしてくれていたが、分析とか最低でも記録とかはアプリでスタンドアロンでやってほしかった。元々のセンサの値段も安くないのに、お金がかかりすぎる。子供は無限に金を稼げるコンテンツだと思われているおそらく。正直ちょっと腹が立つ。かなりうがった見方をしていると自分でも思うが、子供の命を人質にされている気持ちになる。
 
-<div class="flex justify-center">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">Sense-Uっていう赤さんのモニタリングするデバイス買ったが、デバイスそのものもいいお値段するのに睡眠記録は月額別にかかるのかよ</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1649039315870318592?ref_src=twsrc%5Etfw">April 20, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
 
 あと、偽陰性よりは全然良いのだが、子供の姿勢によっては体動センサーが呼吸してないって恐ろしいアラームを送ってくる。重ね重ね偽陰性よりは全然良いんだけど、夜中にこれで起こされると本当にこっちの心臓が止まりそうになる。
 
@@ -275,9 +260,7 @@ title: 半年くらい子育てしてみた感想
 
 マイナポントも申請して、子供の買い物に使おうと思ったところ、子供の名義で作った三井住友のOlive口座の支店名がマイナンバーの公金受取口座のデータベースにまだ登録されていないことがわかり、落胆した。事前に登録とかしとかないのかよそういうの……
 
-<div class="flex justify-center">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">我が子のマイナポイント貰おうと思って、oliveで口座作ったら公金受け取りの口座一覧に支店名が表示されなくて登録できない……マジなんなのこいつ</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1648276674491084800?ref_src=twsrc%5Etfw">April 18, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
 
 ## iCloud
 
@@ -285,9 +268,7 @@ iPhoneは以前から256Gのものをつかっていたが、ぜーんぜん写�
 
 結果として、iCloudと契約することにした。数多のクラウドストレージの中で、おそらくAppleはまだ写真の検閲とかはやっていなさそうなのと、どうせ嫁もiPhoneだし、色々と便利になるだろうという考えもあった。実際に便利になったのかどうかは謎だが、自分の現在地を常に共有できるようになったので、外出時に少し離れるときなどに便利になった。
 
-<div class="flex justify-center">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">必要に迫られた感があるので、iCloudを2Tにアップデートした。というか、200Gの次が2Tって何だよその設定、絶対に200Gは見せ球だろ……</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1633300401981362178?ref_src=twsrc%5Etfw">March 8, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
 
 値段はまー高い。半分の量で半分の額のプランが欲しいと思う。ただ、子供の写真を人質に取られて金を払っていると考えると、ぐぬぬと思いつつ払わざるを得ない。子供は常に人質にされる。
 
@@ -297,9 +278,7 @@ iPhoneは以前から256Gのものをつかっていたが、ぜーんぜん写�
 
 が、許せなかったのが選挙カーだ。別に今回に限らず物心ついたときから選挙カーアンチだが、今回は特に腹立たしかった。日中、ウチの子供が盛大にぐずってからやっと寝てくれる。我が家に訪れるひとときの平和だ。その平和をぶち壊してくれる選挙カーと街頭演説。100歩譲って、というか別に譲らなくても街頭演説は許そう。街頭演説が制限されるのは健全な選挙では無い。どの被選挙人も自分の主張を公衆で主張する権利がある。民主主義の根底だ。だが選挙カーはぜっっっっっっっっっっっっっっっっったいに許さん。ふざけてるのかアイツらは、なんなんだくそでかい拡声器で名前を叫ぶだけの意味不明な行動をして、それでもって子供がびっくりして目を覚ますんだよバカヤローが。即刻規制して欲しい。あんなもんなくても民主主義は脅かされない。むしろ健全な選挙の邪魔だと思う。ただですら在宅勤務してるから仕事の邪魔なクソでかボイスなのに、子供の安眠まで奪うのか。ふざけてんのか？　今回の選挙は絶対に選挙カーで来るバカには投票しないと思った。前からずっとそうしてたけど、今回は特に腹立たしかった。バカタレが。
 
-<div class="flex justify-center">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">選挙カー走らしてる奴らは、新生児のうちの子の安眠を妨害するので投票しません。ファック選挙カー。</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1649738265015242752?ref_src=twsrc%5Etfw">April 22, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
 
 ## 離乳食
 
@@ -318,13 +297,13 @@ iPhoneは以前から256Gのものをつかっていたが、ぜーんぜん写�
 ともあれ、子供の成長を日々感じることがいま一番嬉しい出来事になっている。これからもずっとこの気持ちを持って生きてきたい。
 
 
-<div class="flex justify-center">
+<div class="flex">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">我が子「へうー」<br>ワイ「へうー」<br>我が子「へうー」<br>ワイ「へうー」<br>我が子「キャッキャ」<br><br>会話できてる</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1623649691127943169?ref_src=twsrc%5Etfw">February 9, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">我が子生まれてから毎日5回くらい「ワアッ　泣いちゃった！」って言ってる</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1629082757262614531?ref_src=twsrc%5Etfw">February 24, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">理由がわからずギャン泣きする我が子を一時間ほどかけどうにか泣き止ませた結果、疲れ果てた表情で我が子を抱くワイをピエタと表現する嫁が好きです</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1629894146298359808?ref_src=twsrc%5Etfw">February 26, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 
-<div class="flex justify-center">
+<div class="flex">
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">赤さん、もうちょっと「キャッキャ」みたいに喜んでくれるかと思ってたけど、最近は「ギェェェィィィァ」みたいなよくわからん声で喜びを表現してる</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1637634382466019330?ref_src=twsrc%5Etfw">March 20, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">我が子にアップデート降ってきたみたいで、自分の手を認識し始めた気がする</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1634494245737472000?ref_src=twsrc%5Etfw">March 11, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">我が子、この間の大型アップデートで使ってなかったセンサが有効化されたのか、顔とか手を触ると喜ぶようになった</p>&mdash; kinoppyd (@GhostBrain) <a href="https://twitter.com/GhostBrain/status/1610601333530447872?ref_src=twsrc%5Etfw">January 4, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
