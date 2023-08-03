@@ -6,6 +6,7 @@ module.exports = {
     './_posts/*.md',
     './*.md',
     './*.html',
+    './_plugins/*.erb',
   ],
   darkmode: false,
   theme: {

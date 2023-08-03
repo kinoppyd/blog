@@ -27,6 +27,7 @@ feed:
   path: /blog/feed.xml
 
 exclude:
+  - ./_plugins/cache/cardlink.yaml
   - package.json
   - postcss.config.js
   - tailwind.config.js
