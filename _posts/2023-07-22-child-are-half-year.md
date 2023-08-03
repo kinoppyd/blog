@@ -60,10 +60,8 @@ date: 2023-07-22 00:50 +0900
 
 子供が生まれる少し前に、こういう内容の研究が話題になった。数ヶ月後に子供が生まれるのを控えた自分は、これで勝つるという気持ちだった。そして生まれた後に子供が寝ないとanyのSlackでぼやくと、みんなこのリンクを送ってきたので、認知度の高さたるやと感心した。
 
-<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://www3.nhk.or.jp/news/html/20220914/k10013816711000.html)"></div><div class="bcard-site"><a href="https://www3.nhk.or.jp/news/html/20220914/k10013816711000.html" rel="nofollow" target="_blank">NHKニュース</a></div><div class="bcard-url"><a href="https://www3.nhk.or.jp/news/html/20220914/k10013816711000.html" rel="nofollow" target="_blank">https://www3.nhk.or.jp/news/html/20220914/k10013816711000.html</a></div></span><span class="bcard-main"><div class="bcard-title"><a href="https://www3.nhk.or.jp/news/html/20220914/k10013816711000.html" rel="nofollow" target="_blank">だっこして歩く 効果的 泣く赤ちゃんの寝かしつけ方で研究 | NHK</a></div><div class="bcard-description">【NHK】泣いている赤ちゃんを寝かしつけるには、だっこして歩くことが効果的だとする研究成果を理化学研究所などのグループが発表しまし&</div></span></div>
-
-<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://scienceportal.jst.go.jp/newsflash/20220926_n01/)"></div><div class="bcard-site"><a href="https://scienceportal.jst.go.jp/newsflash/20220926_n01/" rel="nofollow" target="_blank">Science Portal - 科学技術の最新情報サイト「サイエンスポータル」</a></div><div class="bcard-url"><a href="https://scienceportal.jst.go.jp/newsflash/20220926_n01/" rel="nofollow" target="_blank">https://scienceportal.jst.go.jp/newsflash/20220926_n01/</a></div></span><span class="bcard-main"><div class="bcard-title"><a href="https://scienceportal.jst.go.jp/newsflash/20220926_n01/" rel="nofollow" target="_blank">赤ちゃん抱っこして5分歩くと泣きやむ、育児に活用可能 日伊研究グループ | Science Portal - 科学技術の最新情報サイト「サイエンスポータル」</a></div><div class="bcard-description">
-　泣いた赤ちゃんを抱っこして5分歩くと泣きやみ、半数が寝つくことを実験で示した。理化学研究所など日本とイタリアの研究グループが発表した。さらに5～8分抱いてからベッドに寝かせると、起きずに眠ってくれ</div></span></div>
+{% cardlink https://www3.nhk.or.jp/news/html/20220914/k10013816711000.html %}
+{% cardlink https://scienceportal.jst.go.jp/newsflash/20220926_n01/ %}
 
 なるほど、確かに移動反応というのはいろんな生物に存在するらしいし、合理的な気はした。実際にやってみると、効いたり効かなかったりしてなんとも言えない感じだった。寝るときはこれで寝るが、寝ないときは何をやっても寝ない。理不尽トートロジー。ただ、歩くとぐずっているのがやや軽減するのは確実らしく、家の廊下を意味も無く一時間歩き続けるみたいなことを結構やった。運動にはなったが、それでも自分の体重は増えた。
 
@@ -93,7 +91,7 @@ date: 2023-07-22 00:50 +0900
 
 東京都では、出産した家庭に対して10万円のいろんなものを選べるギフトクーポンみたいなのをくれる。赤ちゃんファースト事業というらしい。
 
-<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html)"></div><div class="bcard-site"><a href="https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html" rel="nofollow" target="_blank">https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html</a></div></span><span class="bcard-main"><div class="bcard-title"><a href="https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html" rel="nofollow" target="_blank">東京都出産応援事業 ～コロナに負けない！～　東京都福祉局</a></div><div class="bcard-description"></div></span></div>
+{% cardlink https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html %}
 
 このギフトを選ぶサイトが、いわゆる結婚式の引き出物とかのカタログギフトとかをやっている会社が受注しているっぽくて、作りが非常にアレだった。今時ページネーションのブラウザバックでPOST再送信の警告がでるサイトなんて久々に見たなという感じがした。少し話はそれたが、このギフトの中にアイクレオのミルクが含まれていて、我が家では赤ちゃんの寝室用の空気清浄機とアイクレオに全振りした結果、干し芋リストから贈ってもらったものと合わせて5ヶ月くらいはミルクを買わずに済んだ。サンキュー東京都。産休だけに。
 
@@ -107,7 +105,7 @@ date: 2023-07-22 00:50 +0900
 
 これはかなり便利で助かったが、しばらくすると我が家で防災用にローリングストックしているいろはすもどうやらミルクを作るのに適しているということがわかり、余り気味だったそちらを利用することにした。
 
-<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://www.i-lohas.jp/products/safe/)"></div><div class="bcard-site"><a href="https://www.i-lohas.jp/products/safe/" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://www.i-lohas.jp/products/safe/" rel="nofollow" target="_blank">https://www.i-lohas.jp/products/safe/</a></div></span><span class="bcard-main"><div class="bcard-title"><a href="https://www.i-lohas.jp/products/safe/" rel="nofollow" target="_blank">赤ちゃんにもやさしい軟水</a></div><div class="bcard-description"></div></span></div>
+{%cardlink https://www.i-lohas.jp/products/safe/ %}
 
 <div class="border-solid border-2 border-sky-500 p-2"><a href="https://www.amazon.co.jp/dp/B08TV9VDR7?&linkCode=li2&tag=ppyd-22&linkId=0438beac1dfc78415dde2ef62ec14dd5&language=ja_JP&ref_=as_li_ss_il" target="_blank"><div class="flex"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B08TV9VDR7&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=ppyd-22&language=ja_JP" ><span class="m-4">【Amazon.co.jp限定】CCL い・ろ・は・すラベルレス 2LPET ×8本</span></div></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=ppyd-22&language=ja_JP&l=li2&o=9&a=B08TV9VDR7" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></div>
 
@@ -150,7 +148,7 @@ date: 2023-07-22 00:50 +0900
 
 生まれて1年くらいは、子供の様々なアクティビティの記録が重要になる。きちんとした間隔で食事をあげたり、睡眠時間の過不足を確認したり、おしっこの間隔、うんちの回数、風呂の時間、体温、体重、などなど枚挙に暇がない。記録できるアプリは色々あるみたいだが、ウチの家はぴよろぐというものを使っている。このアプリの凄いところは、ちゃんと育児をしながら記録がしやすいようにUIが作られていること。さらにSiriなどの音声アシスタントにちゃんと対応しているところだ。めちゃめちゃ使いやすいなと感動すら覚えるレベルだった。あまりに良かったので、課金に迷いがなかったくらい良かった。
 
-<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://www.piyolog.com/)"></div><div class="bcard-site"><a href="https://www.piyolog.com/" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://www.piyolog.com/" rel="nofollow" target="_blank">https://www.piyolog.com/</a></div></span><span class="bcard-main"><div class="bcard-title"><a href="https://www.piyolog.com/" rel="nofollow" target="_blank">育児記録アプリ ぴよログ</a></div><div class="bcard-description">夫婦で共有できる無料育児記録アプリ。片手のかんたん操作で赤ちゃんの育児記録をつけられます。授乳タイマー機能やまとめ機能、成長曲線機能なども備えています。AIアシスタントにも対応！</div></span></div>
+{%cardlink https://www.piyolog.com/ %}
 
 また、こういうアプリの素晴らしいところは、夫婦で子供のアクティビティをリアルタイム共有できることだ。最後にご飯をあげた時間や、今日何時間お昼寝したかなどを、わざわざ聞かなくてもすぐに把握することができる（それとは別に、コミュニケーションとして口頭で聞いたりはするが）。そのため、24時間シフト制をしていたころなどは、眠る時間の交代時間に引き継ぎで言った言わないなどが発生せず、記録だけを見れば把握できるというところが素晴らしかった。
 
@@ -158,7 +156,7 @@ date: 2023-07-22 00:50 +0900
 
 写真の共有はみてねを使っている。嫁との共有なら別に必要ないが、じじばばやおじおば（いずれも子供から見て）に写真を共有するのに必要だ。特に、両家にとって初孫と言うこともあり、じじばばだけでなく、これまた両家のおばからの注目が非常に高い。家族間での写真共有で良くできていたのはみてねで、操作も簡単だったので使っている。
 
-<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://mitene.us/)"></div><div class="bcard-site"><a href="https://mitene.us/" rel="nofollow" target="_blank">家族アルバム みてね</a></div><div class="bcard-url"><a href="https://mitene.us/" rel="nofollow" target="_blank">https://mitene.us/</a></div></span><span class="bcard-main withogimg"><div class="bcard-title"><a href="https://mitene.us/" rel="nofollow" target="_blank">家族アルバム みてね - 子どもの写真、動画を共有・整理アプリ</a></div><div class="bcard-description">子供の成長をいつでも、どこでも、いつまでも！子供の写真や動画をかんたんに共有、整理。家族みんなで楽しく会話したり、成長をふりかえることができます。</div><a href="https://mitene.us/" rel="nofollow" target="_blank"><div class="bcard-img" style="background-image: url(https://assets.mitene.us/assets/landing_page/main/top/ja_ogp-e057eba009016bbc9e6bbb29deddca70ee8b4d6849468ec5fbbb2cc09f28cb98.png)"></div></a></span></div>
+{% cardlink https://mitene.us/ %}
 
 みてねは、子供がある程度大きくなってもGPS見守りなども用意しており、長期的に見て継続して欲しい事業だと思っているので、そのうち課金も考えている。が、みてねは課金モデルがよくかんがえられており、じじばばが勝手に課金できるようになっていて、実際課金してるっぽいので、ウチの家は特に何もせんでも良いんじゃ無いかと思っている。
 
@@ -208,7 +206,7 @@ date: 2023-07-22 00:50 +0900
 
 抱っこひもは、実際に生まれる数ヶ月前に、アカチャンホンポに行って置いてある奴全部試着して試してみた。その結果、アンジェレッテというメーカーのクアトロエアーというやつが、うちの夫婦的には最も脱着や取り回しが良かったためそれにした。アカチャンホンポに置いてあるなんかちょっと怖い感じの赤ちゃん人形をひたすら抱っこしたり外したりを繰り返した結果選んだので、割と使いやすいと感じている。Amazon公式で取り扱ってなかったみたいなので、代わりにメーカーのリンクを置いておく。商品ページはそうでもないが、トップとかは割となんともいえない感じのデザインなWebサイトで、少し不安になる。
 
-<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://www.angelette.jp/product-page/クアトロエアー3-2)"></div><div class="bcard-site"><a href="https://www.angelette.jp/product-page/クアトロエアー3-2" rel="nofollow" target="_blank">angelette</a></div><div class="bcard-url"><a href="https://www.angelette.jp/product-page/クアトロエアー3-2" rel="nofollow" target="_blank">https://www.angelette.jp/product-page/クアトロエアー3-2</a></div></span><span class="bcard-main withogimg"><div class="bcard-title"><a href="https://www.angelette.jp/product-page/クアトロエアー3-2" rel="nofollow" target="_blank">クアトロエアー3.2 | angelette</a></div><div class="bcard-description">日本人の体形にフィットする日本製抱っこ紐。肩への負担を軽減する3.2cm厚のショルダーデザインがしっかりフィット。  ●肩への負担を軽減する3.2cm厚クッションがしっかりフィットしてくれるデザイン。●成長に合わせてずっと使える4wayで、前向き抱っこ・対面抱っこ・おんぶ・チェアベルト。対面抱っことおんぶは、1人でも簡単に切替えできます（くるっとおんぶ機能）。外出先でも安全に座らせられるチェアベルトとしての使用もできます。●赤ちゃんの背中に当たる部分のクッション材は「C-CORE 3D」を使用し、保温性・耐圧分散・通気性に優れています。●抱っこ紐をしっかり装着してから赤ちゃんを後乗せするセパレート構造で、抱っこ時の不安を軽減。バックルはコンパクトで頑丈なＹＫＫ製となっています。背当て部分がフルオープンでき、抱っこで眠ってしまった赤ちゃんをスムーズにベッドへ。●外出先のレストランや、よそのおうちでのお食事シーンでも、チェアベルトに早変わり。チェアに簡単装着で、いすから落下防止ができて安全。おまけに、抱っこ紐を入れる、専用収納袋付きです。●2種類の日よけフードは、ママが使用の時は、angelette柄の人気プリント柄、パパが使用の時は、無地のメッシュフードとデザイン性に富んだフード付きです。●フード不要時は、収納ポケットにしまいこんでしまえばラクチン。 　 【商品のご購入はこちら】</div><a href="https://www.angelette.jp/product-page/クアトロエアー3-2" rel="nofollow" target="_blank"><div class="bcard-img" style="background-image: url(https://static.wixstatic.com/media/adde4e_20e6d60afe274de0b682fb79520efaa7~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg)"></div></a></span></div>
+{% cardlink https://www.angelette.jp/product-page/クアトロエアー3-2 %}
 
 この抱っこひもは、サイズの変更が一番楽だったというところが大きい。夫婦の体格差が大きいので、ストラップの長さをすぐに変えて調整できる方が取り回しが良く、装着しながらの操作にもあまり困らなかったのでこれを選んだ。 あと、首が据わってない段階でも抱っこできるように補助が入っている。実際には、首が据わってない状態でであることはそんなになかったが、補助ベルトの安心感は確かだった。
 
@@ -216,7 +214,7 @@ date: 2023-07-22 00:50 +0900
 
 とはいえ、赤ちゃんの体がある程度大きくなり、安定感も増してくると、ゴツゴツの抱っこひもだけで生活するのはなかなか難儀になる。そのため、家の中や軽い外のお散歩程度であれば簡易的なもので良いと言うことで、フェリシモの抱っこひもをセカンダリーとして使用している。もはや最近はこちらがプライマリーと言っても差し支えない。猫の柄がはいったものが用意されており、猫好きにも安心な一本で、実際に子供を収納してみると良い感じに簡単に抱っこできて安定感もある。素晴らしい。さすがに長時間はしんどいが、本当にちょっとした抱っこならこれでよいので、なんならこれをつけて仕事しているくらいだ。
 
-<div class="bcard-wrapper"><span class="bcard-header withgfav"><div class="bcard-favicon" style="background-image: url(https://www.google.com/s2/favicons?domain=https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html)"></div><div class="bcard-site"><a href="https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html" rel="nofollow" target="_blank">https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html</a></div></span><span class="bcard-main withogimg"><div class="bcard-title"><a href="https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html" rel="nofollow" target="_blank">フェリシモの抱っこひも｜フェリシモ｜フェリシモ</a></div><div class="bcard-description">抱っこ紐ならフェリシモの抱っこひもの専門サイト。フェリシモでは通販カタログで扱っている、ファッション、子供服から雑貨といった商品のオンラインショッピングをお楽しみいただけます。</div><a href="https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html" rel="nofollow" target="_blank"><div class="bcard-img" style="background-image: url(/on/demandware.static/Sites-FelissimoJp-Site/Library-Sites-SharedFelissimo/ja/common/images/ogimage.png)"></div></a></span></div>
+{% cardlink https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html %}
 
 他の簡易抱っこひもは実際に買って試したが、妙に凝ってるというか、変にフィット感だそうとしているというか、このフェリシモの質実剛健な感じに全く歯が立たなかったので使っていない。
 
