@@ -84,7 +84,17 @@ class OpenGraphProtocolParser
     node = content.xpath('//link[@rel="icon" or @rel="shortcut icon"]')[0]
     if node
       path = node['href']
-      @favicon = path.start_with?('http') ? path : base_url + path
+      @favicon = if path.start_with?('http')
+                    path
+                  elsif path.start_with?('.')
+                    if uri.end_with?('/')
+                      uri + path
+                    else
+                      uri.split('/')[0..-2].join('/') + '/' + path
+                    end
+                  else
+                    base_url + path
+                  end
     end
   end
 
