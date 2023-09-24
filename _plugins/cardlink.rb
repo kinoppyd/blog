@@ -27,12 +27,12 @@ module Jekyll
 
       parser = OpenGraphProtocolParser.new(url).tap do |psr|
         if c = cache[url]
-          psr.link = c['link']
-          psr.favicon = c['favicon']
-          psr.site_name = c['site_name']
-          psr.title = c['title']
-          psr.description = c['description']
-          psr.og_image = c['og_image']
+          psr.link = c[:link]
+          psr.favicon = c[:favicon]
+          psr.site_name = c[:site_name]
+          psr.title = c[:title]
+          psr.description = c[:description]
+          psr.og_image = c[:og_image]
         end
       end
 
