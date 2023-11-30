@@ -62,7 +62,7 @@ https://www.angelette.jp/product-page/クアトロエアー3-2:
 https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html:
   :link: https://www.felissimo.co.jp/kraso/dakko/dakko_kr.html
   :favicon: https://www.felissimo.co.jp/on/demandware.static/Sites-FelissimoJp-Site/-/default/dw7e033fb1/images/favicon.ico
-  :site_name:
+  :site_name: フェリシモ
   :title: フェリシモの抱っこひも｜フェリシモ｜フェリシモ
   :description: 抱っこ紐ならフェリシモの抱っこひもの専門サイト。フェリシモでは通販カタログで扱っている、ファッション、子供服から雑貨といった商品のオンラインショッピングをお楽しみいただけます。
   :og_image: https://www.felissimo.co.jp/on/demandware.static/Sites-FelissimoJp-Site/Library-Sites-SharedFelissimo/ja/common/images/ogimage.png
@@ -82,3 +82,18 @@ https://gotanda-rb.connpass.com/event/297591/:
     Kaigi on Rails2023直前の特別会としてReject on Railsを開催いたします。   * Kaigi on Rails 2023のCfPにプロポーザル提出された方で、Rejectされて登壇の機会を惜しくも逃された方をメインにご登壇いただく会となります。
     \  * 登壇をご希望の方は登壇者と募集LT内容 をご確認いただいた上で、GoogleFormからお申し込みください。   * 多くのRubyistの方の取り組みを発表・共有する機会をご提..."
   :og_image: https://media.connpass.com/thumbs/7e/93/7e93159cb5ef75c1d80f849e5b35af15.png
+https://github.com/kinoppyd/suturbo:
+  :link: https://github.com/kinoppyd/suturbo
+  :favicon: https://github.githubassets.com/favicons/favicon.svg
+  :site_name: GitHub
+  :title: 'GitHub - kinoppyd/suturbo: 素Turbo'
+  :description: 素Turbo. Contribute to kinoppyd/suturbo development by creating an
+    account on GitHub.
+  :og_image: https://opengraph.githubassets.com/b2128ef84d09c4c438d1e775ecf5bd5707812f0b7b65f22b3c79466efbc13992/kinoppyd/suturbo
+https://turbo.hotwired.dev/handbook/installing:
+  :link: https://turbo.hotwire.dev/handbook/installing
+  :favicon: https://turbo.hotwired.dev/assets/favicon.svg
+  :site_name:
+  :title: Turbo Handbook
+  :description: Learn how to install Turbo in your application.
+  :og_image:
