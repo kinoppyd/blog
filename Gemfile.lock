@@ -11,6 +11,7 @@ GEM
     eventmachine (1.2.7)
     ffi (1.15.5)
     forwardable-extended (2.6.0)
+    google-protobuf (3.23.1)
     google-protobuf (3.23.1-arm64-darwin)
     google-protobuf (3.23.1-x86_64-linux)
     http_parser.rb (0.8.0)
@@ -54,6 +55,10 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.4.0)
+    mini_portile2 (2.8.5)
+    nokogiri (1.15.3)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
     nokogiri (1.15.3-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.3-x86_64-linux)
@@ -62,12 +67,16 @@ GEM
       forwardable-extended (~> 2.6)
     public_suffix (5.0.1)
     racc (1.7.1)
+    rake (13.1.0)
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rexml (3.2.5)
     rouge (4.1.1)
     safe_yaml (1.0.5)
+    sass-embedded (1.62.1)
+      google-protobuf (~> 3.21)
+      rake (>= 10.0.0)
     sass-embedded (1.62.1-arm64-darwin)
       google-protobuf (~> 3.21)
     sass-embedded (1.62.1-x86_64-linux-gnu)
@@ -79,6 +88,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  ruby
   x86_64-linux
 
 DEPENDENCIES

@@ -97,3 +97,10 @@ https://turbo.hotwired.dev/handbook/installing:
   :title: Turbo Handbook
   :description: Learn how to install Turbo in your application.
   :og_image:
+https://turbo.hotwired.dev/reference/streams:
+  :link: https://turbo.hotwire.dev/reference/streams
+  :favicon: https://turbo.hotwired.dev/assets/favicon.svg
+  :site_name:
+  :title: Turbo Reference
+  :description: A reference of everything you can do with Turbo Streams.
+  :og_image:
