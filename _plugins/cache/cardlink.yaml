@@ -104,3 +104,45 @@ https://turbo.hotwired.dev/reference/streams:
   :title: Turbo Reference
   :description: A reference of everything you can do with Turbo Streams.
   :og_image:
+https://increments.connpass.com/event/297116/:
+  :link: https://increments.connpass.com/event/297116/
+  :favicon: https://connpass.com/static/img/favicon.ico
+  :site_name: connpass
+  :title: Qiita Night～Rails～ (2023/11/20 19:00〜)
+  :description: "# イベント概要  本イベントは、日本最大級*のエンジニアコミュニティ「Qiita（キータ）」を運営する当社が実施するエンジニア向けオンラインLTイベントです。
+    \ Qiita Nightはイベントごとにテーマを設け、エンジニアにまつわる知見を共有し合う場です。   Qiitaユーザーを中心に、テーマについて深い知見を持っている方にご登壇いただき、LTを行っていただきます。
+    \ インプット・アウトプットの場を創出することで、エンジニア業界の知識の流動性を高める目的で実施しております！   イベント中の質問やご意見も大歓迎！関心のあるテーマの知見を深めるきっかけとしていただければ何よりです。
+    ..."
+  :og_image: https://media.connpass.com/thumbs/92/36/92360b5ddbc4fc60314a29ddbb5e9d4f.png
+https://github.com/rails/spring:
+  :link: https://github.com/rails/spring
+  :favicon: https://github.githubassets.com/favicons/favicon.svg
+  :site_name: GitHub
+  :title: 'GitHub - rails/spring: Rails application preloader'
+  :description: Rails application preloader. Contribute to rails/spring development
+    by creating an account on GitHub.
+  :og_image: https://opengraph.githubassets.com/d58199cb93d416fe0142d4288e1aeed64ecc44eb98c66f1ec387a92c71bba8b3/rails/spring
+https://github.com/rails/rails/blob/79c3cef444bf783e15f6b3928e69d53fcf933acf/railties/lib/rails/app_loader.rb:
+  :link: https://github.com/rails/rails/blob/79c3cef444bf783e15f6b3928e69d53fcf933acf/railties/lib/rails/app_loader.rb
+  :favicon:
+  :site_name:
+  :title:
+  :description:
+  :og_image:
+https://docs.ruby-lang.org/ja/latest/method/Dir/s/tmpdir.html:
+  :link: https://docs.ruby-lang.org/ja/latest/method/Dir/s/tmpdir.html
+  :favicon: https://docs.ruby-lang.org/ja/latest/method/Dir/s/../../../rurema.png
+  :site_name:
+  :title: Dir.tmpdir (Ruby 3.2 リファレンスマニュアル)
+  :description: |-
+    テンポラリファイルを作成するのに使うディレクトリ(テンポラリディレクトリ)の絶対パスを
+    文字列として返します。
+    [[m:$SAFE]] によって返す文字列は変わります。
+  :og_image:
+https://docs.ruby-lang.org/ja/latest/class/Process.html:
+  :link: https://docs.ruby-lang.org/ja/latest/class/Process.html
+  :favicon: https://docs.ruby-lang.org/ja/latest/class/../rurema.png
+  :site_name:
+  :title: module Process (Ruby 3.2 リファレンスマニュアル)
+  :description: UNIX のプロセスを管理するモジュールです。
+  :og_image:
