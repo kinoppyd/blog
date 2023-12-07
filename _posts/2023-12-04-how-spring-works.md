@@ -28,7 +28,7 @@ Spring、使っていますか？　Rails4.1から追加された新しいRails�
 
 `Spring::ApplicationManager` は、`Spring::Server` の内部で実行環境ごとに異なるプロセスを保持していて、開発環境かテスト環境かを区別しています。`Spring::ApplicationManager` の内部では、 `Spring::Application` オブジェクトがロードしたRailsアプリケーションをデフォルトでポーリングしながら監視しており、Gemfileやアプリケーションコードの変更があるとリロード用のコールバックが実行されます。
 
-以上がSpringの大まかな仕組みですが、それがその様に普段のRails開発で介入してくるのかを追ってみましょう。
+以上がSpringの大まかな仕組みですが、それがどの様に普段のRails開発で介入してくるのかを追ってみましょう。
 
 ## Springのインストール
 
@@ -445,6 +445,6 @@ forkしたプロセスの中では、`Spring.command` によって特定され�
 
 以上が、Springのコードを読んだ結果わかった、SpringがどうやってRailsアプリを早く起動させているかの全てです。
 
-`Spring::Server` プロセスと、`Spring::ApplicationManager` を介してに複数立ち上がっている `Spring::Application` のそれぞれ独立したプロセスが、`Spring::Client::Run` によってコンソールと接続され、予め温められていたRailsアプリケーションを参照することがわかりました。
+`Spring::Server` プロセスと、`Spring::ApplicationManager` を介して複数立ち上がっている `Spring::Application` のそれぞれ独立したプロセスが、`Spring::Client::Run` によってコンソールと接続され、予め温められていたRailsアプリケーションを参照することがわかりました。
 
 最初にも書いた通り、Springは現在のところデフォルトでバンドルされなくなり、オプション扱いです。DHHも「マシン十分速いからいらんくね？」みたいなことを言っていますが、それでも数十万行のコードベースを持つ巨大なモノリスアプリを開発しているチームには、これからも良い選択肢であり続けるでしょう。Springの仕組みを解説して広くSpringへの理解が広がることで、Springがなんかよくわからん怖いやつから、なんとなく知ってる便利なやつになってくれると嬉しいです。
