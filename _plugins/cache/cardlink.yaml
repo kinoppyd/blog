@@ -146,3 +146,10 @@ https://docs.ruby-lang.org/ja/latest/class/Process.html:
   :title: module Process (Ruby 3.2 リファレンスマニュアル)
   :description: UNIX のプロセスを管理するモジュールです。
   :og_image:
+https://regional.rubykaigi.org/fukuoka04/:
+  :link: https://regional.rubykaigi.org/fukuoka04
+  :favicon: https://regional.rubykaigi.org/fukuoka04/favicon.png
+  :site_name: 福岡Rubyist会議04 | Fukuoka RubyistKaigi 04
+  :title: 福岡Rubyist会議04 | Fukuoka RubyistKaigi 04
+  :description: 2024.09.07(Sat) 9:30 - 18:00 開催予定！ 福岡Rubyist会議04公式サイトです。
+  :og_image: https://regional.rubykaigi.org/fukuoka04/ogp.png
