@@ -153,3 +153,10 @@ https://regional.rubykaigi.org/fukuoka04/:
   :title: 福岡Rubyist会議04 | Fukuoka RubyistKaigi 04
   :description: 2024.09.07(Sat) 9:30 - 18:00 開催予定！ 福岡Rubyist会議04公式サイトです。
   :og_image: https://regional.rubykaigi.org/fukuoka04/ogp.png
+https://regional.rubykaigi.org/osaka04/:
+  :link: https://regional.rubykaigi.org/osaka04/
+  :favicon: https://regional.rubykaigi.org/osaka04/favicon.ico
+  :site_name: 大阪Ruby会議04
+  :title: 大阪Ruby会議04
+  :description: 大阪Ruby会議は、大阪で定期的に開催しているRubyプログラミング言語に関するカンファレンスです。Rubyに関する知見・技術を共有し、またRubyistの交流の場として、皆様に楽しんでいただけるカンファレンスを目指しています。
+  :og_image: https://rubykansai.github.io/osaka04/ogp.png
