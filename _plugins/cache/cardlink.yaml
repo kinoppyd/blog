@@ -160,3 +160,21 @@ https://regional.rubykaigi.org/osaka04/:
   :title: 大阪Ruby会議04
   :description: 大阪Ruby会議は、大阪で定期的に開催しているRubyプログラミング言語に関するカンファレンスです。Rubyに関する知見・技術を共有し、またRubyistの交流の場として、皆様に楽しんでいただけるカンファレンスを目指しています。
   :og_image: https://rubykansai.github.io/osaka04/ogp.png
+https://techracho.bpsinc.jp/hachi8833/2024_01_25/43810:
+  :link: https://techracho.bpsinc.jp/hachi8833/2024_01_25/43810
+  :favicon: https://techracho.bpsinc.jp/wp-content/themes/techracho/assets/images/favicon.ico?_=zwa7p3
+  :site_name: TechRacho
+  :title: Railsの`CurrentAttributes`は有害である（翻訳）｜TechRacho by BPS株式会社
+  :description: '概要 原著者の許諾を得て翻訳・公開いたします。 英語記事: Rails'' CurrentAttributes considered
+    harmful 公開日: 2017/06/22 著者: Ryan Bigg: Ryan Bigg氏はRailsのcontributorであると同時にCulture
+    Amp社のメンバーであり、RubyやElixirでの開発を行っています。RailsガイドのドキュメントやMultitenancy with Rails など多くの執筆実績があり、現在はDeep
+    Dive Railsという書籍を執筆中です（現時点で45%↓）。 leanpub.com/ddrより 2017/08/01: 初版 […]'
+  :og_image: https://techracho.bpsinc.jp/wp-content/uploads/2017/08/rails_currentattributes_eyecatch-min.png
+https://github.com/kinoppyd/rails8-auth-test:
+  :link: https://github.com/kinoppyd/rails8-auth-test
+  :favicon: https://github.githubassets.com/favicons/favicon.svg
+  :site_name: GitHub
+  :title: 'GitHub - kinoppyd/rails8-auth-test: Rails8のAuthenticationジェネレーターで作ったコードちょっと触ってみたよ'
+  :description: Rails8のAuthenticationジェネレーターで作ったコードちょっと触ってみたよ. Contribute to kinoppyd/rails8-auth-test
+    development by creating an account on GitHub.
+  :og_image: https://opengraph.githubassets.com/2cf0fe80b995d540900ab114aad15ac9b967816401343ff1ad8dbc5f24887ea8/kinoppyd/rails8-auth-test
