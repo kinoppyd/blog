@@ -17,11 +17,11 @@ https://scienceportal.jst.go.jp/newsflash/20220926_n01/:
   :og_image: https://scienceportal.jst.go.jp/wp-content/uploads/20220926_n01.jpg
 https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html:
   :link: https://www.fukushi.metro.tokyo.lg.jp/kodomo/shussan/tokyo_shussanouen.html
-  :favicon:
-  :site_name:
+  :favicon: https://www.fukushi.metro.tokyo.lg.jp/documents/158990/5052145/favicon/ab336d16-d30e-c4e6-9319-a4f2948f9e99
+  :site_name: 福祉局
   :title: 東京都出産応援事業 ～コロナに負けない！～　東京都福祉局
-  :description:
-  :og_image:
+  :description: 東京都福祉局の東京都出産応援事業 ～コロナに負けない！～(妊娠・出産)のページです。
+  :og_image: https://www.fukushi.metro.tokyo.lg.jp/documents/158990/5052145/opg.png/3c79ba89-ab16-4589-4fad-b5b411615b25?version=1.0&t=1697102162136&imagePreview=1
 https://www.i-lohas.jp/products/safe/:
   :link: https://www.i-lohas.jp/products/safe/
   :favicon: https://www.i-lohas.jp/common/img/favicon.ico
@@ -178,3 +178,21 @@ https://github.com/kinoppyd/rails8-auth-test:
   :description: Rails8のAuthenticationジェネレーターで作ったコードちょっと触ってみたよ. Contribute to kinoppyd/rails8-auth-test
     development by creating an account on GitHub.
   :og_image: https://opengraph.githubassets.com/2cf0fe80b995d540900ab114aad15ac9b967816401343ff1ad8dbc5f24887ea8/kinoppyd/rails8-auth-test
+https://github.com/rails/rails/pull/52328:
+  :link: https://github.com/rails/rails/pull/52328
+  :favicon: https://github.githubassets.com/favicons/favicon.svg
+  :site_name: GitHub
+  :title: 'Add basic sessions generator by dhh · Pull Request #52328 · rails/rails'
+  :description: Adds a basic sessions generator to get people started with their own
+    authentication system. This is not intended to be an all-singing, all-dancing
+    answer to every possible authentication concern. I...
+  :og_image: https://opengraph.githubassets.com/b7ab675e153bc31d64839e6ade9ddc744f783d115e195cf70a7a55443600a0da/rails/rails/pull/52328
+https://once.com/:
+  :link: https://once.com
+  :favicon: https://once.com/assets/images/favicon.png
+  :site_name: ONCE
+  :title: Introducing ONCE
+  :description: Once upon a time you owned what you paid for, you controlled what
+    you depended on, and your privacy and security were your own business. We think
+    it’s that time again.
+  :og_image: https://once.com/assets/images/opengraph.png
