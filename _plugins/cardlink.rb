@@ -27,6 +27,7 @@ module Jekyll
 
       parser = OpenGraphProtocolParser.new(url).tap do |psr|
         if c = cache[url]
+          psr.cached = true
           psr.link = c[:link]
           psr.favicon = c[:favicon]
           psr.site_name = c[:site_name]
@@ -61,13 +62,14 @@ Liquid::Template.register_tag('cardlink', Jekyll::CardlinkTag)
 class OpenGraphProtocolParser
   attr_reader :uri
   attr_writer :link, :favicon, :site_name, :title, :description, :og_image
+  attr_accessor :cached
 
   def initialize(uri)
     @uri = uri
   end
 
   def link
-    return @link if @link
+    return @link if @cached
 
     node = content.xpath('//meta[@property="og:url"]')[0]
     return @link = node['content'] if node
@@ -79,7 +81,7 @@ class OpenGraphProtocolParser
   end
 
   def favicon
-    return @favicon if @favicon
+    return @favicon if @cached
 
     node = content.xpath('//link[@rel="icon" or @rel="shortcut icon"]')[0]
     if node
@@ -99,14 +101,14 @@ class OpenGraphProtocolParser
   end
 
   def site_name
-    return @site_name if @site_name
+    return @site_name if @cached
 
     node = content.xpath('//meta[@property="og:site_name"]')[0]
     return @site_name = node['content'] if node
   end
 
   def title
-    return @title if @title
+    return @title if @cached
 
     node = content.xpath('//meta[@property="og:title" or @property="twitter:title"]')[0]
     return @title = node['content'] if node
@@ -116,14 +118,14 @@ class OpenGraphProtocolParser
   end
 
   def description
-    return @description if @description
+    return @description if @cached
 
     node = content.xpath('//meta[@property="og:description" or @name="description"]')[0]
     return @description = node['content'] if node
   end
 
   def og_image
-    return @og_image if @og_image
+    return @og_image if @cached
 
     node = content.xpath('//meta[@property="og:image" or @property="twitter:image"]')[0]
     return @og_image = node['content'] if node
@@ -134,7 +136,7 @@ class OpenGraphProtocolParser
   end
 
   def base_url
-    return @base_url if @base_url
+    return @base_url if @cached
 
     target = URI.parse(encode_multibyte(uri))
     @base_url = "#{target.scheme}://#{target.host}"
