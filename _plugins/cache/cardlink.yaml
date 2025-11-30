@@ -196,3 +196,59 @@ https://once.com/:
     you depended on, and your privacy and security were your own business. We think
     it’s that time again.
   :og_image: https://once.com/assets/images/opengraph.png
+https://www.postgresql.org/docs/current/release-18.html:
+  :link: https://www.postgresql.org/docs/18/release-18.html
+  :favicon: https://www.postgresql.org/favicon.ico
+  :site_name: PostgreSQL Documentation
+  :title: E.2. Release 18
+  :description: 'E.2.&nbsp;Release 18 # E.2.1. Overview E.2.2. Migration to Version
+    18 E.2.3. Changes E.2.4. Acknowledgments Release date:&nbsp;2025-09-25 E.2.1.&nbsp;Overview
+    # PostgreSQL 18 …'
+  :og_image: https://www.postgresql.org/media/img/about/press/elephant.png
+? https://github.com/rails/rails/blob/690ec8898318b8f50714e86676353ebe1551261e/activerecord/lib/active_record/connection_adapters/postgresql/schema_definitions.rb
+: :link: https://github.com/rails/rails/blob/690ec8898318b8f50714e86676353ebe1551261e/activerecord/lib/active_record/connection_adapters/postgresql/schema_definitions.rb
+  :favicon: https://github.githubassets.com/favicons/favicon.svg
+  :site_name: GitHub
+  :title: rails/activerecord/lib/active_record/connection_adapters/postgresql/schema_definitions.rb
+    at 690ec8898318b8f50714e86676353ebe1551261e · rails/rails
+  :description: Ruby on Rails. Contribute to rails/rails development by creating an
+    account on GitHub.
+  :og_image: https://opengraph.githubassets.com/4358d8d6abf6ab5dff28d42a6ecffa0f67a392f03484db49038af4cbb8285b12/rails/rails
+? https://github.com/rails/rails/blob/690ec8898318b8f50714e86676353ebe1551261e/activerecord/lib/rails/generators/active_record/migration/templates/create_table_migration.rb.tt
+: :link: https://github.com/rails/rails/blob/690ec8898318b8f50714e86676353ebe1551261e/activerecord/lib/rails/generators/active_record/migration/templates/create_table_migration.rb.tt
+  :favicon: https://github.githubassets.com/favicons/favicon.svg
+  :site_name: GitHub
+  :title: rails/activerecord/lib/rails/generators/active_record/migration/templates/create_table_migration.rb.tt
+    at 690ec8898318b8f50714e86676353ebe1551261e · rails/rails
+  :description: Ruby on Rails. Contribute to rails/rails development by creating an
+    account on GitHub.
+  :og_image: https://opengraph.githubassets.com/4358d8d6abf6ab5dff28d42a6ecffa0f67a392f03484db49038af4cbb8285b12/rails/rails
+? https://github.com/rails/rails/blob/690ec8898318b8f50714e86676353ebe1551261e/activerecord/lib/rails/generators/active_record/migration.rb
+: :link: https://github.com/rails/rails/blob/690ec8898318b8f50714e86676353ebe1551261e/activerecord/lib/rails/generators/active_record/migration.rb
+  :favicon: https://github.githubassets.com/favicons/favicon.svg
+  :site_name: GitHub
+  :title: rails/activerecord/lib/rails/generators/active_record/migration.rb at 690ec8898318b8f50714e86676353ebe1551261e
+    · rails/rails
+  :description: Ruby on Rails. Contribute to rails/rails development by creating an
+    account on GitHub.
+  :og_image: https://opengraph.githubassets.com/4358d8d6abf6ab5dff28d42a6ecffa0f67a392f03484db49038af4cbb8285b12/rails/rails
+https://github.com/rails/rails/pull/56096:
+  :link: https://github.com/rails/rails/issues/56096
+  :favicon: https://github.githubassets.com/favicons/favicon.svg
+  :site_name: GitHub
+  :title: 'TransactionTest#test_nested_transactions_after_disable_lazy_transactions
+    fails since 65dc216 · Issue #56096 · rails/rails'
+  :description: Managed to reproduce CI failure at https://buildkite.com/rails/rails/builds/123518#019a56d5-0d09-400c-8f8e-2772ef362d8b
+    Steps to reproduce git clone https://github.com/rails/rails cd rails/activerecord
+    bundle install bundle exec rake db:...
+  :og_image: https://opengraph.githubassets.com/9d5c09bb7ba05ac3b86a00c2639c45e40a52a4cb94d7d7e070493f2acd0ebe66/rails/rails/issues/56096
+https://github.com/rails/rails/pull/56095:
+  :link: https://github.com/rails/rails/pull/56095
+  :favicon: https://github.githubassets.com/favicons/favicon.svg
+  :site_name: GitHub
+  :title: 'Add class option `primary_key_default` for migration and model generator
+    by kinoppyd · Pull Request #56095 · rails/rails'
+  :description: |-
+    Motivation / Background
+    The purpose of this PR is to add a way to set the uuidv7 function (introduced in PostgreSQL 18) as the default value in migrations. With the existing generator, it was possi...
+  :og_image: https://opengraph.githubassets.com/9c8bee32067acd18ef5ae602940398c5897ecc66cc06227a947d1c5a00f59c19/rails/rails/pull/56095
