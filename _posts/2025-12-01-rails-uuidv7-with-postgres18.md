@@ -37,11 +37,11 @@ PostgreSQL18 からは、組み込みでUUIDv7の生成がサポートされま�
 
 これまでUUIDv4を生成するために `gen_random_uuid` という関数が用意されていましたが、 `uuidv7` という関数が新たに追加され、`gen_random_uuid` には `uuidv4` というエイリアスが用意されました。
 
-これまで、Rails + PostgreSQL でUUIDv7をPKとして使うときは、ActiveRecordのフックを使ってPKにRubyで生成したUUIDv7を埋めていましたが、PostgreSQL側で生成できるようになったことで、通常の自動採番と同じように手軽に使えるようになりました。
+PostgreSQL側でUUIDv7が生成できなかった時代、Rails + PostgreSQL でUUIDv7をPKとして使いたい場合にはActiveRecordのフックを使ってPKにRubyで生成したUUIDv7を埋めていました。ですが、PostgreSQL側で生成できるようになったことで、通常の自動採番と同じように手軽に使えるようになりました。
 
 ## Rails の UUIDv7 サポート
 
-Rails + PostgreSQL のUUIDサポートは、これまではマイグレーション時に `id: :uuid` を指定することによって、自動的に `gen_random_uuid` が呼ばれるようになっていました。
+Rails + PostgreSQL のUUIDサポートは、これまではマイグレーション時に `type: :uuid` を指定することによって、自動的に `gen_random_uuid` が呼ばれるようになっていました。
 
 {% cardlink https://github.com/rails/rails/blob/690ec8898318b8f50714e86676353ebe1551261e/activerecord/lib/active_record/connection_adapters/postgresql/schema_definitions.rb %}
 
