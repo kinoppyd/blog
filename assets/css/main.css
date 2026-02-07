@@ -1,0 +1,13 @@
+---
+---
+
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-noto: "Noto Sans JP", sans-serif;
+}
+
+html {
+  font-size: 23px;
+}
