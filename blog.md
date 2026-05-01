@@ -35,7 +35,7 @@ pagination:
     {{ post.excerpt }}
   </div>
   {% if forloop.last == false   %}
-    <hr class="w-100 h-1 mx-48 my-16 bg-gray-200" />
+    <hr class="w-full h-1 mx-48 my-16 bg-gray-200" />
   {% endif %}
 {% endfor %}
 
