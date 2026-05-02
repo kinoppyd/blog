@@ -9,5 +9,39 @@
 }
 
 html {
-  font-size: 23px;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  color: oklch(27.8% 0.033 256.848);
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+.prose :where(blockquote.twitter-tweet, iframe.twitter-tweet, iframe.twitter-tweet-rendered):not(:where([class~="not-prose"], [class~="not-prose"] *)),
+.twitter-tweet,
+.twitter-tweet-rendered {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: auto !important;
+}
+
+.prose :where(blockquote.twitter-tweet):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  min-width: 0 !important;
+}
+
+.prose :where(.speakerdeck-iframe, .docswell-embed):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  width: 100% !important;
+  max-width: 100% !important;
 }

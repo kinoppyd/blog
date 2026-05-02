@@ -8,7 +8,7 @@ pagination:
 
 
 <!-- Pagination links -->
-<div class="pagination text-center mb-8 md:mb-16">
+<div class="pagination mb-8 text-center text-sm font-medium sm:mb-12 sm:text-base">
   <span class="page_number ">
     Page: {{ paginator.page }} of {{ paginator.total_pages }}
   </span>
@@ -35,12 +35,12 @@ pagination:
     {{ post.excerpt }}
   </div>
   {% if forloop.last == false   %}
-    <hr class="w-full h-1 mx-48 my-16 bg-gray-200" />
+    <hr class="my-12 h-px w-full bg-gray-200" />
   {% endif %}
 {% endfor %}
 
 <!-- Pagination links -->
-<div class="pagination text-center mt-8 md:mt-16">
+<div class="pagination mt-8 text-center text-sm font-medium sm:mt-12 sm:text-base">
   <span class="page_number ">
     Page: {{ paginator.page }} of {{ paginator.total_pages }}
   </span>

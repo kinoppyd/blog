@@ -1,13 +1,15 @@
-    <header class="flex items-center justify-between font-extrabold py-8 lg:py-4 px-8 lg:px-24 text-xl lg:text-base bg-gray-800 text-gray-200">
+    <header class="bg-gray-800 text-gray-100">
+      <div class="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-12">
         <a href="{{ site.url }}{{ site.baseurl }}">
-          <div class="flex items-center">
-            <img class="rounded-full w-12 h-12" src="{{ site.baseurl }}/assets/images/icon.png" />
-            <p class="ml-4">{{ site.title }}</p>
+          <div class="flex items-center gap-3 text-lg font-bold sm:text-xl">
+            <img class="h-12 w-12 rounded-full" src="{{ site.baseurl }}/assets/images/icon.png" alt="{{ site.title }}" />
+            <p>{{ site.title }}</p>
           </div>
         </a>
-      <div class="flex item-center">
-        <p><a href="{{ site.url }}/blog/">blog</a></p>
-        <p class="ml-4"><a href="{{ site.url }}/products/">products</a></p>
-        <p class="ml-4"><a href="{{ site.url }}/contact/">accounts & contact</a></p>
+        <nav class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium sm:text-base">
+          <p><a href="{{ site.url }}/blog/">blog</a></p>
+          <p><a href="{{ site.url }}/products/">products</a></p>
+          <p><a href="{{ site.url }}/contact/">accounts & contact</a></p>
+        </nav>
       </div>
     </header>
