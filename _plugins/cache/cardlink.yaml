@@ -252,3 +252,11 @@ https://github.com/rails/rails/pull/56095:
     Motivation / Background
     The purpose of this PR is to add a way to set the uuidv7 function (introduced in PostgreSQL 18) as the default value in migrations. With the existing generator, it was possi...
   :og_image: https://opengraph.githubassets.com/9c8bee32067acd18ef5ae602940398c5897ecc66cc06227a947d1c5a00f59c19/rails/rails/pull/56095
+https://www.theghostintheshell-anime.jp/:
+  :link: https://www.theghostintheshell-anime.jp/
+  :favicon: https://www.theghostintheshell-anime.jp/./favicon.png
+  :site_name: TVアニメ『攻殻機動隊 THE GHOST IN THE SHELL』公式サイト
+  :title: TVアニメ『攻殻機動隊 THE GHOST IN THE SHELL』公式サイト
+  :description: TVアニメ『攻殻機動隊 THE GHOST IN THE SHELL』｜2026年7月7日 | カンテレ・フジテレビ系全国ネット火曜よる11時
+    火アニバル!!枠にて放送開始
+  :og_image: https://www.theghostintheshell-anime.jp/ogp.jpg
